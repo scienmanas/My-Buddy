@@ -27,16 +27,19 @@ export default function Chats(props) {
             </div>
             <div className="chat-list text-[#E8E9E9] overflow-auto" style={{ maxHeight: `${browserHeight - 280}px`, overflowY: 'auto' }}
  >
-                <ul>
+                <ul className='flex flex-col gap-1'>
+                    {console.log(props.currentChat)}
+                    {}
                     {props.chatList.map((chat, index) => (
                         <li
-                            className='items flex flex-row items-center gap-4 select-none hover:bg-black cursor-pointer rounded-lg duration-150 py-3 px-3'
+                            onClick={() => props.hanldeChangeChat(chat[0])}
+                            className={`items flex flex-row items-center gap-4  select-none hover:bg-black  cursor-pointer rounded-lg duration-150 py-3 px-3 ${props.currentChat === chat[0] ? 'bg-black' : ''}`}
                             key={index}>
                             <div className="svg w-fit h-fit">
-                                <img src={chat[1]} alt="" />
+                                <img src={chat[2]} alt="" />
                             </div>
                             <div className="chat-name">
-                                {chat[0]}
+                                {chat[1]}
                             </div>
                         </li>
                     ))}

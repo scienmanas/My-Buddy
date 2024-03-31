@@ -1,0 +1,26 @@
+.text-area-to-chat {
+    position: relative;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 3em; /* Adjust this as needed */
+    resize: none;
+    padding: 1rem;
+    background-color: #0D0F10;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.placeholder-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    font-size: 0.875rem;
+}

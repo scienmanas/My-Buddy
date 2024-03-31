@@ -1,20 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import '../../styles/account.css';
-import { IoLogOutOutline } from "react-icons/io5";
-import { IoSettingsOutline } from "react-icons/io5";
+import React, { useState, useEffect, useRef } from 'react';
+import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { FiExternalLink } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
-
+import '../../styles/account.css';
 
 export default function AccountDownSettings() {
-
-    // Populate using the API
     const [name, setName] = useState("Manas Poddar");
-    const [userType, setUserType] = useState("Student"); // Can be Student, Kid, working professional, and an old adult, etc.
+    const [userType, setUserType] = useState("Student");
     const [isOnline, setIsOnline] = useState(true);
     const [accountSettingPopup, setAccountSettingPopup] = useState(false);
+    const popupRef = useRef(null); // Reference to the popup element
 
     useEffect(() => {
         const updateOnlineStatus = () => {
@@ -28,10 +23,23 @@ export default function AccountDownSettings() {
         }
     }, []);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                // Clicked outside of the popup, close it
+                setAccountSettingPopup(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [popupRef]);
+
     const handleAccountPopUp = () => {
         setAccountSettingPopup(!accountSettingPopup);
     }
-
 
     return (
         <div className='account w-full relative'>
@@ -64,8 +72,8 @@ export default function AccountDownSettings() {
                 </div>
             </div>
             {accountSettingPopup &&
-                < div className="account-popup absolute -top-[12.3rem] bg-[#131619] px-2 py-2 rounded-lg w-full z-50">
-                    <div className="content-account-list flex flex-col text-white gap-[2px]">
+                <div ref={popupRef} className="account-popup absolute -top-[12.3rem] bg-[#131619] px-2 py-2 rounded-lg w-full z-50">
+                     <div className="content-account-list flex flex-col text-white gap-[2px]">
                         <div className='customize-again flex items-center gap-[6px] hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer duration-150'>
                             <div className="svg">
                                 <MdOutlineDashboardCustomize />
@@ -104,6 +112,6 @@ export default function AccountDownSettings() {
                     </div>
                 </div>
             }
-        </div >
+        </div>
     )
 }
