@@ -4,6 +4,7 @@ import SideBar from './ui/SideBar';
 import ContentSide from './ui/ContentSide';
 import ChatInput from './ui/ChatInput';
 import CloseBar from './ui/CloseBar';
+import Conversation from './ui/Conversation';
 import '../styles/chat.css';
 import blueOctagon from '../assets/icons/blue_octagon.png';
 import greenSquare from '../assets/icons/green_square.png';
@@ -30,7 +31,34 @@ export default function Chat(props) {
         [11,"Born today", orangeSquare],
       ])
       const [currentChat, setcurrentChat] = useState(1)
-      // 
+      const [prompt, setPrompt] = useState("")
+      const [geminiAns, setGeminiAns] = useState("Conversation");
+
+      // Configure Genai
+      const { GoogleGenerativeAI } = require("@google/generative-ai");
+      const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+      console.log(process.env.REACT_APP_GEMINI_API_KEY)
+      const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+      const askGemini = async (prompt) => {
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text()
+        console.log(text)
+        setGeminiAns(text)
+
+        // const response = await model.generateText(prompt);
+        // console.log(response.data.choices[0].text);
+        // setGeminiAns(response.data.choices[0].text);
+
+      }
+
+    const handlePrompt = (promptByUser) => {
+        setPrompt(promptByUser)
+        console.log(promptByUser)
+        askGemini(promptByUser)
+    }
 
     const handleShare = () => {
         setShareWindow(true);
@@ -92,9 +120,10 @@ export default function Chat(props) {
                     <div className="user-options-bar">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
                     </div>
-                    <div className="text-area"></div>
+                    <div className="conservation area w-full "></div>
+                        <Conversation geminiAns={geminiAns} />
                     <div className="chat-area text-white">
-                        <ChatInput />
+                        <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
                     </div>
                 </div>
             </div>
