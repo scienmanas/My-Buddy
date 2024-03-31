@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import projectAvtar from '../assets/project/Avatar.png'
+import projectAvtar from '../../assets/project/Avatar.png'
 import { RiArrowDropDownLine } from "react-icons/ri";
 
 export default function Team() {

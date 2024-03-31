@@ -3,7 +3,7 @@ import Team from './Team'
 import General from './General'
 import Projects from './Projects'
 import Account from './Account'
-import './styles/side_bar.css'
+import '../../styles/side_bar.css'
 
 
 export default function SideBar() {

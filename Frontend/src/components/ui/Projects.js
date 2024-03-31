@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { IoIosAddCircleOutline } from "react-icons/io";
-import blueOctagon from '../assets/icons/blue_octagon.png';
-import greenSquare from '../assets/icons/green_square.png';
-import orangeSquare from '../assets/icons/red_square.png';
-import redTriangle from '../assets/icons/red_triangle.png';
+import blueOctagon from '../../assets/icons/blue_octagon.png';
+import greenSquare from '../../assets/icons/green_square.png';
+import orangeSquare from '../../assets/icons/red_square.png';
+import redTriangle from '../../assets/icons/red_triangle.png';
 
 
 export default function Projects() {

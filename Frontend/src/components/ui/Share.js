@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import shareIcon from '../assets/icons/share_icon.png';
+import shareIcon from '../../assets/icons/share_icon.png';
 import { IoMdClose } from "react-icons/io";
 import { PiLinkSimpleBold } from "react-icons/pi";
 

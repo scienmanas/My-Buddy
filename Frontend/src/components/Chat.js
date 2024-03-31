@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
-import { IoMicOutline } from "react-icons/io5";
-import { ImAttachment } from "react-icons/im";
-import sendMessage from '../assets/icons/send_message.png';
-import { LuSend } from "react-icons/lu";
+import React, { useState } from 'react'
+import Share from './ui/Share'
+import SideBar from './ui/SideBar'
+import ContentSide from './ui/ContentSide'
+import ChatInput from './ui/ChatInput'
 
 export default function Chat() {
-    const [textareaHeight, setTextareaHeight] = useState('auto');
+
+    document.body.style.backgroundColor = "#131619"
+
+    const [shareWindow, setShareWindow] = useState(false)
+
+
+    const handleShare = () => {
+        setShareWindow(true)
+    }
+
+    const handleCloseShare = () => {
+        setShareWindow(false)
+    }
 
 
     return (
-        <div className='chat-section flex flex-row items-center justify-between bg-[#0D0F10] m-3 rounded-2xl p-3'>
-            <div className="left flex flex-row items-center w-full ">
-                <div className="mic-button text-2xl cursor-pointer hover:bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300">
-                    <IoMicOutline />
-                </div>
-                <div className="text-area-to-chat w-full">
-                    <textarea
-                        id="chat-input"
-                        className="h-16 w-full resize-none px-5 py-4 bg-[#0D0F10] active:border-none focus:outline-none text-white text-lg"
-                        placeholder='You can ask me anything! I am here to help you...'
-                    />
-                </div>
+        <div className="app flex flex-row">
+            {shareWindow && <div className="share-button absolute w-full h-full flex justify-center items-center opacity-80  bg-slate-600">
+                <Share handleCloseShare={handleCloseShare} />
             </div>
-            <div className="right flex flex-row items-center gap-1 ">
-                <div className="attachment-area text-xl cursor-pointer hover:bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300">
-                    <ImAttachment />
+            }
+            <div className="in-contents flex flex-row w-full">
+                <div className="sidebar min-w-72 min-h-screen">
+                    <SideBar />
                 </div>
-                <div className="send-button text-lg cursor-pointer hover:bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300">
-                    <LuSend />
+                <div className="content-side w-full flex flex-col justify-between">
+                    <div className="user-options-bar">
+                        <ContentSide handleShare={handleShare} />
+                    </div>
+                    <div className="text-area">
+                    </div>
+                    <div className="chat-area text-white">
+                        <ChatInput />
+                    </div>
                 </div>
             </div>
         </div>
-    );
+        // <div>chat</div>
+    )
 }

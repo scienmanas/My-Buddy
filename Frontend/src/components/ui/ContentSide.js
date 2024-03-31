@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { IoChatbubbleOutline } from "react-icons/io5";
-import artificiumCvg from '../assets/icons/artificium_icon.png';
+import artificiumCvg from '../../assets/icons/artificium_icon.png';
 import { MdOutlineFolderOpen } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiShareLine } from "react-icons/ri";
-import currentIndicator from '../assets/icons/current_indicator.png';
-import avatar from '../assets/users/man.png';
+import currentIndicator from '../../assets/icons/current_indicator.png';
+import avatar from '../../assets/users/man.png';
 
 export default function ContentSide(props) {
 

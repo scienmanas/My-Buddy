@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import userImage from '../assets/users/man.png';
+import userImage from '../../assets/users/man.png';
 import { IoSettingsOutline } from "react-icons/io5";
 
 export default function AccountDownSettings() {
