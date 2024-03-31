@@ -4,7 +4,7 @@ import SideBar from './ui/SideBar'
 import ContentSide from './ui/ContentSide'
 import ChatInput from './ui/ChatInput'
 
-export default function Chat() {
+export default function Chat(props) {
 
     document.body.style.backgroundColor = "#131619"
 
@@ -19,6 +19,7 @@ export default function Chat() {
         setShareWindow(false)
     }
 
+    
 
     return (
         <div className="app flex flex-row">
@@ -28,7 +29,7 @@ export default function Chat() {
             }
             <div className="in-contents flex flex-row w-full">
                 <div className="sidebar min-w-72 min-h-screen">
-                    <SideBar />
+                    <SideBar chatList={props.chatList}/>
                 </div>
                 <div className="content-side w-full flex flex-col justify-between">
                     <div className="user-options-bar">

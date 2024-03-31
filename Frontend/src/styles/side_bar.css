@@ -6,3 +6,19 @@
     height: calc(100vh - 1rem);
     overflow: hidden;
 }
+
+.side-bar {
+    transition: width 0.5s ease;
+}
+
+.open {
+    width: 250px; /* Set your desired width */
+}
+
+.closed {
+    width: 0;
+}
+
+.toggle-button {
+    cursor: pointer;
+}
