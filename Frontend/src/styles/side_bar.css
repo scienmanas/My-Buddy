@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.side-bar {
+    transition: width 0.5s ease;
+}
+
+.open {
+  @apply w-[97%];
+}
+
+.closed {
+    width: 0;
+    visibility: hidden;
+}
+
+.toggle-button {
+    cursor: pointer;
+}
