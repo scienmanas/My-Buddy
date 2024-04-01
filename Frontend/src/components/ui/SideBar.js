@@ -10,8 +10,8 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export default function SideBar(props) {
 
     return (
-        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-4 pb-3 pl-1 pr-2 rounded-2xl m-2 ${props.isOpen ? 'open' : 'closed'} `}>
-            <div className="top-items flex flex-col gap-8">
+        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-4 pb-3 pl-1 pr-2 rounded-2xl m-2 ${props.isOpen ? 'open' : 'closed'} w-60`}>
+            <div className="top-items w-fit flex flex-col gap-8">
                 <div className="project-setting">
                     <NewChatOption />
                 </div>

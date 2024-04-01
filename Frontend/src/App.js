@@ -1,5 +1,4 @@
 import './App.css';
-import { useState } from 'react';
 import Landing from './components/Landing';
 import Chat from './components/Chat';
 

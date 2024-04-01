@@ -46,6 +46,12 @@ export default function ChatInput(props) {
             onChange={handleTextareaChange}
             rows={1}
             value={message}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleSendMessage();
+              }
+            }}
           />
 
         </div>

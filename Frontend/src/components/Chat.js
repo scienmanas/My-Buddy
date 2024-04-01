@@ -14,49 +14,53 @@ import redTriangle from '../assets/icons/red_triangle.png';
 export default function Chat(props) {
 
     document.body.style.backgroundColor = "#131619"
-    
+
     const [shareWindow, setShareWindow] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [chatList, setChatList] = useState([
-        [1,"BreakUp with Girlfriend", greenSquare],
-        [2,"No Internships", redTriangle],
-        [3,"Drank Alcohol", orangeSquare],
-        [4,"Hemlo World", blueOctagon],
-        [5,"Yay Party", greenSquare],
-        [6,"Want to Speak", redTriangle],
-        [7,"New Friends", orangeSquare],
-        [8,"Am I Right? ", blueOctagon],
-        [9,"Got a Girlfriend", greenSquare],
-        [10,"Got an orgasm", redTriangle],
-        [11,"Born today", orangeSquare],
-      ])
-      const [currentChat, setcurrentChat] = useState(1)
-      const [prompt, setPrompt] = useState("")
-      const [geminiAns, setGeminiAns] = useState("Conversation");
+        [1, "BreakUp with Girlfriend", greenSquare],
+        [2, "No Internships", redTriangle],
+        [3, "Drank Alcohol", orangeSquare],
+        [4, "Hemlo World", blueOctagon],
+        [5, "Yay Party", greenSquare],
+        [6, "Want to Speak", redTriangle],
+        [7, "New Friends", orangeSquare],
+        [8, "Am I Right? ", blueOctagon],
+        [9, "Got a Girlfriend", greenSquare],
+        [10, "Got an orgasm", redTriangle],
+        [11, "Born today", orangeSquare],
+    ])
+    const [currentChat, setcurrentChat] = useState(1)
+    const [prompt, setPrompt] = useState("")
+    const [geminiAns, setGeminiAns] = useState("Conversation");
+    const [chatHistory, setchatHistory] = useState([])
 
-      // Configure Genai
-      const { GoogleGenerativeAI } = require("@google/generative-ai");
-      const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
-      console.log(process.env.REACT_APP_GEMINI_API_KEY)
-      const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+    // Configure Genai
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
+    const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+    console.log(process.env.REACT_APP_GEMINI_API_KEY)
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-      const askGemini = async (prompt) => {
+    const askGemini = async (prompt) => {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text()
         console.log(text)
         setGeminiAns(text)
+        setchatHistory(prevChatHistory => [...prevChatHistory, text])
+
 
         // const response = await model.generateText(prompt);
         // console.log(response.data.choices[0].text);
         // setGeminiAns(response.data.choices[0].text);
 
-      }
+    }
 
     const handlePrompt = (promptByUser) => {
         setPrompt(promptByUser)
         console.log(promptByUser)
+        setchatHistory(prevChatHistory => [...prevChatHistory, promptByUser])
         askGemini(promptByUser)
     }
 
@@ -74,7 +78,7 @@ export default function Chat(props) {
 
 
     const handleNewChat = () => {
-        
+
     }
 
     const hanldeChangeChat = (id) => {
@@ -107,25 +111,26 @@ export default function Chat(props) {
             )}
             <div className="in-contents flex flex-row w-full relative">
                 <div
-                    className={`sidebar absolute sm:relative sm:min-h-screen duration-200 transition-all ${
-                        isOpen ? 'w-72 sm:w-96' : 'hidden'
-                    }`}
+                    className={`sidebar absolute sm:relative sm:min-h-screen duration-200 transition-all ${isOpen ? 'w-72 sm:w-fit' : 'hidden'
+                        }`}
                 >
-                    <SideBar chatList={chatList} currentChat={currentChat}  isOpen={isOpen} hanldeChangeChat={hanldeChangeChat}/>
+                    <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
                 <div className="closebar hidden text-white sm:flex min-h-screen items-center">
                     <CloseBar isOpen={isOpen} toggleSidebar={toggleSidebar} />
                 </div>
-                <div className="content-side w-full custom-height sm:min-h-screen flex sm:-ml-4 flex-col justify-between">
-                    <div className="user-options-bar">
+                <div className="content-side w-full custom-height sm:min-h-screen flex flex-col justify-between -ml-4">
+                    <div className="user-options-bar flex-none">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
                     </div>
-                    <div className="conservation area w-full "></div>
-                        <Conversation geminiAns={geminiAns} />
-                    <div className="chat-area text-white">
+                    <div className="conversation-area overflow-auto flex-grow p-4">
+                        <Conversation geminiAns={geminiAns} chatHistory={chatHistory} />
+                    </div>
+                    <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
                     </div>
                 </div>
+
             </div>
         </div>
     );
