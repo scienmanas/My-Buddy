@@ -9,13 +9,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@google/generative-ai": "^0.3.1",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/user-event": "^14.5.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "localforage": "^1.10.0",
-    "lucide-react": "^0.363.0",
+    "lucide-react": "^0.364.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -41,10 +41,10 @@
     "sort-by": "^1.2.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.5.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "GENERATE_SOURCEMAP=false react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -68,6 +68,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.3"
   }
 }
