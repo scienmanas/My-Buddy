@@ -1,14 +1,13 @@
 import './App.css';
-import Landing from './components/Landing';
-import Chat from './components/Chat';
-
 
 import {
   BrowserRouter as Router,
-  Routes,
   Route,
+  Routes,
 } from "react-router-dom";
 
+import Chat from './components/Chat';
+import Landing from './components/Landing';
 
 function App() {
 
@@ -19,7 +18,8 @@ function App() {
       <Router>
         {/* Navbar */}
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={
+    <Landing />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>
       </Router>

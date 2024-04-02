@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { IoMicOutline } from "react-icons/io5";
-import { LuSend } from "react-icons/lu";
 import '../../styles/chat_input.css';
+
+import React, {useEffect, useState} from 'react';
+import {IoMicOutline} from "react-icons/io5";
+import {LuSend} from "react-icons/lu";
 
 export default function ChatInput(props) {
   const [textareaHeight, setTextareaHeight] = useState('auto');
@@ -10,21 +11,22 @@ export default function ChatInput(props) {
   const handleTextareaChange = (event) => {
     setMessage(event.target.value);
     const element = event.target;
-    element.style.height = 'auto'; // Reset the height to auto to calculate the correct scrollHeight
-    element.style.height = `${element.scrollHeight}px`; // Set the height to the scrollHeight
-    setTextareaHeight(`${element.scrollHeight}px`); // Update the state with the new height
+    element.style.height = 'auto'; // Reset the height to auto to calculate the
+                                   // correct scrollHeight
+    element.style.height =
+        `${element.scrollHeight}px`; // Set the height to the scrollHeight
+    setTextareaHeight(
+        `${element.scrollHeight}px`); // Update the state with the new height
   };
 
   // useEffect(() => {
   //   console.log(message)
 
   // }, [message])
-  
-
 
   const handleSendMessage = () => {
-
-    if (message.trim() === '') return;
+    if (message.trim() === '')
+      return;
     // Add your logic to send the message
     props.handlePrompt(message)
     setMessage('');
@@ -56,14 +58,13 @@ export default function ChatInput(props) {
 
         </div>
       </div>
-      <div 
-      className="right flex flex-row items-center gap-1 "
-      onClick={handleSendMessage}
-      >
-        <div className={`send-button text-lg cursor-pointer  bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300`}>
-          <LuSend />
-        </div>
-      </div>
-    </div>
+      <div
+  className = "right flex flex-row items-center gap-1 "
+  onClick =
+      {handleSendMessage} >
+      <div className =
+           {`send-button text-lg cursor-pointer  bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300`}>
+      <LuSend /></div>
+      </div>< /div>
   );
 }

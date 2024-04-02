@@ -1,11 +1,13 @@
-import React from 'react'
-import NewChatOption from './NewChatOption '
-import Chats from './Chats'
-import Account from './Account'
 import '../../styles/side_bar.css'
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
+import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React from 'react'
+import {useState} from 'react';
+
+import Account from './Account'
+import Chats from './Chats'
+import NewChatOption from './NewChatOption '
 
 export default function SideBar(props) {
 
