@@ -1,18 +1,12 @@
-import './App.css';
-import Landing from './components/Landing';
-import Chat from './components/Chat';
+import "./App.css";
 
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
+import Chat from "./components/Chat";
+import Landing from "./components/Landing";
 
 function App() {
-
-  document.body.style.backgroundColor = "#131619"
+  document.body.style.backgroundColor = "#131619";
 
   return (
     <div className="app overflow-hidden">
