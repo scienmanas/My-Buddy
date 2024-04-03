@@ -32,35 +32,32 @@ export default function Chat(props) {
     ])
     const [currentChat, setcurrentChat] = useState(1)
     const [prompt, setPrompt] = useState("")
-    const [geminiAns, setGeminiAns] = useState("Conversation");
     const [chatHistory, setchatHistory] = useState([])
 
     // Configure Genai
     const { GoogleGenerativeAI } = require("@google/generative-ai");
     const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
-    console.log(process.env.REACT_APP_GEMINI_API_KEY)
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    
 
-    const askGemini = async (prompt) => {
+    // Ask Gemini
+    const askGemini = async (promptByUser) => {
 
-        const result = await model.generateContent(prompt);
+        const chat = model.startChat({
+            history: chatHistory,
+        });
+
+        // Ask Gemini by calling api and passing history
+        const result = await chat.sendMessage(promptByUser);
         const response = await result.response;
-        const text = response.text()
-        console.log(text)
-        setGeminiAns(text)
-        setchatHistory(prevChatHistory => [...prevChatHistory, text])
-
-
-        // const response = await model.generateText(prompt);
-        // console.log(response.data.choices[0].text);
-        // setGeminiAns(response.data.choices[0].text);
-
+        const text = response.text();
+        
     }
+
 
     const handlePrompt = (promptByUser) => {
         setPrompt(promptByUser)
         console.log(promptByUser)
-        setchatHistory(prevChatHistory => [...prevChatHistory, promptByUser])
         askGemini(promptByUser)
     }
 
@@ -124,7 +121,7 @@ export default function Chat(props) {
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
                     </div>
                     <div className="conversation-area overflow-auto flex-grow p-4">
-                        <Conversation geminiAns={geminiAns} chatHistory={chatHistory} />
+                        {/* <Conversation geminiAns={geminiAns} chatHistory={chatHistory} /> */}
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
