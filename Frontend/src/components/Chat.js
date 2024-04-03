@@ -13,8 +13,10 @@ import redTriangle from '../assets/icons/red_triangle.png';
 
 export default function Chat(props) {
 
+    // Background color setup
     document.body.style.backgroundColor = "#131619"
 
+    // Configure states
     const [shareWindow, setShareWindow] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [chatList, setChatList] = useState([
@@ -30,9 +32,9 @@ export default function Chat(props) {
         [10, "Got an orgasm", redTriangle],
         [11, "Born today", orangeSquare],
     ])
-    const [currentChat, setcurrentChat] = useState(1)
-    const [prompt, setPrompt] = useState("")
-    const [chatHistory, setchatHistory] = useState([])
+    const [currentChat, setcurrentChat] = useState(1);
+    const [chatHistory, setchatHistory] = useState([]);
+    const [chats, setchats] = useState([]);
 
     // Configure Genai
     const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -51,14 +53,27 @@ export default function Chat(props) {
         const result = await chat.sendMessage(promptByUser);
         const response = await result.response;
         const text = response.text();
-        
+        console.log(chatHistory)
+
+        setchats(prevChats => [
+            ...prevChats,{
+                role: 'model',
+                parts: [{text : text}]
+            }
+        ])
+
+
     }
 
 
     const handlePrompt = (promptByUser) => {
-        setPrompt(promptByUser)
-        console.log(promptByUser)
         askGemini(promptByUser)
+        setchats(prevChats => [
+            ...prevChats, {
+                role: 'user',
+                parts: [{text : promptByUser}] 
+            }
+        ] )
     }
 
     const handleShare = () => {
@@ -120,8 +135,8 @@ export default function Chat(props) {
                     <div className="user-options-bar flex-none">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
                     </div>
-                    <div className="conversation-area overflow-auto flex-grow p-4">
-                        {/* <Conversation geminiAns={geminiAns} chatHistory={chatHistory} /> */}
+                    <div className="conversation-area overflow-auto w-full flex-grow p-4">
+                        <Conversation chats={chats} />
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />

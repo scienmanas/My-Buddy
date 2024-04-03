@@ -1,23 +1,30 @@
 import React from 'react'
-import MarkDownConverter from './MarkDownConverter'
 import '../../styles/conversation.css'
 import Bot from './Bot'
 import User from './User'
 
 export default function Conversation(props) {
 
-    console.log(props.chatHistory)
     return (
-        // <div className="conversation">
-        //     {props.chatHistory.map((chat, index) => {
-        //         if (chat.type === 'bot') {
-        //             return <Bot key={index} chat={chat.text} />
-        //         } else {
-        //             return <User key={index} chat={chat.text} />
-        //         }
-        //     })}
-        // </div>
-        <div></div>
+        <>
+        <div className="converation-container text-white flex flex-col gap-5 w-full flex-wrap">
+            {props.chats.map((message, index) => {
+                if (message.role === 'user') {
+                    return (
+                        <User key={index} text={message.parts[0].text} />
+                    );
+                }
+                else if (message.role === 'model') {
+                    return (
+                        <Bot key={index} text={message.parts[0].text} />
+                    )
+                }
+                else {
+                    return null; // error handling
+                }
+            })}
+        </div>
+        </>
     )
 }
 
