@@ -1,11 +1,12 @@
-import React from 'react'
-import MarkDownConverter from './MarkDownConverter'
-import botLogo from '../../assets/logo/logo_transparent_48px.png'
-import '../../styles/bot.css'
+import React from 'react';
+import MarkDownConverter from './MarkDownConverter';
+import botLogo from '../../assets/logo/logo_transparent_48px.png';
+import '../../styles/bot.css';
+import ChatAnswerLoader from '../loaders/ChatAnswerLoader';
 
 export default function Bot(props) {
     return (
-        <div className='bot flex flex-row text-sm sm:text-base lg:text-lg w-[72%] items-start gap-[5px]'>
+        <div className={`bot flex flex-row text-sm sm:text-base lg:text-lg w-[68%] gap-[5px] items-start`}>
             <div className="bot-logo w-8 flex justify-center items-center">
                 <img
                     src={botLogo}
@@ -14,10 +15,10 @@ export default function Bot(props) {
                 />
             </div>
             <div className="text-bot-box flex-1 flex items-center">
-                <div className="text-bot-box-content px-2 py-1 bg-gradient-to-br from-[#6955dcdf] to-[#3d153b] w-fit">
+                <div className="text-bot-box-content px-2 py-1 bg-gradient-to-br from-[#200122] to-[#6f0000] w-fit text-sm sm:text-base">
                     <MarkDownConverter chat={props.text} />
                 </div>
             </div>
         </div>
-    )
+    );
 }

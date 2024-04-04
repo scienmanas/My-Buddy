@@ -17,7 +17,7 @@ import remarkImages from 'remark-images';
 
 export default function MarkDownConverter(props) {
     return (
-        <div className="text-wrap flex flex-wrap">
+        <div className="text-wrap flex flex-wrap w-fit">
             <Markdown
                 remarkPlugins={[
                     remarkGfm,

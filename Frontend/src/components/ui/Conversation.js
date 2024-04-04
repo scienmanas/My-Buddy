@@ -2,6 +2,7 @@ import React from 'react'
 import '../../styles/conversation.css'
 import Bot from './Bot'
 import User from './User'
+import ChatAnswerLoader from '../loaders/ChatAnswerLoader';
 
 export default function Conversation(props) {
 
@@ -16,13 +17,15 @@ export default function Conversation(props) {
                 }
                 else if (message.role === 'model') {
                     return (
-                        <Bot key={index} text={message.parts[0].text} />
+                        <Bot key={index} text={message.parts[0].text} responseLoading={props.responseLoading} />
                     )
                 }
+                
                 else {
                     return null; // error handling
                 }
             })}
+            {props.responseLoading === true ? <ChatAnswerLoader /> : null}
         </div>
         </>
     )

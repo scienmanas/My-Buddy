@@ -35,6 +35,7 @@ export default function Chat(props) {
     const [currentChat, setcurrentChat] = useState(1);
     const [chatHistory, setchatHistory] = useState([]);
     const [chats, setchats] = useState([]);
+    const [responseLoading, setResponseLoading] = useState(false);
 
     // Configure Genai
     const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -62,11 +63,18 @@ export default function Chat(props) {
             }
         ])
 
+        setResponseLoading(() => {
+            return false;
+        })
+
 
     }
 
 
     const handlePrompt = (promptByUser) => {
+        setResponseLoading(() => {
+            return true;
+        });
         askGemini(promptByUser)
         setchats(prevChats => [
             ...prevChats, {
@@ -136,7 +144,7 @@ export default function Chat(props) {
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
                     </div>
                     <div className="conversation-area overflow-auto w-full flex-grow p-4">
-                        <Conversation chats={chats} />
+                        <Conversation chats={chats} responseLoading={responseLoading} />
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
