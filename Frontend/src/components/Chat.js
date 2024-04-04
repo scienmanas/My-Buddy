@@ -94,11 +94,6 @@ export default function Chat(props) {
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
-        if (isOpen) {
-            console.log("Khula ha")
-        } else {
-            console.log("Band ha")
-        }
     };
 
 

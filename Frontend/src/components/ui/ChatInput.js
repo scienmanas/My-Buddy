@@ -54,8 +54,10 @@ export default function ChatInput(props) {
       className="right flex flex-row items-center gap-1 "
       onClick={handleSendMessage}
       >
-        <div className={`send-button text-lg cursor-pointer  bg-slate-800 px-3 py-3 rounded-xl text-slate-500 hover:text-slate-300`}>
-          <LuSend />
+        <div className={`send-button text-lg px-3 py-3 rounded-xl ${message.length > 0 ? 'bg-slate-700 text-slate-300 cursor-pointer': 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}>
+          <LuSend
+          className={``}
+          />
         </div>
       </div>
     </div>
