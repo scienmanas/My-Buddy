@@ -41,7 +41,7 @@ export default function Chat(props) {
     const { GoogleGenerativeAI } = require("@google/generative-ai");
     const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    
+
 
     // Ask Gemini
     const askGemini = async (promptByUser) => {
@@ -57,9 +57,9 @@ export default function Chat(props) {
         console.log(chatHistory)
 
         setchats(prevChats => [
-            ...prevChats,{
+            ...prevChats, {
                 role: 'model',
-                parts: [{text : text}]
+                parts: [{ text: text }]
             }
         ])
 
@@ -79,9 +79,9 @@ export default function Chat(props) {
         setchats(prevChats => [
             ...prevChats, {
                 role: 'user',
-                parts: [{text : promptByUser}] 
+                parts: [{ text: promptByUser }]
             }
-        ] )
+        ])
     }
 
     const handleShare = () => {
@@ -94,6 +94,11 @@ export default function Chat(props) {
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
+        if (isOpen) {
+            console.log("Khula ha")
+        } else {
+            console.log("Band ha")
+        }
     };
 
 
@@ -129,19 +134,15 @@ export default function Chat(props) {
                     <Share handleCloseShare={handleCloseShare} />
                 </div>
             )}
-            <div className="in-contents flex flex-row w-full relative">
+            <div className="in-contents flex flex-row w-full relative items-center">
                 <div
-                    className={`sidebar absolute sm:relative sm:min-h-screen duration-200 transition-all ${isOpen ? 'w-72 sm:w-fit' : 'hidden'
-                        }`}
+                    className={`sidebar absolute sm:relative sm:min-h-screen w-fi z-50`}
                 >
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
-                <div className="closebar hidden text-white sm:flex min-h-screen items-center">
-                    <CloseBar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-                </div>
-                <div className="content-side w-full custom-height sm:min-h-screen flex flex-col justify-between -ml-4">
+                <div className="content-side w-full custom-height sm:min-h-screen flex flex-col justify-between">
                     <div className="user-options-bar flex-none">
-                        <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} />
+                        <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar}/>
                     </div>
                     <div className="conversation-area overflow-auto w-full flex-grow p-4">
                         <Conversation chats={chats} responseLoading={responseLoading} />

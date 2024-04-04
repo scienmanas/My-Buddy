@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { IoChatbubbleOutline } from "react-icons/io5";
 import artificiumCvg from '../../assets/icons/artificium_icon.png';
 import { MdOutlineFolderOpen } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
+import { RiChatNewLine } from "react-icons/ri";
 import currentIndicator from '../../assets/icons/current_indicator.png';
 
 export default function ContentSide(props) {
@@ -17,7 +17,7 @@ export default function ContentSide(props) {
   }
 
   return (
-    <div className='m-3 rounded-xl  content-side bg-[#0D0F10] h-fit  pt-2 flex flex-col gap-2 sm:gap-4'>
+    <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-2 sm:gap-4'>
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
         <div className="info flex flex-col p-2">
           <div className="chat-name h-[32px]  text-sm sm:text-base text-white font-bold select-none">
@@ -27,12 +27,22 @@ export default function ContentSide(props) {
             <p>{props.chatList[props.currentChat - 1][1]}</p>
           </div>
         </div>
-        <div className="actions text-white flex flex-row gap-7 items-center">
+        <div className="actions text-white flex flex-row gap-1 items-center">
           <div
-            onClick={props.handleShare}
-            className="edit-option bg-[#1e2125] py-[14px] px-[12px] sm:py-[18px] sm:px-[16px] rounded-lg cursor-pointer text-sm sm:text-lg"
+            className="new-chat-button cursor-pointer sm:text-2xl text-xl hover:bg-gray-800 duration-150 p-2 rounded-xl active:scale-90"
+            // onClick={}
           >
-            <MdOutlineEdit />
+            <RiChatNewLine />
+          </div>
+          <div 
+          className={`open-side-pannel-for-sm flex w-fit cursor-pointer hover:bg-gray-800 p-2 rounded-lg border-[1px] border-transparent active:border-blue-400 duration-150 relative`}
+          onClick={props.toggleSidebar}
+          >
+            <div className="lines flex flex-col gap-[3.7px] ">
+              <div className={`line-2 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ?'rotate-45' : ''} duration-100`}></div>
+              <div className={`line-1 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ?'hidden':''}`}></div>
+              <div className={`line-3 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ?'-rotate-45' : ''} duration-100`}></div>
+            </div>
           </div>
         </div>
       </div>

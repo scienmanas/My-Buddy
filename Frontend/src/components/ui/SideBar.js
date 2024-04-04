@@ -1,16 +1,13 @@
 import React from 'react'
-import NewChatOption from './NewChatOption '
+import NewChatOption from './NewChatOption'
 import Chats from './Chats'
 import Account from './Account'
 import '../../styles/side_bar.css'
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function SideBar(props) {
 
     return (
-        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-4 pb-3 pl-1 pr-2 rounded-2xl m-2 ${props.isOpen ? 'open' : 'closed'} w-60`}>
+        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2' : '-mx-60'} w-60 duration-1000 transition-all`}>
             <div className="top-items w-fit flex flex-col gap-8">
                 <div className="project-setting">
                     <NewChatOption />

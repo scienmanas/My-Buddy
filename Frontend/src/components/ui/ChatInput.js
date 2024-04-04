@@ -15,13 +15,7 @@ export default function ChatInput(props) {
     setTextareaHeight(`${element.scrollHeight}px`); // Update the state with the new height
   };
 
-  // useEffect(() => {
-  //   console.log(message)
-
-  // }, [message])
   
-
-
   const handleSendMessage = () => {
 
     if (message.trim() === '') return;
