@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Share from './ui/Share';
 import SideBar from './ui/SideBar';
 import ContentSide from './ui/ContentSide';
 import ChatInput from './ui/ChatInput';
-import CloseBar from './ui/CloseBar';
 import Conversation from './ui/Conversation';
 import '../styles/chat.css';
 import blueOctagon from '../assets/icons/blue_octagon.png';
@@ -12,6 +11,7 @@ import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
 
 export default function Chat(props) {
+
 
     // Background color setup
     document.body.style.backgroundColor = "#131619"
@@ -66,8 +66,6 @@ export default function Chat(props) {
         setResponseLoading(() => {
             return false;
         })
-
-
     }
 
 
@@ -105,22 +103,6 @@ export default function Chat(props) {
         setcurrentChat(id)
     }
 
-    // Add event listener to handle scroll
-    useEffect(() => {
-        const handleScroll = () => {
-            if (isOpen) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [isOpen]);
 
     return (
         <div className="app flex flex-row">
@@ -137,9 +119,9 @@ export default function Chat(props) {
                 </div>
                 <div className="content-side w-full custom-height sm:min-h-screen flex flex-col justify-between">
                     <div className="user-options-bar flex-none">
-                        <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar}/>
+                        <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
                     </div>
-                    <div className="conversation-area overflow-auto w-full flex-grow p-4">
+                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4" >
                         <Conversation chats={chats} responseLoading={responseLoading} />
                     </div>
                     <div className="chat-area">
@@ -151,3 +133,28 @@ export default function Chat(props) {
         </div>
     );
 }
+
+
+// import React, { useRef, useEffect } from 'react';
+
+// function YourComponent({ chats, responseLoading }) {
+//     const conversationRef = useRef(null);
+
+//     // Function to scroll conversation area to bottom
+//     const scrollToBottom = () => {
+//         if (conversationRef.current) {
+//             conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
+//         }
+//     };
+
+//     // Scroll to bottom whenever chats or responseLoading changes
+//     useEffect(() => {
+//         scrollToBottom();
+//     }, [chats, responseLoading]);
+
+//     return (
+//         <div className="conversation-area overflow-auto w-full flex-grow p-4" ref={conversationRef}>
+//             <Conversation chats={chats} responseLoading={responseLoading} />
+//         </div>
+//     );
+// }

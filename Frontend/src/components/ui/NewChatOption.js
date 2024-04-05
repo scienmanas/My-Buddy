@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo/logo.png'
-import { FaEdit } from "react-icons/fa";
+import { RiChatNewLine } from "react-icons/ri";
 
-export default function NewChatOption () {
+export default function NewChatOption() {
 
 
     const handleChatNow = () => {
@@ -20,8 +20,8 @@ export default function NewChatOption () {
                         alt=""
                     />
                 </div>
-                <div className="chat text-white select-none">
-                    New Chat
+                <div className="chat text-white select-none text-sm  sm:text-base font-bold">
+                    My Buddy
                 </div>
             </div>
             <div className="actions text-[#686B6E] text-2xl cursor-pointer group relative">
@@ -29,7 +29,7 @@ export default function NewChatOption () {
                     className="button hover:bg-black px-3 py-2 rounded-2xl flex items-center"
                     onClick={handleChatNow}
                 >
-                    <FaEdit />
+                    <RiChatNewLine />
                 </div>
                 <div className='text invisible group-hover:visible absolute text-sm w-24 h-fit -left-8 top-11  text-center flex items-center rounded-xl px-4 py-2 bg-black'>
                     Chat Now

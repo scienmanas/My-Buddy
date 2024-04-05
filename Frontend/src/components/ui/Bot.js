@@ -2,7 +2,6 @@ import React from 'react';
 import MarkDownConverter from './MarkDownConverter';
 import botLogo from '../../assets/logo/logo_transparent_48px.png';
 import '../../styles/bot.css';
-import ChatAnswerLoader from '../loaders/ChatAnswerLoader';
 
 export default function Bot(props) {
     return (

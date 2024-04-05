@@ -7,8 +7,8 @@ import '../../styles/side_bar.css'
 export default function SideBar(props) {
 
     return (
-        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2' : '-mx-60'} w-60 duration-1000 transition-all`}>
-            <div className="top-items w-fit flex flex-col gap-8">
+        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-6 sm:pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2' : '-mx-60'} sm:w-60 w-[14rem] duration-1000 transition-all`}>
+            <div className="top-items w-fit flex flex-col gap-6 sm:gap-5">
                 <div className="project-setting">
                     <NewChatOption />
                 </div>
@@ -17,7 +17,7 @@ export default function SideBar(props) {
                 </div>
             </div>
             <div className="down-items w-full">
-                <div className="account-settings">
+                <div className="account-settings text-sm sm:text-base">
                     < Account />
                 </div>
             </div>
