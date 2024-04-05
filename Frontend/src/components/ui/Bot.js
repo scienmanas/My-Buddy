@@ -5,7 +5,7 @@ import '../../styles/bot.css';
 
 export default function Bot(props) {
     return (
-        <div className={`bot flex flex-row text-sm sm:text-base lg:text-lg w-[68%] gap-[5px] items-start`}>
+        <div className={`bot flex flex-row text-sm sm:text-base lg:text-lg w-[75%] gap-[5px] items-start`}>
             <div className="bot-logo w-8 flex justify-center items-center">
                 <img
                     src={botLogo}
