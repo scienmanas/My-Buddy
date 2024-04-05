@@ -103,6 +103,21 @@ export default function Chat(props) {
         setcurrentChat(id)
     }
 
+    useEffect(() => {
+        const applyDevicesClasses = () => {
+            const contentSide = document.getElementById('content-side');
+            if (contentSide) {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    contentSide.classList.add('custom-height'); // Apply custom-height class for mobile devices
+                } else {
+                    contentSide.classList.add('min-h-screen'); // Apply min-h-screen class for non-mobile devices
+                }
+            }
+        }
+        applyDevicesClasses();
+    }, []);
+
+
 
     return (
         <div className="app flex flex-row">
@@ -117,17 +132,18 @@ export default function Chat(props) {
                 >
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
-                <div className="content-side w-full custom-height sm:min-h-screen flex flex-col justify-between">
+                <div id='content-side' className="content-side-content  w-full flex flex-col justify-between">
                     <div className="user-options-bar flex-none">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
                     </div>
-                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4" >
+                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4">
                         <Conversation chats={chats} responseLoading={responseLoading} />
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
                     </div>
                 </div>
+
 
             </div>
         </div>
