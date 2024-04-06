@@ -117,7 +117,17 @@ export default function Chat(props) {
         applyDevicesClasses();
     }, []);
 
+    const conversationRef = useRef(null);
 
+    useEffect(() => {
+        const scrollToBottom = () => {
+            if (conversationRef.current) {
+                conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
+            }
+        };
+
+        scrollToBottom();
+    }, [chats, responseLoading]);
 
     return (
         <div className="app flex flex-row">
@@ -128,22 +138,21 @@ export default function Chat(props) {
             )}
             <div className="in-contents flex flex-row w-full relative items-center">
                 <div
-                    className={`sidebar absolute sm:relative sm:min-h-screen w-fi z-50`}
+                    className={`sidebar absolute sm:relative sm:min-h-screen w-fit z-50`}
                 >
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
-                <div id='content-side' className="content-side-content  w-full flex flex-col justify-between">
+                <div className="content-side w-full custom-height sm:max-h-screen sm:min-h-screen flex flex-col justify-between">
                     <div className="user-options-bar flex-none">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
                     </div>
-                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4">
+                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
                         <Conversation chats={chats} responseLoading={responseLoading} />
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
                     </div>
                 </div>
-
 
             </div>
         </div>
