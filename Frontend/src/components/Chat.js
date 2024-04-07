@@ -4,6 +4,7 @@ import SideBar from './ui/SideBar';
 import ContentSide from './ui/ContentSide';
 import ChatInput from './ui/ChatInput';
 import Conversation from './ui/Conversation';
+import NoContentsScreen from './ui/NoContentsScreen';
 import '../styles/chat.css';
 import blueOctagon from '../assets/icons/blue_octagon.png';
 import greenSquare from '../assets/icons/green_square.png';
@@ -110,7 +111,8 @@ export default function Chat(props) {
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                     contentSide.classList.add('custom-height'); // Apply custom-height class for mobile devices
                 } else {
-                    contentSide.classList.add('min-h-screen'); // Apply min-h-screen class for non-mobile devices
+                    contentSide.classList.add('min-h-screen'); // Apply min-h-screen class for non-mobile devicesmax
+                    contentSide.classList.add('max-h-screen'); // Apply max-h-screen class for non-mobile devices
                 }
             }
         }
@@ -129,6 +131,8 @@ export default function Chat(props) {
         scrollToBottom();
     }, [chats, responseLoading]);
 
+
+
     return (
         <div className="app flex flex-row">
             {shareWindow && (
@@ -138,12 +142,12 @@ export default function Chat(props) {
             )}
             <div className="in-contents flex flex-row w-full relative items-center">
                 <div
-                    className={`sidebar absolute sm:relative sm:min-h-screen w-fit z-50`}
+                    className={`sidebar absolute sm:relative sm:min-h-screen z-50`}
                 >
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
-                <div className="content-side w-full custom-height sm:max-h-screen sm:min-h-screen flex flex-col justify-between">
-                    <div className="user-options-bar flex-none">
+                <div id='content-side' className="content-side-content  w-full flex flex-col justify-between sm:max-h-screen sm:min-h-screen">
+                    {/* <div className="user-options-bar flex-none">
                         <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
                     </div>
                     <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
@@ -151,9 +155,11 @@ export default function Chat(props) {
                     </div>
                     <div className="chat-area">
                         <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
+                    </div> */}
+                    <div className="no-content-screen w-full h-full">
+                        <NoContentsScreen />
                     </div>
                 </div>
-
             </div>
         </div>
     );

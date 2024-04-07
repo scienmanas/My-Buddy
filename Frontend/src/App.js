@@ -1,8 +1,6 @@
 import './App.css';
 import Landing from './components/Landing';
 import Chat from './components/Chat';
-
-
 import {
   BrowserRouter as Router,
   Routes,
