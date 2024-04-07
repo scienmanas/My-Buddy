@@ -1,6 +1,8 @@
 import './App.css';
 import Landing from './components/Landing';
 import Chat from './components/Chat';
+import { useState } from 'react';
+import GeneralWebsiteLoader from './components/loaders/GeneralWebsiteLoader';
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,15 +12,19 @@ import {
 
 function App() {
 
-  document.body.style.backgroundColor = "#131619"
+  const [isloading, setisloading] = useState(false);
+
+  const setLoading = (value) => {
+    setisloading(value);
+  }
 
   return (
     <div className="app overflow-hidden">
+      {isloading && <GeneralWebsiteLoader />}
       <Router>
-        {/* Navbar */}
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/" element={<Landing  isloading={isloading} setLoading={setLoading} />} />
+          <Route path="/chat" element={<Chat isloading={isloading} setLoading={setLoading} />} />
         </Routes>
       </Router>
     </div>

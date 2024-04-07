@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Share from './ui/Share';
 import SideBar from './ui/SideBar';
-import ContentSide from './ui/ContentSide';
+import Infotop from './ui/InfoTop';
 import ChatInput from './ui/ChatInput';
 import Conversation from './ui/Conversation';
 import NoContentsScreen from './ui/NoContentsScreen';
@@ -23,17 +23,17 @@ export default function Chat(props) {
     const [chatList, setChatList] = useState([
         [1, "BreakUp with Girlfriend", greenSquare],
         [2, "No Internships", redTriangle],
-        [3, "Drank Alcohol", orangeSquare],
+        [3, "oh Shit", orangeSquare],
         [4, "Hemlo World", blueOctagon],
         [5, "Yay Party", greenSquare],
         [6, "Want to Speak", redTriangle],
         [7, "New Friends", orangeSquare],
         [8, "Am I Right? ", blueOctagon],
         [9, "Got a Girlfriend", greenSquare],
-        [10, "Got an orgasm", redTriangle],
-        [11, "Born today", orangeSquare],
+        [10, "Ok ok fine", redTriangle],
+        [11, "I am Done", orangeSquare],
     ])
-    const [currentChat, setcurrentChat] = useState(1);
+    const [currentChat, setcurrentChat] = useState(null);
     const [chatHistory, setchatHistory] = useState([]);
     const [chats, setchats] = useState([]);
     const [responseLoading, setResponseLoading] = useState(false);
@@ -97,7 +97,7 @@ export default function Chat(props) {
 
 
     const handleNewChat = () => {
-
+        setcurrentChat(1);
     }
 
     const hanldeChangeChat = (id) => {
@@ -147,45 +147,26 @@ export default function Chat(props) {
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
                 <div id='content-side' className="content-side-content  w-full flex flex-col justify-between sm:max-h-screen sm:min-h-screen">
-                    {/* <div className="user-options-bar flex-none">
-                        <ContentSide handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
-                    </div>
-                    <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
-                        <Conversation chats={chats} responseLoading={responseLoading} />
-                    </div>
-                    <div className="chat-area">
-                        <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
-                    </div> */}
-                    <div className="no-content-screen w-full h-full">
-                        <NoContentsScreen />
-                    </div>
+                    {currentChat &&
+                        <>
+                            <div className="user-options-bar flex-none">
+                                <Infotop handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
+                            </div>
+                            <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
+                                <Conversation chats={chats} responseLoading={responseLoading} />
+                            </div>
+                            <div className="chat-area">
+                                <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
+                            </div>
+                        </>
+                    }
+                    { !currentChat &&
+                        <div className="no-content-screen w-full h-full">
+                            <NoContentsScreen handleNewChat={handleNewChat} hanldeChangeChat={hanldeChangeChat} />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     );
 }
-
-
-// import React, { useRef, useEffect } from 'react';
-
-// function YourComponent({ chats, responseLoading }) {
-//     const conversationRef = useRef(null);
-
-//     // Function to scroll conversation area to bottom
-//     const scrollToBottom = () => {
-//         if (conversationRef.current) {
-//             conversationRef.current.scrollTop = conversationRef.current.scrollHeight;
-//         }
-//     };
-
-//     // Scroll to bottom whenever chats or responseLoading changes
-//     useEffect(() => {
-//         scrollToBottom();
-//     }, [chats, responseLoading]);
-
-//     return (
-//         <div className="conversation-area overflow-auto w-full flex-grow p-4" ref={conversationRef}>
-//             <Conversation chats={chats} responseLoading={responseLoading} />
-//         </div>
-//     );
-// }

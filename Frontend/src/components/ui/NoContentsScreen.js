@@ -13,7 +13,7 @@ const noContentScreenAnimation = {
   }
 }
 
-export default function NoContentsScreen() {
+export default function NoContentsScreen(props) {
   return (
     <div className='w-full h-full flex flex-col items-center justify-center gap-6 p-2'>
       <div className="animation pointer-events-none w-fit h-fit">
@@ -77,6 +77,7 @@ export default function NoContentsScreen() {
       <div className="start-chat-button">
         <button
           className="btn w-40 h-16"
+          onClick={props.hanldeChangeChat}
         >
           <svg
             className='sparkle'

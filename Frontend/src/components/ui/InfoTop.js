@@ -6,7 +6,7 @@ import { MdOutlineFolderOpen } from "react-icons/md";
 import { RiChatNewLine } from "react-icons/ri";
 import currentIndicator from '../../assets/icons/current_indicator.png';
 
-export default function ContentSide(props) {
+export default function InfoTop(props) {
 
 
   const [currentTool, setCurrentTool] = useState("friend")
@@ -21,10 +21,12 @@ export default function ContentSide(props) {
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
         <div className="info flex flex-col p-2">
           <div className="chat-name h-[32px]  text-sm sm:text-base text-white font-bold select-none">
-            <h1>{props.chatList[props.currentChat - 1][1]}</h1>
+            {/* <h1>{props.chatList[props.currentChat - 1][1]}</h1> */}
+            <h1> Hello</h1>
           </div>
           <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
-            <p>{props.chatList[props.currentChat - 1][1]}</p>
+            {/* <p>{props.chatList[props.currentChat - 1][1]}</p> */}
+            <p>Hello</p>
           </div>
         </div>
         <div className="actions text-white flex flex-row gap-1 items-center">
