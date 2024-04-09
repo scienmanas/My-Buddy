@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="app overflow-hidden">
-      {isloading && <GeneralWebsiteLoader />}
+      {isloading && <GeneralWebsiteLoader  />}
       <Router>
         <Routes>
           <Route path="/" element={<Landing  isloading={isloading} setLoading={setLoading} />} />

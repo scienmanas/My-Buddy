@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Share from './ui/Share';
+import Share from './ui/PreferenceBox';
 import SideBar from './ui/SideBar';
 import Infotop from './ui/InfoTop';
 import ChatInput from './ui/ChatInput';
 import Conversation from './ui/Conversation';
 import NoContentsScreen from './ui/NoContentsScreen';
-import '../styles/chat.css';
 import blueOctagon from '../assets/icons/blue_octagon.png';
 import greenSquare from '../assets/icons/green_square.png';
 import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
+import '../styles/chat.css';
 
 export default function Chat(props) {
 
@@ -18,7 +18,6 @@ export default function Chat(props) {
     document.body.style.backgroundColor = "#131619"
 
     // Configure states
-    const [shareWindow, setShareWindow] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [chatList, setChatList] = useState([
         [1, "BreakUp with Girlfriend", greenSquare],
@@ -56,6 +55,7 @@ export default function Chat(props) {
         const response = await result.response;
         const text = response.text();
         console.log(chatHistory)
+        // console.log(chats)
 
         setchats(prevChats => [
             ...prevChats, {
@@ -68,7 +68,7 @@ export default function Chat(props) {
             return false;
         })
     }
-
+    
 
     const handlePrompt = (promptByUser) => {
         setResponseLoading(() => {
@@ -83,13 +83,7 @@ export default function Chat(props) {
         ])
     }
 
-    const handleShare = () => {
-        setShareWindow(true);
-    };
 
-    const handleCloseShare = () => {
-        setShareWindow(false);
-    };
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
@@ -135,11 +129,11 @@ export default function Chat(props) {
 
     return (
         <div className="app flex flex-row">
-            {shareWindow && (
+            {/* {shareWindow && (
                 <div className="share-button absolute w-full h-full flex justify-center items-center opacity-80 bg-slate-600">
                     <Share handleCloseShare={handleCloseShare} />
                 </div>
-            )}
+            )} */}
             <div className="in-contents flex flex-row w-full relative items-center">
                 <div
                     className={`sidebar absolute sm:relative sm:min-h-screen z-50`}
@@ -150,7 +144,7 @@ export default function Chat(props) {
                     {currentChat &&
                         <>
                             <div className="user-options-bar flex-none">
-                                <Infotop handleShare={handleShare} chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
+                                <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
                             </div>
                             <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
                                 <Conversation chats={chats} responseLoading={responseLoading} />

@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { PiLinkSimpleBold } from "react-icons/pi";
 
 
-export default function Share(props) {
+export default function PreferenceBox (props) {
 
     
 

@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Shokhiful';
+    src: local('Shokhiful'), url('./Fonts/Shokhiful\ Trial.ttf');
+}
+
+.footer-text-head {
+    font-family: 'Shokhiful', 'Courier New', Courier, monospace;
+    @apply text-white font-bold text-xl sm:text-2xl;
+    /* font-size: 1.4rem; */
+    line-height: 2rem;
+    letter-spacing: 0.09em;
+}
+
+.custom-font {
+    font-family: 'Shokhiful', 'Courier New', Courier, monospace;
+    letter-spacing: 0.09em;
+    font-size: 1.1rem;
+    line-height: 2rem;
+}
