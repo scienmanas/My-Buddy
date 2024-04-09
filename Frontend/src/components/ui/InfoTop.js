@@ -24,10 +24,10 @@ export default function InfoTop(props) {
           {props.currentChat === null ? null : (
             <>
               <div className="chat-name h-[32px]  text-sm sm:text-base text-white font-bold select-none">
-                {/* <h1>{props.chatList[props.currentChat - 1][1]}</h1> */}
+                <h1>{props.chatList[props.currentChat - 1][1]}</h1>
               </div>
               <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
-                {/* <p>{props.chatList[props.currentChat - 1][2]}</p> */}
+                <p>{props.chatList[props.currentChat - 1][1]}</p>
               </div>
             </>
           )}

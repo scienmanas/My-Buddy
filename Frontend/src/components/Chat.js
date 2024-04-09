@@ -45,6 +45,9 @@ export default function Chat(props) {
     const [chats, setchats] = useState([]);
     const [responseLoading, setResponseLoading] = useState(false);
     const [chatTo, setChatTo] = useState('parent')
+    const [userBehaviourInput, setUserBehaviourInput] = useState({
+         mood: String
+    })
 
     // Configure Genai
     const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -103,11 +106,36 @@ export default function Chat(props) {
 
 
     const handleNewChat = () => {
-        setcurrentChat(1);
+
+        setChatList(prevChats => [
+            ...prevChats, [12, userBehaviourInput.mood, orangeSquare]
+        ])
+
+        setcurrentChat(12)
+        
     }
 
     const hanldeChangeChat = (id) => {
         setcurrentChat(id)
+    }
+
+    const configureUserBehaviour = (behaviour) => {
+
+        console.log("first")
+        console.log(behaviour)
+        console.log(behaviour.mood)
+
+        setUserBehaviourInput({
+            mood: behaviour.mood,
+        })
+
+        setChatList(prevChats => [
+            ...prevChats, [12, behaviour.mood, orangeSquare]
+        ])
+
+        setcurrentChat(12)
+
+        // handleNewChat();
     }
 
     useEffect(() => {
@@ -172,7 +200,7 @@ export default function Chat(props) {
                     )}
                     {!currentChat && (
                         <div className="no-content-screen w-full h-full">
-                            <NoContentsScreen handleNewChat={handleNewChat} hanldeChangeChat={hanldeChangeChat} />
+                            <NoContentsScreen handleNewChat={handleNewChat} hanldeChangeChat={hanldeChangeChat} userBehaviourInput={userBehaviourInput} configureUserBehaviour={configureUserBehaviour}  />
                         </div>
                     )}
                 </div>
