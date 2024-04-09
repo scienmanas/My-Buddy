@@ -13,7 +13,7 @@ import footer_img_1 from '../../assets/logo/logo_transparent.png';
 import logo from '../../assets/logo/logo_transparent.png'
 
 
-export default function Footer() {
+export default function Footer(props) {
 
     const templet_id = process.env.REACT_APP_EMAIL_JS_TEMAPLATE_ID;
     const public_key = process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY;
@@ -40,10 +40,12 @@ export default function Footer() {
             .then((result) => {
                 setEmail('');
                 setLoading(() => false);
+                props.showAlert('Email recieved !', 'success');
             })
             .catch((error) => {
                 console.log(error.text);
                 setLoading(() => false);
+                props.showAlert('Failed to receive contact !', 'failed');
                 return;
             });
     };
@@ -59,7 +61,7 @@ export default function Footer() {
 
     return (
         <div className='fotter bg-gradient-to-tr p-9 pt-14 w-full h-fit from-[#1a1a1a] to-gray-700 rounded-sm flex flex-col gap-16'>
-            <div className="content-1 flex justify-between flex-wrap items-center w-full h-fit gap-y-7">
+            <div className="content-1 flex justify-around flex-wrap items-center w-full h-fit gap-y-7">
                 <div className="texts flex flex-col gap-4 w-fit h-fit">
                     <div className="text-1 select-none text-green-500">
                         Your Own Friend &#128522;

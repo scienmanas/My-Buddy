@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../styles/landing.css';
 import Footer from './landing/Footer';
 
-export default function Landing() {
+export default function Landing(props) {
 
   document.body.style.backgroundColor = "#FFFFFF"
 
@@ -19,7 +19,7 @@ export default function Landing() {
 
         </div>
         <div className="footer">
-          <Footer />
+          <Footer showAlert={props.showAlert} />
         </div>
       </div>
       {/* <Link to='/chat'>
