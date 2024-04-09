@@ -6,7 +6,6 @@ import { FiFacebook, FiTwitter } from "react-icons/fi";
 import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
-import { IoIosWarning } from "react-icons/io";
 import emailjs from '@emailjs/browser';
 import '../../styles/footer.css';
 import footer_img_1 from '../../assets/logo/logo_transparent.png';

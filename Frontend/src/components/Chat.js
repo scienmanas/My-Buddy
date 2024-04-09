@@ -4,12 +4,20 @@ import SideBar from './ui/SideBar';
 import Infotop from './ui/InfoTop';
 import ChatInput from './ui/ChatInput';
 import Conversation from './ui/Conversation';
+import Friend from './ui/Friend';
+import Councellor from './ui/Councellor';
+import Parent from './ui/Parent';
 import NoContentsScreen from './ui/NoContentsScreen';
 import blueOctagon from '../assets/icons/blue_octagon.png';
 import greenSquare from '../assets/icons/green_square.png';
 import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
 import '../styles/chat.css';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
 
 export default function Chat(props) {
 
@@ -36,6 +44,7 @@ export default function Chat(props) {
     const [chatHistory, setchatHistory] = useState([]);
     const [chats, setchats] = useState([]);
     const [responseLoading, setResponseLoading] = useState(false);
+    const [chatTo, setChatTo] = useState('parent')
 
     // Configure Genai
     const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -68,7 +77,7 @@ export default function Chat(props) {
             return false;
         })
     }
-    
+
 
     const handlePrompt = (promptByUser) => {
         setResponseLoading(() => {
@@ -83,6 +92,9 @@ export default function Chat(props) {
         ])
     }
 
+    const handleChatTo = (chatWith) => {
+        setChatTo(() => chatWith)
+    }
 
 
     const toggleSidebar = () => {
@@ -141,26 +153,31 @@ export default function Chat(props) {
                     <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} hanldeChangeChat={hanldeChangeChat} />
                 </div>
                 <div id='content-side' className="content-side-content  w-full flex flex-col justify-between sm:max-h-screen sm:min-h-screen">
-                    {currentChat &&
+                    {currentChat && (
                         <>
-                            <div className="user-options-bar flex-none">
-                                <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} />
+                            <div className="options-bar flex-none">
+                                <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} chatTo={chatTo} handleChatTo={handleChatTo}
+                                />
                             </div>
-                            <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
-                                <Conversation chats={chats} responseLoading={responseLoading} />
-                            </div>
-                            <div className="chat-area">
-                                <ChatInput handlePrompt={handlePrompt} prompt={prompt} />
-                            </div>
+                            {chatTo === 'parent' ? (
+                                <Parent />
+                            ) : null}
+                            {chatTo === 'friend' ? (
+                                <Friend />
+                            ) : null}
+                            {chatTo === 'councellor' ? (
+                                <Councellor />
+                            ) : null}
                         </>
-                    }
-                    { !currentChat &&
+                    )}
+                    {!currentChat && (
                         <div className="no-content-screen w-full h-full">
                             <NoContentsScreen handleNewChat={handleNewChat} hanldeChangeChat={hanldeChangeChat} />
                         </div>
-                    }
+                    )}
                 </div>
             </div>
+
         </div>
     );
 }
