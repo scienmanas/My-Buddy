@@ -64,7 +64,7 @@ export default function Ask(props) {
                             Name to our chat &#x2728;
                         </div>
                         <input
-                            className='rounded-lg w-36 h-7 sm:h-8 px-1 py-[2px] text-sm sm:text-base outline-2 outline-blue-400 hover:outline-blue-500 duration-200 active:outline-[3px] active:outline-pink-100'
+                            className='rounded-lg w-36 h-7 sm:h-8 px-1 py-[2px] text-sm sm:text-base outline-2 border-2 border-blue-400 hover:outline-blue-400 duration-200  focus:outline-pink-500'
                             type="text"
                             name=""
                             id=""
@@ -83,7 +83,7 @@ export default function Ask(props) {
                         </div>
                         <input
                             placeholder='Chat Description'
-                            className='rounded-lg w-[270px] sm:w-80 h-7 sm:h-8 text-wrape px-1 py-[2px] text-sm sm:text-base outline-2 outline-blue-400 hover:outline-blue-500 duration-200 active:outline-[3px] active:outline-pink-100'
+                            className='rounded-lg w-[270px] sm:w-80 h-7 sm:h-8 text-wrape px-1 py-[2px] text-sm sm:text-base outline-2 border-2 border-blue-400 hover:outline-blue-400 duration-200  focus:outline-pink-500'
                             type="text"
                             name=""
                             id=""
@@ -133,7 +133,7 @@ export default function Ask(props) {
                             What's bothering you?
                         </div>
                         <input
-                            className='rounded-lg w-[270px] sm:w-80 h-7 sm:h-8 text-sm sm:text-base px-1 py-[2px] text-wrape outline-2 outline-blue-400 hover:outline-blue-500 duration-200 active:outline-[3px] active:outline-pink-100'
+                            className='rounded-lg w-[270px] sm:w-80 h-7 sm:h-8 text-sm sm:text-base px-1 py-[2px] text-wrape outline-2 border-2 border-blue-400 hover:outline-blue-400 duration-200  focus:outline-pink-500'
                             type="text"
                             name=""
                             id=""
