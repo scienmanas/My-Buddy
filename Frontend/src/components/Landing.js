@@ -1,7 +1,12 @@
 import React from 'react'
+import Footer from './landing/Footer';
+import Navbar from './landing/Navbar';
+import Reviews from './landing/Reviews';
+import Features from './landing/Features';
+import Examples from './landing/Examples';
 import { Link } from 'react-router-dom'
 import '../styles/landing.css';
-import Footer from './landing/Footer';
+
 
 export default function Landing(props) {
 
@@ -10,13 +15,25 @@ export default function Landing(props) {
 
   return (
     <>
-      <div className="landing">
-        <div className="navbar">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error, maiores modi! Culpa soluta illum cupiditate officiis molestiae, cumque tenetur incidunt voluptas libero distinctio dolore, suscipit tempore at? Non, laudantium temporibus!
+      <div className="landing scroll-smooth">
+        <div className="up-part relative">
+          <div className="navbar relative">
+            <Navbar />
+          </div>
+          <div className="upper-part-content">
+
+          </div>
         </div>
         <div className="landing-content">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. At ipsum aspernatur illo soluta deleniti sint obcaecati fugit. Illum sunt ab, vero excepturi perferendis cum pariatur obcaecati ex quis similique expedita?
-
+          <div className="features">
+            <Features />
+          </div>
+          <div className="examples">
+            <Examples />
+          </div>
+          <div className="reviews">
+            <Reviews />
+          </div>
         </div>
         <div className="footer">
           <Footer showAlert={props.showAlert} />
