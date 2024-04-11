@@ -18,18 +18,18 @@ export default function InfoTop(props) {
   }
 
   return (
-    <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-2 sm:gap-4'>
+    <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-6 sm:gap-4'>
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
-        <div className="info flex flex-col p-2">
+        <div className="info flex flex-col p-2 gap-2">
           {props.currentChat === null ? null : (
             <>
-              <div className="chat-name h-[32px]  text-sm sm:text-base text-white font-bold select-none">
-                <h1>New Chat</h1>
+              <div className="chat-name h-fit  text-sm sm:text-base text-white font-bold select-none">
+                <h1>GirlFriend</h1>
                 {/* <h1>{props.chatList}</h1> */}
               </div>
               <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
                 {/* <p>{props.chatList[props.currentChat - 1][1]}</p> */}
-                <p>Heheheheheheheh</p>
+                <p>Nothing New, just a recent breakup with girlfriend</p>
               </div>
             </>
           )}
@@ -47,14 +47,14 @@ export default function InfoTop(props) {
             onClick={props.toggleSidebar}
           >
             <div className="lines flex flex-col gap-[3.7px] ">
-              <div className={`line-2 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'rotate-45' : ''} duration-100`}></div>
-              <div className={`line-1 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'hidden' : ''}`}></div>
-              <div className={`line-3 h-[3.5px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? '-rotate-45' : ''} duration-100`}></div>
+              <div className={`line-2 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'rotate-45' : ''} duration-100`}></div>
+              <div className={`line-1 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'hidden' : ''}`}></div>
+              <div className={`line-3 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? '-rotate-45' : ''} duration-100`}></div>
             </div>
           </div>
         </div>
       </div>
-      <div className="action-type flex flex-row items-center gap-2 text-white">
+      <div className="action-type flex flex-row items-center gap-1 text-white">
         <div
           className="friend text-sm flex flex-col items-center gap-4 group cursor-pointer "
           onClick={() => handleChat("friend")}
@@ -63,7 +63,7 @@ export default function InfoTop(props) {
             <div className="svg">
               <img src={artificiumCvg} alt="" />
             </div>
-            <div className="text h-20px w-fit text-[#E8E9E9] select-none">
+            <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Friend
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function InfoTop(props) {
             <div className="svg">
               <IoChatbubbleOutline />
             </div>
-            <div className="text h-20px w-fit text-[#E8E9E9] select-none">
+            <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Parent
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function InfoTop(props) {
             <div className="svg">
               <MdOutlineFolderOpen />
             </div>
-            <div className="text h-20px w-fit text-[#E8E9E9] select-none">
+            <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Counsellor
             </div>
           </div>
