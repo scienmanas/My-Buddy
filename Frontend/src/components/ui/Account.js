@@ -44,7 +44,7 @@ export default function AccountDownSettings() {
     return (
         <div className='account w-full relative'>
             <div
-                className="account-card account-box px-3 py-5 cursor-pointer bg-transparent bg-gradient-to-br from-[#0d0f10] to-gray-900 rounded-xl  flex flex-row justify-between items-center"
+                className="account-card account-box px-3 py-5 cursor-pointer  bg-[#0d0f10] rounded-xl  flex flex-row justify-between items-center"
                 onClick={handleAccountPopUp}
             >
                 <div className="account-button flex flex-row items-center gap-2">
@@ -72,7 +72,7 @@ export default function AccountDownSettings() {
                 </div>
             </div>
             {accountSettingPopup &&
-                <div ref={popupRef} className="account-popup absolute -top-[12.3rem] bg-[#131619] px-2 py-2 rounded-lg w-full z-50">
+                <div ref={popupRef} className="account-popup absolute -top-[11.5rem] sm:-top-[12.3rem] bg-[#131619] px-2 py-2 rounded-lg w-full z-50">
                      <div className="content-account-list flex flex-col text-white gap-[2px]">
                         <div className='customize-again flex items-center gap-[6px] hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer duration-150'>
                             <div className="svg">

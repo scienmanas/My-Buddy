@@ -2,19 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.side-bar {
-    transition: width 0.5s ease;
+.side-bar-close {
+    animation: close-bar 1s ease-in-out 0s 1 normal forwards;
 }
 
-.open {
-  @apply w-[97%];
-}
-
-.closed {
-    width: 0;
-    visibility: hidden;
-}
-
-.toggle-button {
-    cursor: pointer;
+@keyframes close-bar {
+    0% {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    100% {
+        margin-left: -240px;
+        margin-right: 240px;
+    }
 }

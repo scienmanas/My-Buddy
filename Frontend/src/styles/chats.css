@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.account-box {
-    border-radius: 25px;
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }

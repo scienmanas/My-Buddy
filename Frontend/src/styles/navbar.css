@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Shokhiful';
+    src: local('Shokhiful') , url("./Fonts/Shokhiful\ Trial.ttf");
+}
+
+.navbar-text-custom {
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    @apply font-bold lg:text-[1.2rem] sm:text-base text-xl;
+}
+
+.blurred-navbar {
+    @apply rounded-b-md;
+    backdrop-filter: blur(3px);
+}
+
+
+/* Add this CSS for the transition effect */

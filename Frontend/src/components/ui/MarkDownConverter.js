@@ -16,30 +16,26 @@ import remarkMath from "remark-math";
 import remarkSlug from "remark-slug";
 
 export default function MarkDownConverter(props) {
-  return (
-    <div className="text-white">
-      <Markdown
-        remarkPlugins={[
-          remarkGfm,
-          remarkMath,
-          remarkSlug,
-          remarkAutolinkHeadings,
-          remarkFootnotes,
-          remarkEmoji,
-          remarkBreaks,
-          remarkFrontmatter,
-          remarkDirective,
-          remarkImages,
-        ]}
-        rehypePlugins={[
-          rehypeKatex,
-          rehypeRaw,
-          rehypeHighlight,
-          rehypeSanitize,
-        ]}
-      >
-        {props.chat}
-      </Markdown>
-    </div>
-  );
+
+    return (
+        <div className="text-wrap flex flex-wrap w-fit">
+            <Markdown
+                remarkPlugins={[
+                    remarkGfm,
+                    remarkMath,
+                    remarkSlug,
+                    remarkAutolinkHeadings,
+                    remarkFootnotes,
+                    remarkEmoji,
+                    remarkBreaks,
+                    remarkFrontmatter,
+                    remarkDirective,
+                    remarkImages
+                ]}
+                rehypePlugins={[rehypeKatex, rehypeRaw, rehypeHighlight, rehypeSanitize]}
+            >
+                {props.chat}
+            </Markdown>
+        </div>
+    );
 }
