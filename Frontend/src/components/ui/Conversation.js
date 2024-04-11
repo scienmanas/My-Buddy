@@ -3,8 +3,7 @@ import '../../styles/conversation.css'
 import Bot from './Bot'
 import User from './User'
 import ChatAnswerLoader from '../loaders/ChatAnswerLoader';
-
-export default function Conversation(props) {
+import MarkDownConverter from "./MarkDownConverter";
 
     return (
         <>

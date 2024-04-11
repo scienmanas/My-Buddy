@@ -13,9 +13,6 @@ import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
 import '../styles/chat.css';
 
-
-export default function Chat(props) {
-
     // Background color setup
     document.body.style.backgroundColor = "#131619"
 
@@ -55,11 +52,84 @@ export default function Chat(props) {
         setChatTo(() => chatWith)
     }
 
+export default function Chat(props) {
+  document.body.style.backgroundColor = "#131619";
 
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
+  const [shareWindow, setShareWindow] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [chatList, setChatList] = useState([
+    [1, "BreakUp with Girlfriend", greenSquare],
+    [2, "No Internships", redTriangle],
+    [3, "Drank Alcohol", orangeSquare],
+    [4, "Hemlo World", blueOctagon],
+    [5, "Yay Party", greenSquare],
+    [6, "Want to Speak", redTriangle],
+    [7, "New Friends", orangeSquare],
+    [8, "Am I Right? ", blueOctagon],
+    [9, "Got a Girlfriend", greenSquare],
+    [10, "Got an orgasm", redTriangle],
+    [11, "Born today", orangeSquare],
+  ]);
+  const [currentChat, setcurrentChat] = useState(1);
+  const [prompt, setPrompt] = useState("");
+  const [geminiAns, setGeminiAns] = useState("Conversation");
+  const [chatHistory, setchatHistory] = useState([]);
+
+  // Configure Genai
+  const { GoogleGenerativeAI } = require("@google/generative-ai");
+  const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+  console.log(process.env.REACT_APP_GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+  const askGemini = async (prompt) => {
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
+    setGeminiAns(text);
+    setchatHistory((prevChatHistory) => [...prevChatHistory, text]);
+
+    // const response = await model.generateText(prompt);
+    // console.log(response.data.choices[0].text);
+    // setGeminiAns(response.data.choices[0].text);
+  };
+
+  const handlePrompt = (promptByUser) => {
+    setPrompt(promptByUser);
+    console.log(promptByUser);
+    setchatHistory((prevChatHistory) => [...prevChatHistory, promptByUser]);
+    askGemini(promptByUser);
+  };
+
+  const handleShare = () => {
+    setShareWindow(true);
+  };
+
+  const handleCloseShare = () => {
+    setShareWindow(false);
+  };
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleNewChat = () => {};
+
+  const hanldeChangeChat = (id) => {
+    setcurrentChat(id);
+  };
+
+  // Add event listener to handle scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
     };
 
+    window.addEventListener("scroll", handleScroll);
 
     const handleNewChat = () => {
         console.log(chatList)
@@ -162,7 +232,8 @@ export default function Chat(props) {
                     )}
                 </div>
             </div>
-
         </div>
-    );
+      </div>
+    </div>
+  );
 }
