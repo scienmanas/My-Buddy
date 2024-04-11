@@ -24,10 +24,12 @@ export default function InfoTop(props) {
           {props.currentChat === null ? null : (
             <>
               <div className="chat-name h-[32px]  text-sm sm:text-base text-white font-bold select-none">
-                <h1>{props.chatList[props.currentChat - 1][1]}</h1>
+                <h1>New Chat</h1>
+                {/* <h1>{props.chatList}</h1> */}
               </div>
               <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
-                <p>{props.chatList[props.currentChat - 1][1]}</p>
+                {/* <p>{props.chatList[props.currentChat - 1][1]}</p> */}
+                <p>Heheheheheheheh</p>
               </div>
             </>
           )}
@@ -36,7 +38,7 @@ export default function InfoTop(props) {
         <div className="actions text-white flex flex-row gap-1 items-center">
           <div
             className="new-chat-button cursor-pointer sm:text-2xl text-xl hover:bg-gray-800 duration-150 p-2 rounded-xl active:scale-90"
-          // onClick={}
+          onClick={props.handleNewChat}
           >
             <RiChatNewLine />
           </div>
@@ -94,7 +96,7 @@ export default function InfoTop(props) {
           </div>
         </div>
         <div
-          className="bff text-sm flex flex-col items-center gap-4  group cursor-pointer"
+          className="councellor text-sm flex flex-col items-center gap-4  group cursor-pointer"
           onClick={() => handleChat("counsellor")}
         >
           <div className="text-content flex flex-row items-center gap-[9px]">
@@ -102,7 +104,7 @@ export default function InfoTop(props) {
               <MdOutlineFolderOpen />
             </div>
             <div className="text h-20px w-fit text-[#E8E9E9] select-none">
-            Counsellor
+              Counsellor
             </div>
           </div>
           <div className={`current-indicator ${currentTool === 'counsellor' ? 'visible' : 'invisible'}`}>

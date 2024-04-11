@@ -7,13 +7,13 @@ import '../../styles/side_bar.css'
 export default function SideBar(props) {
 
     return (
-        <div className={`side-bar sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-6 sm:pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2' : '-mx-60'} sm:w-60 w-[14rem] duration-1000 transition-all`}>
-            <div className="top-items w-fit flex flex-col gap-6 sm:gap-5">
+        <div className={`side-bar custom-height sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-3 sm:pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2' : '-mx-60'} w-[14rem w-fit duration-1000 transition-all relative top-[4px] bottom-[4px]`}>
+            <div className="top-items w-fit flex flex-col gap-6 sm:gap-5 px-1">
                 <div className="project-setting">
-                    <NewChatOption />
+                    <NewChatOption handleNewChat={props.handleNewChat}/>
                 </div>
-                <div className="chats">
-                    < Chats chatList={props.chatList} currentChat={props.currentChat} hanldeChangeChat={props.hanldeChangeChat}/>
+                <div className="chats w-fit">
+                    < Chats chatList={props.chatList} currentChat={props.currentChat} handleChangeChat={props.handleChangeChat}/>
                 </div>
             </div>
             <div className="down-items w-full">

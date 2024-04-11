@@ -19,7 +19,6 @@ export default function Ask(props) {
     const [wait, setWait] = useState(false);
 
     const handleSubmit = () => {
-        console.log('okokokk')
         props.configureUserBehaviour(userBehaviour)
         setWait(() => false)
     }
@@ -47,7 +46,7 @@ export default function Ask(props) {
 
 
     return (
-        <div className="ask-box z-50 absolute flex justify-center items-center w-full min-h-screen duration-200">
+        <div className="ask-box z-50 absolute flex justify-center items-center w-full h-full duration-200">
             <div className=' w-[21rem] sm:w-fit h-fit px-8 py-7 bg-[#2c3137] rounded-xl gap-5 flex flex-col'>
                 <div className="heading-and-close-button flex items-center h-fit justify-between">
                     <div className="heading text-[18px] text-white font-semibold h-fit">

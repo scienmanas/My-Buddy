@@ -22,7 +22,7 @@ export default function NoContentsScreen(props) {
   return (
     <>
       {askWindow &&
-        <Ask userBehaviourInput={props.userBehaviourInput} configureUserBehaviour={props.configureUserBehaviour} handleClose={() => {
+        <Ask configureUserBehaviour={props.configureUserBehaviour} handleClose={() => {
           setAskWindow(() => false)
         }}
         />

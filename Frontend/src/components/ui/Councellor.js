@@ -5,12 +5,27 @@ import ChatInput from './ChatInput';
 
 
 
-export default function Councellor() {
+export default function Councellor(props) {
 
 
-    const [chatHistory, setchatHistory] = useState([]);
+    const userBehavious = props.userBehaviourInput;
+    const userInformation = props.userInformation;
+    const firstPromptcConfiguration = "Hi i am " + userInformation.name + " and i am a " + userInformation.profession + " earning " + userInformation.salary + " per month. I am feeling " + userBehavious.mood + " because " + userBehavious.bothering + " and i am in " + userBehavious.relationshipStatus + " relationship. Can you help me?";
+
+    const [chatHistory, setchatHistory] = useState([
+        {
+            role: 'user',
+            parts: [{ text: firstPromptcConfiguration }],
+        },
+        {
+            parts: [{ text: "Okay, Buddy, Tell me how can i help you?" }],
+            role: 'model',
+        },
+    ]);
+    console.log(chatHistory)
     const [chats, setchats] = useState([]);
     const [responseLoading, setResponseLoading] = useState(false);
+
     const conversationRef = useRef(null);
 
     // Configure Genai
@@ -29,13 +44,11 @@ export default function Councellor() {
         const result = await chat.sendMessage(promptByUser);
         const response = await result.response;
         const text = response.text();
-        console.log(chatHistory)
-        // console.log(chats)
 
         setchats(prevChats => [
             ...prevChats, {
+                parts: [{ text: text }],
                 role: 'model',
-                parts: [{ text: text }]
             }
         ])
 
@@ -52,7 +65,7 @@ export default function Councellor() {
         setchats(prevChats => [
             ...prevChats, {
                 role: 'user',
-                parts: [{ text: promptByUser }]
+                parts: [{ text: promptByUser }],
             }
         ])
     }

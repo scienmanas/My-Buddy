@@ -4,10 +4,22 @@ import Conversation from './Conversation';
 import ChatInput from './ChatInput';
 
 
-export default function Parent() {
+export default function Parent(props) {
 
+    const userBehavious = props.userBehaviourInput;
+    const userInformation = props.userInformation;
+    const firstPromptcConfiguration = "Hi i am " + userInformation.name + " and i am a " + userInformation.profession + " earning " + userInformation.salary + " per month. I am feeling " + userBehavious.mood + " because " + userBehavious.bothering + " and i am in " + userBehavious.relationshipStatus + " relationship. Can you help me?";
 
-    const [chatHistory, setchatHistory] = useState([]);
+    const [chatHistory, setchatHistory] = useState([
+        {
+            role: 'user',
+            parts: [{ text: firstPromptcConfiguration }],
+        },
+        {
+            parts: [{ text: "Okay, Buddy, Tell me how can i help you?" }],
+            role: 'model',
+        },
+    ]);
     const [chats, setchats] = useState([]);
     const [responseLoading, setResponseLoading] = useState(false);
 
@@ -27,13 +39,11 @@ export default function Parent() {
         const result = await chat.sendMessage(promptByUser);
         const response = await result.response;
         const text = response.text();
-        console.log(chatHistory)
-        // console.log(chats)
 
         setchats(prevChats => [
             ...prevChats, {
+                parts: [{ text: text }],
                 role: 'model',
-                parts: [{ text: text }]
             }
         ])
 
@@ -50,7 +60,7 @@ export default function Parent() {
         setchats(prevChats => [
             ...prevChats, {
                 role: 'user',
-                parts: [{ text: promptByUser }]
+                parts: [{ text: promptByUser }],
             }
         ])
     }

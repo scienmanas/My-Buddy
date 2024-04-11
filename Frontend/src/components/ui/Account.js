@@ -44,7 +44,7 @@ export default function AccountDownSettings() {
     return (
         <div className='account w-full relative'>
             <div
-                className="account-card account-box px-3 py-5 cursor-pointer bg-transparent bg-gradient-to-br from-[#0d0f10] to-gray-900 rounded-xl  flex flex-row justify-between items-center"
+                className="account-card account-box px-3 py-5 cursor-pointer  bg-[#0d0f10] rounded-xl  flex flex-row justify-between items-center"
                 onClick={handleAccountPopUp}
             >
                 <div className="account-button flex flex-row items-center gap-2">

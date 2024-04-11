@@ -4,7 +4,4 @@
 
 .account-box {
     border-radius: 25px;
-    background: linear-gradient(145deg, #212528, #1c2021);
-    box-shadow: 10px 10px 15px #15181a,
-        -10px -10px 15px #292e30;
 }
