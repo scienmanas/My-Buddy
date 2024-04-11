@@ -4,18 +4,7 @@ import Chats from './Chats'
 import Account from './Account'
 import '../../styles/side_bar.css'
 
-
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useState } from "react";
-
-import Account from "./Account";
-import Chats from "./Chats";
-import NewChatOption from "./NewChatOption ";
+export default function SideBar(props) {
 
     return (
         <div className={`z-30 side-bar custom-height sm:min-h-screen items-center bg-[#1f2325] flex flex-col justify-between pt-3 sm:pt-4 pb-3 pl-1 pr-2 rounded-2xl ${props.isOpen ? 'mx-2 absolute' : '-mx-60'} w-[14rem w-fit duration-1000 transition-all relative top-[4px] bottom-[4px]`}>
@@ -33,19 +22,6 @@ import NewChatOption from "./NewChatOption ";
                 </div>
             </div>
         </div>
-        <div className="chats">
-          <Chats
-            chatList={props.chatList}
-            currentChat={props.currentChat}
-            hanldeChangeChat={props.hanldeChangeChat}
-          />
-        </div>
-      </div>
-      <div className="down-items w-full">
-        <div className="account-settings">
-          <Account />
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
+
