@@ -32,7 +32,7 @@ export default function NoContentsScreen(props) {
           <Lottie
             className=''
             options={noContentScreenAnimation}
-            height={window.innerHeight - 265}
+            height={window.innerHeight - 280}
             isClickToPauseDisabled={true}
           />
         </div>
