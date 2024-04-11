@@ -12,7 +12,6 @@ export default function Landing(props) {
 
   document.body.style.backgroundColor = "#FFFFFF"
 
-
   return (
     <>
       <div className="landing scroll-smooth">
