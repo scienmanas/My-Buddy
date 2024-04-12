@@ -4,6 +4,7 @@ import Navbar from './landing/Navbar';
 import Reviews from './landing/Reviews';
 import Features from './landing/Features';
 import Examples from './landing/Examples';
+import UpperContentLanding from './landing/UpperContentLanding';
 import { Link } from 'react-router-dom'
 import '../styles/landing.css';
 
@@ -20,7 +21,7 @@ export default function Landing(props) {
             <Navbar />
           </div>
           <div className="upper-part-content">
-
+            <UpperContentLanding />
           </div>
         </div>
         <div className="landing-content">

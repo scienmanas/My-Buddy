@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Dosis-ExtraBold';
+    src:  local('Dosis-ExtraBold'), url('./Fonts//Dosis-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'SteelCity';
+    src: local('SteelCity'), url('./Fonts/scb.ttf');
+}
+
+.custom-shape-divider-bottom-1712904230 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1712904230 svg {
+    position: relative;
+    display: block;
+    width: calc(174% + 1.3px);
+    height: 88px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1712904230 .shape-fill {
+    fill: #FFFFFF;
+}
+
+.head-text {
+    font-family: 'Dosis-ExtraBold';
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+.pickup-line {
+    font-family: 'SteelCity';
+    font-size: 1.2rem;
+}
+
+.buttons-landing {
+    font-family: 'SteelCity','Courier New', Courier, monospace;
+}
+
+.button-text {
+    font-size: 1.3rem;
+    font-weight: 1000;
+    text-shadow: 1px 1px 2px rgba(41, 58, 154, 0.5);
+}

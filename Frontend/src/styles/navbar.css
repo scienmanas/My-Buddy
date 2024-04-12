@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Shokhiful';
-    src: local('Shokhiful') , url("./Fonts/Shokhiful\ Trial.ttf");
+    font-family: 'Dosis-Medium' ;
+    src: local('DosisMedium') , url('./Fonts/Dosis-Medium.ttf');
 }
-
 .navbar-text-custom {
-    font-family: sans-serif;
+    font-family: 'Dosis-Medium';
     letter-spacing: 0.1em;
     @apply font-bold lg:text-[1.2rem] sm:text-base text-xl;
 }
