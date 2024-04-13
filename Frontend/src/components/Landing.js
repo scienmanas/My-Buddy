@@ -4,6 +4,7 @@ import Navbar from './landing/Navbar';
 import Reviews from './landing/Reviews';
 import Features from './landing/Features';
 import Examples from './landing/Examples';
+import PoweredBy from './landing/PoweredBy';
 import UpperContentLanding from './landing/UpperContentLanding';
 import { Link } from 'react-router-dom'
 import '../styles/landing.css';
@@ -33,6 +34,9 @@ export default function Landing(props) {
           </div>
           <div className="reviews">
             <Reviews />
+          </div>
+          <div className="powered-by">
+            <PoweredBy />
           </div>
         </div>
         <div className="footer">
