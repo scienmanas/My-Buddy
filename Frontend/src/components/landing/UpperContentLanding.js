@@ -60,11 +60,11 @@ export default function UpperContentLanding() {
 
     return (
         <>
-            <div className='upper-content-navbar bg-transparent bg-gradient-to-tr from-blue-900 to-[#9d1f83] flex flex-row h-fit pt-24 pb-40 sm:pb-56 w-full p-7 items-center gap-5'>
+            <div className='upper-content-navbar bg-transparent bg-gradient-to-tr from-blue-900 to-[#9d1f83] flex flex-row h-fit pt-16  sm:pt-24 pb-32 sm:pb-56 w-full p-7 items-center gap-5'>
                 <div className="left-content flex flex-col justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 sm:w-[60%] w-full">
                     <div className="text-contents-upper flex flex-col gap-2">
                         <div className="head-text text-white w-fit h-fit">
-                            A Chat experience like never before
+                            <span className='text-orange-500'>A Chat </span>experience like never before
                         </div>
                         <div className="pickup-line text-white w-fit h-fit">
                             Experience the future of emotional intelligence, talk as you want, be it with a friend, parent or councellor with <span className='text-yellow-600' style={{ fontWeight: 'bolder' }}>"My Buddy"</span> !
