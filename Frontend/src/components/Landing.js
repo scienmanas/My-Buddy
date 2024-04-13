@@ -6,7 +6,6 @@ import Features from './landing/Features';
 import Examples from './landing/Examples';
 import PoweredBy from './landing/PoweredBy';
 import UpperContentLanding from './landing/UpperContentLanding';
-import { Link } from 'react-router-dom'
 import '../styles/landing.css';
 
 
@@ -32,9 +31,9 @@ export default function Landing(props) {
           <div className="examples">
             <Examples />
           </div>
-          <div className="reviews">
+          {/* <div className="reviews">
             <Reviews />
-          </div>
+          </div> */}
           <div className="powered-by">
             <PoweredBy />
           </div>
@@ -43,9 +42,6 @@ export default function Landing(props) {
           <Footer showAlert={props.showAlert} />
         </div>
       </div>
-      <Link to='/chat'>
-        <div className='bg-red-400 p-8 text-white w-fit cursor-pointer hover:bg-green-600'>chat Now </div>
-      </Link>
     </>
   )
 }

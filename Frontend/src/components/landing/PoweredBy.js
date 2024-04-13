@@ -5,6 +5,7 @@ import vercel from '../../assets/landing/poweredby/vercel.png';
 import github from '../../assets/landing/poweredby/github.png';
 import lottie from '../../assets/landing/poweredby/lottiefiles.png';
 import tailwindCSS from '../../assets/landing/poweredby/tailwind.svg';
+import render from '../../assets/landing/poweredby/render.svg';
 
 
 export default function PoweredBy() {
@@ -46,6 +47,13 @@ export default function PoweredBy() {
                     <img
                         className='w-20 sm:w-28 lg:w-36 xl:w-48 h-auto'
                         src={tailwindCSS}
+                        alt=""
+                    />
+                </div>
+                <div className="render w-fit pointer-events-none select-none">
+                    <img
+                        className='w-20 sm:w-28 lg:w-36 xl:w-48 h-auto'
+                        src={render}
                         alt=""
                     />
                 </div>
