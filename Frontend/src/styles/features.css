@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Dosis-semibold';
+    src: local('Dosis-semibold') , url('./Fonts//Dosis-SemiBold.ttf');
+}
+
+
+@font-face {
+    font-family: 'Dosis-regular';
+    src:local('Dosis-regular') , url('./Fonts/Dosis-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Dosis-bold';
+    src: local('Dosis-bold') , url('./Fonts/Dosis-ExtraBold.ttf');
+}
+
+.landing-body-heading {
+    font-family: 'Dosis-semibold';
+    @apply text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem];
+}
+
+.landing-normal-body-text {
+    font-family: 'Dosis-regular';
+}
+
+.svg-features {
+    @apply bg-transparent bg-gradient-to-br from-blue-800 to-[#9d1f83] text-white rounded-lg p-2 sm:p-3 md:p-4 lg:p-5 xl:p-6 text-lg sm:text-xl lg:text-2xl xl:text-3xl;
+}
+
+.text-features {
+    font-family: 'Dosis-regular';
+    @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl;
+}
