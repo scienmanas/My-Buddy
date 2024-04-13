@@ -93,7 +93,7 @@ export default function Footer(props) {
                                 }
                             />
                         </div>
-                        <div
+                        <button
                             disabled={() => {
                                 if (email.length === 0) {
                                     return true;
@@ -114,7 +114,7 @@ export default function Footer(props) {
                                 <IoSendOutline className={`-rotate-[30deg] font-bold duration-200 ${isEmailValid ? 'text-pink-400 rotate-0 cursor-pointer' : 'cursor-not-allowed'}`}
                                 />
                             </div>
-                        </div>
+                        </button>
                         <div className={`wait-loader flex justify-center items-center duration-150 ${loading ? '' : 'hidden'} `}>
                             <GeneralResultsLoader />
                         </div>

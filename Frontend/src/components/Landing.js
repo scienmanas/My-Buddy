@@ -39,9 +39,9 @@ export default function Landing(props) {
           <Footer showAlert={props.showAlert} />
         </div>
       </div>
-      {/* <Link to='/chat'>
+      <Link to='/chat'>
         <div className='bg-red-400 p-8 text-white w-fit cursor-pointer hover:bg-green-600'>chat Now </div>
-      </Link> */}
+      </Link>
     </>
   )
 }
