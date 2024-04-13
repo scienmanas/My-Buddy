@@ -14,7 +14,7 @@
 
 .blurred-navbar {
     @apply rounded-b-md;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(8px);
 }
 
 
