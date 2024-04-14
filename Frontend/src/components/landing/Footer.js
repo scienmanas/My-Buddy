@@ -66,7 +66,7 @@ export default function Footer(props) {
                         Your Own Friend &#128522;
                     </div>
                     <div className="text-2 select-none footer-text-head">
-                        Chat like you talk with your peeps <span className='font-mono'>!</span>
+                        Chat like you talk with ur peeps<span className='font-mono'>!</span>
                     </div>
                     <div className="email-entry flex gap-2 items-center mt-2 flex-row">
                         <div className="field flex flex-col">
@@ -94,15 +94,7 @@ export default function Footer(props) {
                             />
                         </div>
                         <button
-                            disabled={() => {
-                                if (email.length === 0) {
-                                    return true;
-                                } else if (!validateEmail(email)) {
-                                    return true;
-                                }
-                                return false;
-
-                            }}
+                            disabled={!isEmailValid}
                             className={`text-white w-fit h-fit button-clicked transition-all duration-150 ${loading ? 'hidden' : 'flex'} ${isEmailValid ? '' : 'cursor-not-allowed'} w-fit h-fit`}
                             onClick={(e) => {
                                 setLoading(() => true);
