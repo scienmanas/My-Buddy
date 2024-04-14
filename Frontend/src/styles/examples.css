@@ -12,6 +12,11 @@
     src:local('Dosis-regular') , url('./Fonts/Dosis-Medium.ttf');
 }
 
+@font-face {
+    font-family: 'Sanlabello';
+    src: local('Sanlabello') , url('./Fonts/Sanlabello.ttf');
+}
+
 .head-text-example {
     font-family: 'Dosis-semibold';
     @apply text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem];
@@ -20,3 +25,8 @@
 .landing-normal-body-text-demo {
     font-family: 'Dosis-regular';
 }
+
+.example-body-text {
+    font-family: 'Sanlabello';
+}
+

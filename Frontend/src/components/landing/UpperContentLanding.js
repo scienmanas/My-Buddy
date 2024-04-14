@@ -70,12 +70,12 @@ export default function UpperContentLanding() {
                             Experience the future of emotional intelligence, talk as you want, be it with a friend, parent or councellor with <span className='text-yellow-600' style={{ fontWeight: 'bolder' }}>"My Buddy"</span> !
                         </div>
                     </div>
-                    <Link to='/chat'>
+                    <Link to='/chat' className='w-fit h-fit'>
                         <button class="w-fit h-fit">
                             <div class="relative h-fit w-fit group">
                                 <div class="absolute -inset-1 bg-gradient-to-r from-blue-300 to-pink-700 blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 rounded-2xl">
                                 </div>
-                                <a href="#">
+                                <a href="#" className='w-fit h-fit'>
                                     <div class="button-text cursor-pointer buttons-landing active:scale-95 transition-transform transform scale-100 hover:scale-105 relative px-7 py-3 sm:px-8 sm:py-4 md:py-5 md:px-9 lg:py-6 lg:px-10 font-bold border-gray-500 border-2 ring-1 ring-gray-900/5 rounded-3xl leading-none flex items-top justify-start space-x-6 bg-white">
                                         <span className='text-transparent bg-clip-text bg-gradient-to-tr from-[#3a40d8] to-[#9d1f83] text-[1.2rem] sm:text-[1.5rem] md:text-[1.8rem] lg:text-[2rem]'>
                                             Chat Now

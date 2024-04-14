@@ -41,24 +41,24 @@ export default function Navbar() {
         </button>
         <div className="navbar-items fixed sm:top-4 top-16 left-4 p-5 sm:p-0 w-auto right-4 sm:static sm:bg-none bg-transparent bg-gradient-to-tr from-[#009245] to-[#FCEE21] rounded-lg sm:flex flex-col sm:flex-row sm:w-fit shadow-xl sm:shadow-none hidden" id='navbar'>
           <ul className="navigation text-[#4C4C4C] navbar-text-custom  sm:text-white w-fit flex sm:flex-row flex-col gap-x-2 gap-y-2 sm:w-fit h-fit items-center">
-            <li className="cursor-pointer sm:text-slate-200 sm:hover:text-slate-100 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
               <button className=''>
                 Home
               </button>
             </li>
-            <li className="cursor-pointer sm:text-slate-200 sm:hover:text-slate-100 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
               <button className=''>
                 Features
               </button>
             </li>
-            <li className="cursor-pointer sm:text-slate-200 sm:hover:text-slate-100 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
               <a href="https://github.com/scienmanas/My-Buddy">
                 <button className=''>
                   Github
                 </button>
               </a>
             </li>
-            <li className="cursor-pointer sm:text-slate-200 sm:hover:text-slate-100 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
               <button className=''>
                 Sponsor
               </button>
