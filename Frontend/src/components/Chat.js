@@ -13,7 +13,6 @@ import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
 import '../styles/chat.css';
 
-
 export default function Chat(props) {
 
     // Background color setup
@@ -70,6 +69,7 @@ export default function Chat(props) {
         setcurrentChat(id)
     }
 
+    
     const configureUserBehaviour = (behaviour) => {
 
         console.log("first")

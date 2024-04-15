@@ -9,14 +9,17 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-
-
+import { Toaster } from 'react-hot-toast';
+import SignUp from "./components/Signup";
+import Details from './components/Details';
+import Login from "./components/Login"
+import { useGlobalContext } from './Context/global_context';
 function App() {
 
   const [isloading, setisloading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [alertAnimation, setAlertAnimation] = useState(null);
-
+  const {authUser,setAuthUser}=useGlobalContext();
 
   const setLoading = (value) => {
     setisloading(value);
@@ -46,8 +49,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing isloading={isloading} setLoading={setLoading} showAlert={showAlert} />} />
           <Route path="/chat" element={<Chat isloading={isloading} setLoading={setLoading} />} />
+          <Route path="/signup" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<SignUp  isloading={isloading} setLoading={setLoading} />}/>
+          <Route path="/details" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Details  isloading={isloading} setLoading={setLoading} />}/>
+          <Route path="/login" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Login  isloading={isloading} setLoading={setLoading} />}/>
         </Routes>
       </Router>
+      <Toaster/>
     </div>
   );
 }
