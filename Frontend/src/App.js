@@ -1,6 +1,7 @@
 import './App.css';
 import Landing from './components/Landing';
 import Chat from './components/Chat';
+import Authors from './components/landing/Authors';
 import GeneralAlert from './components/GeneralAlert';
 import { useState } from 'react';
 import GeneralWebsiteLoader from './components/loaders/GeneralWebsiteLoader';
@@ -9,6 +10,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+// import LoadingBar from 'react-top-loading-bar'
 
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing isloading={isloading} setLoading={setLoading} showAlert={showAlert} />} />
           <Route path="/chat" element={<Chat isloading={isloading} setLoading={setLoading} />} />
+          <Route path="/authors" element={<Authors isloading={isloading} setLoading={setLoading} />} />
         </Routes>
       </Router>
     </div>

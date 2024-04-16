@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../../styles/navbar.css'
 import logo from '../../assets/logo/logo_transparent.png'
 
@@ -41,11 +42,16 @@ export default function Navbar() {
         </button>
         <div className="navbar-items fixed sm:top-4 top-16 left-4 p-5 sm:p-0 w-auto right-4 sm:static sm:bg-none bg-transparent bg-gradient-to-tr from-[#009245] to-[#FCEE21] rounded-lg sm:flex flex-col sm:flex-row sm:w-fit shadow-xl sm:shadow-none hidden" id='navbar'>
           <ul className="navigation text-[#4C4C4C] navbar-text-custom  sm:text-white w-fit flex sm:flex-row flex-col gap-x-2 gap-y-2 sm:w-fit h-fit items-center">
-            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
-              <button className=''>
-                Home
-              </button>
-            </li>
+            <Link
+            className='w-fit h-fit'
+            to='/'
+            > 
+              <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+                <button className=''>
+                  Home
+                </button>
+              </li>
+            </Link>
             <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
               <button className=''>
                 Features
@@ -58,11 +64,16 @@ export default function Navbar() {
                 </button>
               </a>
             </li>
-            <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
-              <button className=''>
-                Sponsor
-              </button>
-            </li>
+            <Link
+              to='/authors'
+              className='w-fit h-fit'
+            >
+              <li className="cursor-pointer sm:text-orange-700 sm:hover:text-orange-600 hover:text-[#3a3a3a] w-fit h-fit active:border-[#FFD700] border-[1px] border-dashed hover:scale-110 duration-150 active:scale-90 border-transparent rounded-[4px] px-3 py-1  home">
+                <button className=''>
+                  Authors
+                </button>
+              </li>
+            </Link>
             <li className="cursor-pointer w-fit h-fit px-3 py-1  home">
               <button className='px-4 py-2 bg-blue-600 rounded-xl font-bold text-white hover:bg-blue-700 duration-200 active:scale-95'
               >

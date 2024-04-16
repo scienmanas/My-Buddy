@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie';
 import SideBar from './ui/SideBar';
 import Infotop from './ui/InfoTop';
 import Friend from './ui/Friend';
@@ -15,17 +16,21 @@ import '../styles/chat.css';
 
 
 export default function Chat(props) {
-
-    // Background color setup
-    document.body.style.backgroundColor = "#131619"
+    
 
 
     // Configure states
+    // const [websiteTheme, setWebsiteTheme] = useState(() => {
+    //     const storedMode = Cookies.get('Theme');
+    //     return storedMode ? storedMode : 'dark';
+    // });
+    const [websiteTheme, setWebsiteTheme] = useState('dark');
     const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
     const [isOpen, setIsOpen] = useState(false);
     const [chatList, setChatList] = useState(null)
     const [currentChat, setcurrentChat] = useState(null);
     const [chatTo, setChatTo] = useState('parent')
+    const [askWindow, setAskWindow] = useState(false)
     const [userBehaviourInput, setUserBehaviourInput] = useState({
         title: String,
         description: String,
@@ -47,8 +52,27 @@ export default function Chat(props) {
         profession: 'student',
         salary: '1 crore per month',
     })
-    const [askWindow, setAskWindow] = useState(false)
 
+
+    // Set website theme - light or dark
+    if (websiteTheme === 'dark') {
+        document.body.style.backgroundColor = "#131619";
+    } else {
+        document.body.style.backgroundColor = "#F5F5F5";
+    }
+
+    const handleThemeChange = () => {
+        if (websiteTheme === 'light') {
+            setWebsiteTheme('dark');
+        }
+        else {
+            setWebsiteTheme('light');
+        }
+    }
+
+    useEffect (() => {
+        Cookies.set('Theme', websiteTheme, { expires: 365 });
+    }, [websiteTheme])
 
 
     const handleChatTo = (chatWith) => {
@@ -129,7 +153,7 @@ export default function Chat(props) {
                 <div
                     className={`sidebar absolute sm:relative sm:min-h-screen z-50`}
                 >
-                    <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} handleChangeChat={handleChangeChat} handleNewChat={handleNewChat}/>
+                    <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} handleChangeChat={handleChangeChat} handleNewChat={handleNewChat} websiteTheme={websiteTheme}/>
                 </div>
                 <div id='content-side' className="content-side-content  w-full flex flex-col justify-between sm:max-h-screen sm:min-h-screen relative">
                     {askWindow &&
@@ -141,23 +165,23 @@ export default function Chat(props) {
                     {currentChat && !askWindow && (
                         <>
                             <div className="options-bar flex-none">
-                                <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} chatTo={chatTo} handleChatTo={handleChatTo} handleNewChat={handleNewChat}
+                                <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} chatTo={chatTo} handleChatTo={handleChatTo} handleNewChat={handleNewChat} websiteTheme={websiteTheme}
                                 />
                             </div>
                             {chatTo === 'parent' ? (
-                                <Parent userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
+                                <Parent userBehaviourInput={userBehaviourInput} userInformation={userInformation} websiteTheme={websiteTheme}/>
                             ) : null}
                             {chatTo === 'friend' ? (
-                                <Friend userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
+                                <Friend userBehaviourInput={userBehaviourInput} userInformation={userInformation} websiteTheme={websiteTheme} />
                             ) : null}
                             {chatTo === 'councellor' ? (
-                                <Councellor userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
+                                <Councellor userBehaviourInput={userBehaviourInput} userInformation={userInformation} websiteTheme={websiteTheme} />
                             ) : null}
                         </>
                     )}
                     {!currentChat && (
                         <div className="no-content-screen w-full h-full">
-                            <NoContentsScreen handleNewChat={handleNewChat} configureUserBehaviour={configureUserBehaviour} />
+                            <NoContentsScreen handleNewChat={handleNewChat} configureUserBehaviour={configureUserBehaviour} websiteTheme={websiteTheme} />
                         </div>
                     )}
                 </div>
