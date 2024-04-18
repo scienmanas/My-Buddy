@@ -12,17 +12,19 @@ import greenSquare from '../assets/icons/green_square.png';
 import orangeSquare from '../assets/icons/red_square.png';
 import redTriangle from '../assets/icons/red_triangle.png';
 import '../styles/chat.css';
-
-
+import { useGlobalContext } from '../Context/global_context';
+import {useFetchChat} from "../hooks/usefetchchat"
 export default function Chat(props) {
 
     // Background color setup
     document.body.style.backgroundColor = "#131619"
-
+    const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
 
     // Configure states
-    const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
-    const [isOpen, setIsOpen] = useState(false);
+    const {authUser,mode,setmode,setselectedchat,setchattitle,setchatdesc}=useGlobalContext()
+    const {fetchchat}=useFetchChat()
+
+    const [isOpen, setIsOpen] = useState(true);
     const [chatList, setChatList] = useState(null)
     const [currentChat, setcurrentChat] = useState(null);
     const [chatTo, setChatTo] = useState('parent')
@@ -66,15 +68,46 @@ export default function Chat(props) {
         setAskWindow(() => true)
     }
 
-    const handleChangeChat = (id) => {
+    const handleChangeChat = (id,name,desc) => {
         setcurrentChat(id)
+        setselectedchat(id);
+        setchattitle(name);
+        setchatdesc(desc)
+    }
+    
+    const fetch_the_chat=async()=>{
+        const data= await fetchchat();
+        console.log(data)
+        const temp_chat_list = [];
+ 
+// Using forEach() to create partial objects
+        data.forEach(obj => {
+        const partialObj = {};
+        partialObj.id = obj?._id
+        partialObj.name = obj?.title
+        partialObj.desc=obj?.description
+        partialObj.icon=icons[Math.floor(Math.random() * icons.length)]
+         temp_chat_list.push(partialObj);
+});
+        setChatList(temp_chat_list);
     }
 
-    const configureUserBehaviour = (behaviour) => {
+    useEffect(()=>{
+        fetch_the_chat();
+    },[])
 
-        console.log("first")
-        console.log(behaviour)
 
+
+    useEffect(() => {
+        // loading daalna ha new chat ke liye
+     
+        console.log(chatList)
+        
+}, [chatList])
+
+
+    
+    const configureUserBehaviour = async (behaviour) => {
         setUserBehaviourInput({
             title: behaviour.title,
             description: behaviour.description,
@@ -84,26 +117,31 @@ export default function Chat(props) {
             mode: behaviour.mode,
         })
 
+        setmode(behaviour.mode);
+
         // Generate unique id
-        const uniqueId = uuidv4()
+        const uniqueId = uuidv4();
+        const res = await fetch("http://localhost:5000/api/message/savechat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json",
+         },
+            body: JSON.stringify({ title:behaviour.title,token:authUser?.token,description:behaviour?.description||""}),
+        });
 
-        // Update chat list
-        setChatList(prevChats => [
-            ...(prevChats || []), // If prevChats is null, use an empty array
-            {
-                id: uniqueId,
-                name: behaviour.title,
-                icon: icons[Math.floor(Math.random() * icons.length)]
-            }
-        ]);
+        const data = await res.json();
+        console.log(data)
+        if (data.error) {
+            throw new Error(data.error);
+        }
 
-
-        // Set current chat
-        setcurrentChat(uniqueId)
-
-        setAskWindow(() => false)
-        console.log(uniqueId)
-
+            setChatList(prevchat=>[
+                ...prevchat,{
+                    id:data._id,
+                    name:data?.title,
+                    desc:data?.description,
+                    icon:icons[Math.floor(Math.random() * icons.length)]
+                }
+            ])
     }
 
     useEffect(() => {
@@ -138,7 +176,7 @@ export default function Chat(props) {
                         }}
                         />
                     }
-                    {currentChat && !askWindow && (
+                    {currentChat  && !askWindow  && chatList  && (
                         <>
                             <div className="options-bar flex-none">
                                 <Infotop chatList={chatList} currentChat={currentChat} isOpen={isOpen} toggleSidebar={toggleSidebar} chatTo={chatTo} handleChatTo={handleChatTo} handleNewChat={handleNewChat}
@@ -155,7 +193,7 @@ export default function Chat(props) {
                             ) : null}
                         </>
                     )}
-                    {!currentChat && (
+                    {!chatList && (
                         <div className="no-content-screen w-full h-full">
                             <NoContentsScreen handleNewChat={handleNewChat} configureUserBehaviour={configureUserBehaviour} />
                         </div>

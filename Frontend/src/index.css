@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.signup{
+  background-image: url("./assets/icons/Untitled-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.signup_bg{
+  background-image: url("./assets/icons/Untitled-1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.signup_image{
+  height: 130px;
+  width: 130px;
+  background-image: url("./assets/logo/logo_transparent.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

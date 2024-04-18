@@ -2,11 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import '../../styles/chats.css';
-
+import { useGlobalContext } from '../../Context/global_context';
 
 export default function Chats(props) {
 
     const [browserHeight, setBrowserHeight] = useState(window.innerHeight);
+    const {setselectechat}=useGlobalContext()
 
     useEffect(() => {
 
@@ -20,6 +21,7 @@ export default function Chats(props) {
         };
     }, [])
 
+    
 
     return (
         <div className='chat-list flex flex-col gap-4'>
@@ -34,7 +36,7 @@ export default function Chats(props) {
                             {props.chatList.slice().reverse().map(chat => (
                                 <li
                                     onClick={() => {
-                                        props.handleChangeChat(chat.id)
+                                        props.handleChangeChat(chat.id,chat.name,chat.desc)
                                     }
                                     }
                                     className={`items flex flex-row items-center gap-4  select-none hover:bg-black  cursor-pointer rounded-lg duration-150 py-3 px-3 ${props.currentChat === chat.id ? 'bg-black' : ''}`}

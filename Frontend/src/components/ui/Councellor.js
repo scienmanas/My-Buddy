@@ -2,12 +2,16 @@ import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import Conversation from './Conversation';
 import ChatInput from './ChatInput';
-
+import {useSaveConversation} from "../../hooks/usesaveconversation"
+import {useFetchConversation} from "../../hooks/usefetchconversation"
+import { useGlobalContext } from '../../Context/global_context';
 
 
 export default function Councellor(props) {
 
-
+    const {saveconversation}=useSaveConversation();
+    const {selectedchat}=useGlobalContext()
+    const {fetchconversation}=useFetchConversation()
     const userBehavious = props.userBehaviourInput;
     const userInformation = props.userInformation;
     const firstPromptcConfiguration = "Hi i am " + userInformation.name + " and i am a " + userInformation.profession + " earning " + userInformation.salary + " per month. I am feeling " + userBehavious.mood + " because " + userBehavious.bothering + " and i am in " + userBehavious.relationshipStatus + " relationship. Can you help me?";
@@ -34,6 +38,16 @@ export default function Councellor(props) {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     // Ask Gemini
+    const fetch_the_conversation=async()=>{
+        const conversation=await fetchconversation();
+        setchats(conversation)
+   }
+   useEffect(()=>{
+    if(selectedchat!=="")
+    fetch_the_conversation()
+}
+,[selectedchat])
+
     const askGemini = async (promptByUser) => {
 
         const chat = model.startChat({
@@ -45,10 +59,11 @@ export default function Councellor(props) {
         const response = await result.response;
         const text = response.text();
 
+        const data=await saveconversation(promptByUser,text)
         setchats(prevChats => [
-            ...prevChats, {
-                parts: [{ text: text }],
+            ...prevChats,{
                 role: 'model',
+                parts: [{text : data?.text}]
             }
         ])
 

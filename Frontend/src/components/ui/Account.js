@@ -3,11 +3,16 @@ import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { FiExternalLink } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import '../../styles/account.css';
+import { useGlobalContext } from '../../Context/global_context';
+import dummy from "../../assets/icons/dummy.jpeg"
+import useLogout from '../../hooks/uselogout';
 
 export default function AccountDownSettings() {
     const [name, setName] = useState("Manas Poddar");
     const [userType, setUserType] = useState("Student");
+    const {logout}=useLogout()
     const [isOnline, setIsOnline] = useState(true);
+    const {authUser}=useGlobalContext()
     const [accountSettingPopup, setAccountSettingPopup] = useState(false);
     const popupRef = useRef(null); // Reference to the popup element
 
@@ -41,6 +46,11 @@ export default function AccountDownSettings() {
         setAccountSettingPopup(!accountSettingPopup);
     }
 
+    const handleonclick=()=>{
+        logout();
+    }
+
+    const user="User"
     return (
         <div className='account w-full relative'>
             <div
@@ -52,7 +62,7 @@ export default function AccountDownSettings() {
                         <img
                             className='w-[40px] h-[40px] rounded-2xl'
                             // src={userImage}
-                            src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                            src={authUser?.profilepic||dummy}
                             alt=""
                         />
                         <div className="onlinestatus absolute top-0 right-0">
@@ -63,10 +73,10 @@ export default function AccountDownSettings() {
 
                     <div className="content flex flex-col select-none">
                         <div className="name text-[#FFFFFF] font-bold">
-                            {name}
+                            {authUser?.fullName}
                         </div>
                         <div className="plan text-[#B6F09C]">
-                            {userType}
+                            {authUser?.profession||user}
                         </div>
                     </div>
                 </div>
@@ -105,7 +115,7 @@ export default function AccountDownSettings() {
                             <div className="svg">
                                 <IoLogOutOutline />
                             </div>
-                            <div className="text select-none">
+                            <div className="text select-none" onClick={handleonclick}>
                                 Log out
                             </div>
                         </div>

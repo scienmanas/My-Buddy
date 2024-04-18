@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo/logo.png'
 import { RiChatNewLine } from "react-icons/ri";
-
+import { useGlobalContext } from '../../Context/global_context';
 export default function NewChatOption(props) {
-
+    const {setchats}=useGlobalContext()
     return (
         <div className='project-team flex flex-row justify-between items-center px-2 py-4 hover:bg-slate-800 cursor-pointer rounded-xl active:scale-[0.97] duration-100 gap-4 text-nowrap flex-nowrap'>
             <div className="logo-show flex flex-row gap-2 items-center text-nowrap">
