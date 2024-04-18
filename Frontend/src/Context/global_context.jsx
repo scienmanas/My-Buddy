@@ -14,6 +14,8 @@ export const GlobalContextProvider = ({ children }) => {
   const [selectedchat,setselectedchat]=useState("");
   const [mode,setmode]=useState("parent");
   const [chats,setchats]=useState([])
+  const [chattitle,setchattitle]=useState("")
+  const [chatdesc,setchatdesc]=useState("")
 
   return (
     <GlobalContext.Provider
@@ -25,7 +27,11 @@ export const GlobalContextProvider = ({ children }) => {
         mode,
         setmode,
         chats,
-        setchats
+        setchats,
+        chattitle,
+        setchattitle,
+        chatdesc,
+        setchatdesc
       }}
     >
       {children}

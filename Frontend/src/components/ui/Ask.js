@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import '../../styles/ask.css';
 
-
 export default function Ask(props) {
 
     // Need to make more robust so that all input from user is received 

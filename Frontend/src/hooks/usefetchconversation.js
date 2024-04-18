@@ -1,10 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../Context/auth_context";
+import { useGlobalContext } from "../Context/global_context";
 
 
 export const  useFetchConversation=()=>{
-    const {authUser,mode,selectedchat}=useAuthContext();
+    const {authUser,mode,selectedchat}=useGlobalContext();
    
     const fetchconversation=async ()=>{
         const res = await fetch(`http://localhost:5000/api/message/getconversation/${selectedchat}`, {
@@ -30,7 +30,7 @@ export const  useFetchConversation=()=>{
             return message.chat===selectedchat})
              }
             else
-            { let allchat=data?.bff_messages
+            { let allchat=data?.councellor_messages
             temp=allchat.filter((message)=>{
             return message.chat===selectedchat})
             }

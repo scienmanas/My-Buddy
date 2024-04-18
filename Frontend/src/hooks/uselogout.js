@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuthContext } from "../Context/auth_context";
+import { useGlobalContext } from "../Context/global_context";
 import toast from "react-hot-toast";
 
 const useLogout = () => {
 	const [loading, setLoading] = useState(false);
-	const { setAuthUser } = useAuthContext();
+	const { setAuthUser } = useGlobalContext();
 
 	const logout = async () => {
 		setLoading(true);

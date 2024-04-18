@@ -28,6 +28,8 @@ const Details = () => {
   const [uploadsection, setuploadsection] = useState(false);
   const [preview, setpreview] = useState(null);
   const [src, setsrc] = useState();
+
+
   const handleSubmit = async (e) => {
     const url = resized?await getimage(resized):"";
     setInputs({ ...inputs, profilepic: url });
@@ -57,6 +59,7 @@ const Details = () => {
 
   const handlechoose = (preview) => {
     onclose();
+   
     resizeBase64Img(preview, 150, 150)
       .then((resizedBase64) => {
         setresized(resizedBase64);

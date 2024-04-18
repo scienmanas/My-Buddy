@@ -11,6 +11,9 @@ const chatSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		description:{
+			type:String,
+		}
 		// createdAt, updatedAt
 	},
 	{ timestamps: true }

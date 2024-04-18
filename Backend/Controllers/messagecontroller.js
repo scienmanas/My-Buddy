@@ -29,7 +29,7 @@ export const sendMessage = async (req, res) => {
 		    else if(mode==="friend")
 			conversation.friend_messages.push(newMessage);
 		    else
-			conversation.bff_messages.push(newMessage)
+			conversation.councellor_messages.push(newMessage)
 		}
 
 		// await conversation.save();
@@ -93,7 +93,7 @@ export const getconversation = async (req, res) => {
 		{
 			allchat=await Conversation.findOne({
 				participants: { $all: [userId, modelId] },
-			}).populate("bff_messages")
+			}).populate("councellor_messages")
 		}
 		res.status(200).json(allchat);
 	} catch (error) {
@@ -105,12 +105,13 @@ export const getconversation = async (req, res) => {
 export const savechat=async (req,res)=>{
 
 	    try{
-	    const {title } = req.body;
+	    const {title,description} = req.body;
 		const userId = req.user._id;
 
 		const new_chat= new Chat({
 			senderId:userId,
-			title
+			title,
+			description
 		 })
 
 		 if(new_chat)
@@ -118,7 +119,9 @@ export const savechat=async (req,res)=>{
 
 		   await new_chat.save();
 		   res.status(200).json({
-			id:new_chat._id
+			id:new_chat._id,
+			title,
+			description
 		 })
 		 }
 		}

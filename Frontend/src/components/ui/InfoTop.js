@@ -1,22 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { IoChatbubbleOutline } from "react-icons/io5";
 import artificiumCvg from '../../assets/icons/artificium_icon.png';
 import { MdOutlineFolderOpen } from "react-icons/md";
 import { RiChatNewLine } from "react-icons/ri";
 import currentIndicator from '../../assets/icons/current_indicator.png';
+import { useGlobalContext } from '../../Context/global_context';
 
 export default function InfoTop(props) {
 
 
   const [currentTool, setCurrentTool] = useState("friend")
+  const {setmode,selectedchat,chattitle,chatdesc,}=useGlobalContext()
 
+  
+  const handleclick=(tool)=>{
+    handleChat(tool)
+    setmode(tool)
+  }
   const handleChat = (tool) => {
     console.log(tool)
     setCurrentTool(() => tool)
     props.handleChatTo(currentTool)
   }
-
+  
   return (
     <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-6 sm:gap-4'>
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
@@ -24,12 +31,12 @@ export default function InfoTop(props) {
           {props.currentChat === null ? null : (
             <>
               <div className="chat-name h-fit  text-sm sm:text-base text-white font-bold select-none">
-                <h1>GirlFriend</h1>
+                <h1>{chattitle}</h1>
                 {/* <h1>{props.chatList}</h1> */}
               </div>
               <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
                 {/* <p>{props.chatList[props.currentChat - 1][1]}</p> */}
-                <p>Nothing New, just a recent breakup with girlfriend</p>
+                <p>{chatdesc}</p>
               </div>
             </>
           )}
@@ -57,7 +64,7 @@ export default function InfoTop(props) {
       <div className="action-type flex flex-row items-center gap-1 text-white">
         <div
           className="friend text-sm flex flex-col items-center gap-4 group cursor-pointer "
-          onClick={() => handleChat("friend")}
+          onClick={() => handleclick("friend")}
         >
           <div className="text-contents flex flex-row items-center gap-[9px]">
             <div className="svg">
@@ -77,7 +84,7 @@ export default function InfoTop(props) {
         </div>
         <div
           className="parent text-sm flex flex-col items-center gap-4 group cursor-pointer"
-          onClick={() => handleChat("parent")}
+          onClick={() => handleclick("parent")}
         >
           <div className="text-contents flex flex-row items-center gap-[9px]">
             <div className="svg">
@@ -97,7 +104,7 @@ export default function InfoTop(props) {
         </div>
         <div
           className="councellor text-sm flex flex-col items-center gap-4  group cursor-pointer"
-          onClick={() => handleChat("counsellor")}
+          onClick={() => handleclick("councellor")}
         >
           <div className="text-content flex flex-row items-center gap-[9px]">
             <div className="svg">

@@ -20,7 +20,7 @@ const useGsign = () => {
 			}
 			localStorage.setItem("chat-user", JSON.stringify(data));
 			setAuthUser(data);
-		} catch (error) {
+		}   catch (error) {
 			toast.error(error.message);
 		} 
 	};

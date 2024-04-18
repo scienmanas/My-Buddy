@@ -4,6 +4,7 @@ import useLogin from "../hooks/uselogin";
 import {GoogleLogin} from "react-google-login"
 import useGsign from "../hooks/usegsign";
 import Google from "../assets/icons/google.png"
+import "../App.css"
 const Login = () => {
   const [emailid, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,13 +18,11 @@ const Login = () => {
   };
 
   return (
-    <div className="p-4 h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center min-w-96 mx-auto bg-[#FFFFFF] rounded-[8px] ">
-        <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-          <h1 className="text-3xl font-sans font-bold text-center text-[rgb(77 76 99)] ">
-            Login
-          </h1>
-
+    <div className="signup_bg p-4 h-screen flex items-center justify-center">
+      <div className="signup flex flex-col items-center justify-center h-[600px] relative min-w-96 mx-auto bg-[#FFFFFF] rounded-[8px] ">
+      <div className="signup_image absolute top-[70px] left-[110px]">
+         </div>
+        <div className="w-full p-6 rounded-lg absolute top-[160px] ">
           <form onSubmit={handleSubmit}>
             <div>
               <label className="label p-2">
@@ -34,7 +33,7 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="abc@gmail.com"
-                className="w-full input input-bordered h-10 text-[rgb(77 76 99)]"
+                className="w-full input input-bordered h-10 text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
                 value={emailid}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -49,7 +48,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
-                className="w-full input input-bordered h-10 text-[rgb(77 76 99)]"
+                className="w-full input input-bordered h-10 text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -63,11 +62,11 @@ const Login = () => {
 
             <div>
               <button
-                className="btn btn-block btn-sm mt-2 bg-[#584CD7] font-sans font-bold"
+                className="w-[100%] h-8 mt-2 border rounded-[10px]  border-slate-700 font-sans font-bold bg-[#2953FF]"
                 disabled={loading}
               >
                 {loading ? (
-                  <span className="loading loading-spinner "></span>
+                  <span className="loading loading-spinner"></span>
                 ) : (
                   "Login"
                 )}
@@ -82,8 +81,9 @@ const Login = () => {
               )}
               onSuccess={async (res)=>{
                 const emailid=res.profileObj.email
+                console.log(res.profileObj);
                 const fullName=res.profileObj.name
-                await gsignup({fullName,emailid});
+                await gsignup({fullName,emailid,profilepic:res.profileObj.imageUrl});
               }}
               onFailure={(res)=>{console.log("Failed")}}
               cookiePolicy={"single_host_origin"}

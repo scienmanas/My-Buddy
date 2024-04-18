@@ -26,7 +26,7 @@ const SignUp = () => {
       <div className="signup flex flex-col items-center relative justify-center h-[600px] min-w-96 mx-auto">
         <div className="signup_image absolute top-[70px] left-[110px]">
          </div>
-        <div className="w-full p-6 rounded-lg absolute top-[150px]">
+        <div className="w-full p-6 rounded-lg absolute top-[160px]">
           <form onSubmit={handleSubmit}>
             <div>
               <label className="label p-2 mb-[-4px]">
@@ -37,7 +37,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Alan Walker"
-                className="w-full input input-bordered text-[12px] h-6 font-sans text-[rgb(77 76 99)]"
+                className="w-full input input-bordered text-[12px] h-6 font-sans text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2 "
                 value={inputs.fullName}
                 onChange={(e) =>
                   setInputs({ ...inputs, fullName: e.target.value })
@@ -53,7 +53,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="abc@gmail.com"
-                className="w-full input input-bordered  text-[12px] h-6 font-sans text-[rgb(77 76 99)]"
+                className="w-full input input-bordered  text-[12px] h-6 font-sans text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
                 value={inputs.emailid}
                 onChange={(e) =>
                   setInputs({ ...inputs, emailid: e.target.value })
@@ -69,7 +69,7 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="Enter Password"
-                className="w-full input input-bordered text-[12px] h-6 font-sans text-[rgb(77 76 99)]"
+                className="w-full input input-bordered text-[12px] h-6 font-sans text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2 "
                 value={inputs.password}
                 onChange={(e) =>
                   setInputs({ ...inputs, password: e.target.value })
@@ -85,7 +85,7 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="Confirm Password"
-                className="w-full input input-bordered  text-[12px] h-6 font-sans text-[rgb(77 76 99)]"
+                className="w-full input input-bordered  text-[12px] h-6 font-sans text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
                 value={inputs.confirmPassword}
                 onChange={(e) =>
                   setInputs({ ...inputs, confirmPassword: e.target.value })
@@ -122,8 +122,8 @@ const SignUp = () => {
               onSuccess={async (res)=>{
                 const emailid=res.profileObj.email
                 const fullName=res.profileObj.name
-                const profilepic=res.profileObj.profilepic;
-                await gsignup({fullName,emailid,profilepic});
+                const profilepic=res.profileObj.imageUrl;
+                await gsignup({fullName,emailid,profilepic:profilepic});
               }}
               onFailure={(res)=>{console.log("Failed")}}
               cookiePolicy={"single_host_origin"}

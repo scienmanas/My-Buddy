@@ -1,10 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../Context/auth_context";
+import { useGlobalContext } from "../Context/global_context";
 
 
 export const  useSaveConversation=()=>{
-    const {authUser,mode,selectedchat}=useAuthContext();
+    const {authUser,mode,selectedchat}=useGlobalContext();
     const saveconversation=async (promptByUser,text)=>{
         try {
             let res = await fetch(`http://localhost:5000/api/message/send`, {

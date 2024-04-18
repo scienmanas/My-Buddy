@@ -36,7 +36,7 @@ const conversationSchema = new mongoose.Schema(
 				}
 			},
 		],
-        bff_messages: [
+        councellor_messages: [
 			{
 				chat:{
                     type: mongoose.Schema.Types.ObjectId,
