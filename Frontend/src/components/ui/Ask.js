@@ -13,7 +13,7 @@ export default function Ask(props) {
         mood: 'happy',
         bothering: '',
         relationshipStatus: 'single',
-        defaultMode: 'friend',
+        mode: 'friend',
     })
     const [wait, setWait] = useState(false);
 
@@ -39,7 +39,7 @@ export default function Ask(props) {
     const handleConversationMode = (mode) => {
         setUserBehaviour(prevState => ({
             ...prevState,
-            defaultMode: mode,
+            mode: mode,
         }))
     }
 
@@ -178,19 +178,19 @@ export default function Ask(props) {
                         <div className="select-mode flex flex-row gap-1 text-sm sm:test-base">
                             <button
                                 onClick={() => handleConversationMode('friend')}
-                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.defaultMode === 'friend' ? 'bg-pink-600' : ''}`}
+                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.mode === 'friend' ? 'bg-pink-600' : ''}`}
                             >
                                 Friend
                             </button>
                             <button
                                 onClick={() => handleConversationMode('parent')}
-                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.defaultMode === 'parent' ? 'bg-pink-600' : ''}`}
+                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.mode === 'parent' ? 'bg-pink-600' : ''}`}
                             >
                                 Parent
                             </button>
                             <button
                                 onClick={() => handleConversationMode('councellor')}
-                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.defaultMode === 'councellor' ? 'bg-pink-600' : ''}`}
+                                className={`mode-button text-gray-100 px-2 py-1 duration-200 hover:bg-pink-600 w-fit h-fit rounded-md cursor-pointer ${userBehaviour.mode === 'councellor' ? 'bg-pink-600' : ''}`}
                             >
                                 Councellor
                             </button>

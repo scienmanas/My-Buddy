@@ -108,6 +108,7 @@ export default function Chat(props) {
 
     
     const configureUserBehaviour = async (behaviour) => {
+
         setUserBehaviourInput({
             title: behaviour.title,
             description: behaviour.description,
@@ -115,9 +116,13 @@ export default function Chat(props) {
             bothering: behaviour.bothering,
             relationshipStatus: behaviour.relationshipStatus,
             mode: behaviour.mode,
+
         })
 
+        console.log("***************************")
         setmode(behaviour.mode);
+        console.log(behaviour.mode)
+        console.log('****************************')
 
         // Generate unique id
         const uniqueId = uuidv4();
@@ -136,7 +141,7 @@ export default function Chat(props) {
 
             setChatList(prevchat=>[
                 ...prevchat,{
-                    id:data._id,
+                    id:data.id,
                     name:data?.title,
                     desc:data?.description,
                     icon:icons[Math.floor(Math.random() * icons.length)]

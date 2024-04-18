@@ -6,6 +6,8 @@ import github from '../../assets/landing/poweredby/github.png';
 import lottie from '../../assets/landing/poweredby/lottiefiles.png';
 import tailwindCSS from '../../assets/landing/poweredby/tailwind.svg';
 import render from '../../assets/landing/poweredby/render.svg';
+import mondoDb from '../../assets/landing/poweredby/mongodb.png'
+import cloudinary from '../../assets/landing/poweredby/cloudinary.png'
 
 
 export default function PoweredBy() {
@@ -54,6 +56,20 @@ export default function PoweredBy() {
                     <img
                         className='w-20 sm:w-28 lg:w-36 xl:w-48 h-auto'
                         src={render}
+                        alt=""
+                    />
+                </div>
+                <div className="mongodb w-fit pointer-events-none select-none">
+                    <img
+                        className='w-20 sm:w-28 lg:w-36 xl:w-48 h-auto'
+                        src={mondoDb}
+                        alt=""
+                    />
+                </div>
+                <div className="cloudinary w-fit pointer-events-none select-none">
+                    <img
+                        className='w-20 sm:w-28 lg:w-36 xl:w-48 h-auto'
+                        src={cloudinary}
                         alt=""
                     />
                 </div>

@@ -2,6 +2,7 @@ import './App.css';
 import Landing from './components/Landing';
 import Chat from './components/Chat';
 import GeneralAlert from './components/GeneralAlert';
+import Authors from './components/landing/Authors';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import GeneralWebsiteLoader from './components/loaders/GeneralWebsiteLoader';
@@ -64,6 +65,7 @@ function App() {
           <Route path="/signup" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<SignUp  isloading={isloading} setLoading={setLoading} />}/>
           <Route path="/details" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Details  isloading={isloading} setLoading={setLoading} />}/>
           <Route path="/login" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Login  isloading={isloading} setLoading={setLoading} />}/>
+          <Route path="/authors" element={<Authors isloading={isloading} setLoading={setLoading} />} />
         </Routes>
       </Router>
       <Toaster/>

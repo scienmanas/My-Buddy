@@ -11,6 +11,7 @@ import '../styles/landing.css';
 
 export default function Landing(props) {
 
+  // Background color setup - always on light mode
   document.body.style.backgroundColor = "#FFFFFF"
 
   return (

@@ -13,7 +13,7 @@ app.use(cors({origin:"http://localhost:3000"}));
 dotenv.config()
 app.use(express.json())
 app.use(cookieParser());
-cloudinary.config({
+cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
