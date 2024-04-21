@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSignup from "../hooks/usesignup.js";
 import useGsign from "../hooks/usegsign.js"
 import { GoogleLogin } from "react-google-login"
 import Google from "../assets/icons/google.png"
 import "../index.css"
-
-
+import { useGlobalContext } from "../Context/global_context.jsx";
 const SignUp = () => {
+  const {authUser}=useGlobalContext()
   const [inputs, setInputs] = useState({
     fullName: "",
     emailid: "",
@@ -22,6 +22,9 @@ const SignUp = () => {
     e.preventDefault();
     await signup(inputs);
   };
+  
+ 
+
 
 
   return (

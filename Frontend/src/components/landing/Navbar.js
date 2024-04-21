@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/navbar.css'
 import logo from '../../assets/logo/logo_transparent.png'
+import { useGlobalContext } from '../../Context/global_context'
 
 export default function Navbar() {
-
+  const {authUser}=useGlobalContext()
   const handleClick = () => {
     if (document.getElementById('navbar').classList.contains('hidden')) {
       document.getElementById('navbar').classList.remove('hidden')
@@ -74,6 +75,7 @@ export default function Navbar() {
                 </button>
               </li>
             </Link>
+            <Link to={`${authUser?"/chat":"/login"}`}>
             <li className="cursor-pointer w-fit h-fit px-3 py-1  home">
               <button className='px-4 py-2 bg-blue-600 rounded-xl font-bold text-white hover:bg-blue-700 duration-200 active:scale-95'
               >
@@ -84,6 +86,7 @@ export default function Navbar() {
                 </div>
               </button>
             </li>
+            </Link>
           </ul>
         </div>
       </div>

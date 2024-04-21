@@ -10,6 +10,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom";
 import { Toaster } from 'react-hot-toast';
 import SignUp from "./components/Signup";
@@ -22,7 +23,7 @@ function App() {
   const [isloading, setisloading] = useState(false);
   const [alert, setAlert] = useState(false);
   const [alertAnimation, setAlertAnimation] = useState(null);
-  const {authUser,setAuthUser}=useGlobalContext();
+  const {authUser,setAuthUser,tempuser}=useGlobalContext();
 
   const setLoading = (value) => {
     setisloading(value);
@@ -53,18 +54,19 @@ function App() {
     }
     gapi.load("client:auth2",start)
   })
-
+ 
   return (
+    
     <div className="app overflow-hidden">
       {isloading && <GeneralWebsiteLoader />}
       <Router>
         <GeneralAlert alert={alert} alertAnimation={alertAnimation} />
         <Routes>
           <Route path="/" element={<Landing isloading={isloading} setLoading={setLoading} showAlert={showAlert} />} />
-          <Route path="/chat" element={<Chat isloading={isloading} setLoading={setLoading} />} />
-          <Route path="/signup" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<SignUp  isloading={isloading} setLoading={setLoading} />}/>
-          <Route path="/details" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Details  isloading={isloading} setLoading={setLoading} />}/>
-          <Route path="/login" element={authUser?<Chat isloading={isloading} setLoading={setLoading}/>:<Login  isloading={isloading} setLoading={setLoading} />}/>
+          <Route path="/chat"  element={authUser?<Chat isloading={isloading} setLoading={setLoading} />:<Navigate to="/login"/>} />
+          <Route path="/signup" element={!authUser?<SignUp  isloading={isloading} setLoading={setLoading} />:<Navigate to="/chat"/>}/>
+          <Route path="/details" element={!authUser?(tempuser?<Details isloading={isloading} setLoading={setLoading} />:<Navigate to="/login"/>):< Navigate to ="/chat"/>}/>
+          <Route path="/login" element={!authUser?<Login  isloading={isloading} setLoading={setLoading} />:<Navigate to="/chat"/>}/>
           <Route path="/authors" element={<Authors isloading={isloading} setLoading={setLoading} />} />
         </Routes>
       </Router>

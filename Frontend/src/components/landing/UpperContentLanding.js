@@ -6,6 +6,7 @@ import '../../styles/uppercontentnavbar.css';
 import RobotAnimationFile from '../../assets/animations/landingrobot.json';
 import SpaceAnimationFile from '../../assets/animations/landingstaranimation.json';
 import peopleTalking from '../../assets/landing/talking.png';
+import { GlobalContext, useGlobalContext } from '../../Context/global_context';
 
 const RobotAnimation = {
     loop: true,
@@ -28,7 +29,8 @@ const SpaceAnimation = {
 
 
 export default function UpperContentLanding() {
-
+    
+    const {authUser}=useGlobalContext()
     const [animationSize, setAnimationSize] = useState({ width: 350, height: 250 });
 
     useEffect(() => {
@@ -70,7 +72,7 @@ export default function UpperContentLanding() {
                             Experience the future of emotional intelligence, talk as you want, be it with a friend, parent or councellor with <span className='text-yellow-600' style={{ fontWeight: 'bolder' }}>"My Buddy"</span> !
                         </div>
                     </div>
-                    <Link to='/chat' className='w-fit h-fit'>
+                    <Link to={`${authUser?"/chat":"/login"}`} className='w-fit h-fit'>
                         <button class="w-fit h-fit">
                             <div class="relative h-fit w-fit group">
                                 <div class="absolute -inset-1 bg-gradient-to-r from-blue-300 to-pink-700 blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 rounded-2xl">

@@ -20,9 +20,12 @@ export default function Chat(props) {
     document.body.style.backgroundColor = "#131619"
     const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
 
-
     // Import full data of the user
-    const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext()
+    const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext();
+
+    
+  
+
     // Configure states
     const { fetchchat } = useFetchChat()
     // Side bar toggle state
@@ -57,7 +60,7 @@ export default function Chat(props) {
     })
     // Ask window display state
     const [askWindow, setAskWindow] = useState(false)
-
+    console.log(authUser)
 
 
     const handleChatTo = (chatWith) => {
@@ -168,7 +171,8 @@ export default function Chat(props) {
             if (contentSide) {
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                     contentSide.classList.add('custom-height');
-                    isOpen(() => false)
+                    //Need to bee seen isopen(()=>false)
+                
                 } else {
                     contentSide.classList.add('min-h-screen');
                     contentSide.classList.add('max-h-screen');
@@ -236,4 +240,5 @@ export default function Chat(props) {
             </div>
         </div>
     );
+    
 }

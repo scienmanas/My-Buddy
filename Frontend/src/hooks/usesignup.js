@@ -1,8 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../Context/global_context";
 const useSignup = () => {
 	const [loading, setLoading] = useState(false);
+	const {settempuser}=useGlobalContext()
 	const navigate=useNavigate()
 	const signup = async ({ fullName, emailid, password, confirmPassword}) => {
 		const success = handleInputErrors({ fullName, emailid, password, confirmPassword });
@@ -21,6 +23,7 @@ const useSignup = () => {
 			if (data.error) {
 				throw new Error(data.error);
 			}
+            settempuser(data)
 			navigate("/details")
 			localStorage.setItem("chat-user", JSON.stringify(data));
 		} catch (error) {
