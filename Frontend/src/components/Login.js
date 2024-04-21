@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/uselogin";
-import {GoogleLogin} from "react-google-login"
+import { GoogleLogin } from "react-google-login"
 import useGsign from "../hooks/usegsign";
 import Google from "../assets/icons/google.png"
 import "../App.css"
@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { loading, login } = useLogin();
-  const {gsignup}=useGsign()
+  const { gsignup } = useGsign()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,77 +19,76 @@ const Login = () => {
 
   return (
     <div className="signup_bg p-4 h-screen flex items-center justify-center">
-      <div className="signup flex flex-col items-center justify-center h-[600px] relative min-w-96 mx-auto bg-[#FFFFFF] rounded-[8px] ">
-      <div className="signup_image absolute top-[70px] left-[110px]">
-         </div>
-        <div className="w-full p-6 rounded-lg absolute top-[160px] ">
-          <form onSubmit={handleSubmit}>
+      <div className="signup flex flex-col items-center justify-center h-fit py-10 sm:px-2 w-fit mx-auto bg-[#FFFFFF] rounded-2xl">
+        <div className="signup_image">
+        </div>
+        <div className="w-full p-6 rounded-lg  ">
+          <form
+            className="flex flex-col gap-[6px]"
+            onSubmit={handleSubmit}>
             <div>
-              <label className="label p-2">
-                <span className="text-base label-text text-[rgb(77 76 99)]">
-                  Emailid
-                </span>
-              </label>
+              <div className="text-base label-text text-[rgb(77 76 99)]">
+                Email
+              </div>
               <input
                 type="text"
                 placeholder="abc@gmail.com"
-                className="w-full input input-bordered h-10 text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
+                className="w-full input input-bordered h-9 text-[rgb(77 76 99)] border-[2px] rounded-lg pl-2"
                 value={emailid}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
 
             <div>
-              <label className="label ">
-                <span className="text-base label-text text-[rgb(77 76 99)]">
-                  Password
-                </span>
-              </label>
+              <div className="text-base label-text text-[rgb(77 76 99)]">
+                Password
+              </div>
               <input
                 type="password"
                 placeholder="Enter Password"
-                className="w-full input input-bordered h-10 text-[rgb(77 76 99)] border-[2px] rounded-[4px] pl-2"
+                className="w-full input input-bordered h-9 text-[rgb(77 76 99)] border-[2px] rounded-lg pl-2"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <Link
               to="/signup"
-              className="text-sm  hover:underline hover:text-blue-600 mt-2 inline-block text-[rgb(77 76 99)]"
+              className="text-sm  hover:underline hover:text-blue-600 mt-2 inline-block text-[rgb(77 76 99)] duration-200"
             >
-              {"Don't"} have an account?
+              Don't have an account?
             </Link>
-
-            <div>
-              <button
-                className="w-[100%] h-8 mt-2 border rounded-[10px]  border-slate-700 font-sans font-bold bg-[#2953FF]"
-                disabled={loading}
-              >
-                {loading ? (
-                  <span className="loading loading-spinner"></span>
-                ) : (
-                  "Login"
-                )}
-              </button>
-            </div>
-            <div className="w-full flex justify-center items-center h-[35px]  border-[#cac8c8] border-[2px] rounded-[10px] mt-[10px]"> 
-              <GoogleLogin
-              clientId={process.env.REACT_APP_GAUTH}
-              render={renderProps => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="flex">
-                  <img src={Google} className="w-[30px] pr-[5px]" alt="" />Signin with Google</button>
-              )}
-              onSuccess={async (res)=>{
-                const emailid=res.profileObj.email
-                console.log(res.profileObj);
-                const fullName=res.profileObj.name
-                await gsignup({fullName,emailid,profilepic:res.profileObj.imageUrl});
-              }}
-              onFailure={(res)=>{console.log("Failed")}}
-              cookiePolicy={"single_host_origin"}
-              isSignedIn={false}
-              className="w-[300px]"
-              />
+            <div className="button-wrap-element flex flex-col w-full h-fit gap-[6px]">
+              <div className="login-login-page">
+                <button
+                  className="w-full h-fit px-1 py-1 border rounded-[10px]  border-slate-700 font-sans font-bold bg-blue-600 duration-200 hover:bg-blue-800 text-white"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Login"
+                  )}
+                </button>
+              </div>
+              <div className="w-full flex justify-center items-center h-[35px]  border-[#cac8c8] border-[2px] rounded-[10px] hover:bg-slate-100 duration-200">
+                <GoogleLogin
+                  clientId={process.env.REACT_APP_GAUTH}
+                  render={renderProps => (
+                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="flex">
+                      <img src={Google} className="w-[30px] pr-[5px]" alt="" />Signin with Google</button>
+                  )}
+                  onSuccess={async (res) => {
+                    const emailid = res.profileObj.email
+                    console.log(res.profileObj);
+                    const fullName = res.profileObj.name
+                    await gsignup({ fullName, emailid, profilepic: res.profileObj.imageUrl });
+                  }}
+                  onFailure={(res) => { console.log("Failed") }}
+                  cookiePolicy={"single_host_origin"}
+                  isSignedIn={false}
+                  className="w-[300px]"
+                />
+              </div>
             </div>
           </form>
         </div>
@@ -97,4 +96,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;

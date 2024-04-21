@@ -12,7 +12,7 @@ export const GlobalContextProvider = ({ children }) => {
   );
 
   const [selectedchat,setselectedchat]=useState("");
-  const [mode,setmode]=useState("parent");
+  const [mode,setmode]=useState(null);
   const [chats,setchats]=useState([])
   const [chattitle,setchattitle]=useState("")
   const [chatdesc,setchatdesc]=useState("")

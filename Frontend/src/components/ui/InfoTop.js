@@ -10,20 +10,14 @@ import { useGlobalContext } from '../../Context/global_context';
 export default function InfoTop(props) {
 
 
-  const [currentTool, setCurrentTool] = useState("friend")
-  const {setmode,selectedchat,chattitle,chatdesc,}=useGlobalContext()
+  const { setmode, selectedchat, chattitle, chatdesc, mode } = useGlobalContext()
 
-  
-  const handleclick=(tool)=>{
-    handleChat(tool)
-    setmode(tool)
+
+  const handleclick = (tool) => {
+    setmode(() => tool)
   }
-  const handleChat = (tool) => {
-    console.log(tool)
-    setCurrentTool(() => tool)
-    props.handleChatTo(currentTool)
-  }
-  
+
+
   return (
     <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-6 sm:gap-4'>
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
@@ -32,10 +26,8 @@ export default function InfoTop(props) {
             <>
               <div className="chat-name h-fit  text-sm sm:text-base text-white font-bold select-none">
                 <h1>{chattitle}</h1>
-                {/* <h1>{props.chatList}</h1> */}
               </div>
               <div className="chat-details text-sm sm:text-base text-[#9B9C9E] h-[20px] select-none">
-                {/* <p>{props.chatList[props.currentChat - 1][1]}</p> */}
                 <p>{chatdesc}</p>
               </div>
             </>
@@ -45,7 +37,7 @@ export default function InfoTop(props) {
         <div className="actions text-white flex flex-row gap-1 items-center">
           <div
             className="new-chat-button cursor-pointer sm:text-2xl text-xl hover:bg-gray-800 duration-150 p-2 rounded-xl active:scale-90"
-          onClick={props.handleNewChat}
+            onClick={props.handleNewChat}
           >
             <RiChatNewLine />
           </div>
@@ -74,7 +66,7 @@ export default function InfoTop(props) {
               Friend
             </div>
           </div>
-          <div className={`current-indicator ${currentTool === 'friend' ? 'visible' : 'invisible'}`}>
+          <div className={`current-indicator ${mode === 'friend' ? 'visible' : 'invisible'}`}>
             <img
               src={currentIndicator}
               alt=""
@@ -94,7 +86,7 @@ export default function InfoTop(props) {
               Parent
             </div>
           </div>
-          <div className={`current-indicator ${currentTool === 'parent' ? 'visible' : 'invisible'}`}>
+          <div className={`current-indicator ${mode === 'parent' ? 'visible' : 'invisible'}`}>
             <img
               src={currentIndicator}
               alt=""
@@ -114,7 +106,7 @@ export default function InfoTop(props) {
               Counsellor
             </div>
           </div>
-          <div className={`current-indicator ${currentTool === 'counsellor' ? 'visible' : 'invisible'}`}>
+          <div className={`current-indicator ${mode === 'councellor' ? 'visible' : 'invisible'}`}>
             <img
               src={currentIndicator}
               alt=""

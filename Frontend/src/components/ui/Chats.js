@@ -36,7 +36,7 @@ export default function Chats(props) {
                             {props.chatList.slice().reverse().map(chat => (
                                 <li
                                     onClick={() => {
-                                        props.handleChangeChat(chat.id, chat.name, chat.desc)
+                                        props.handleChangeChat(chat.id, chat.name, chat.desc, 'friend')
                                     }
                                     }
                                     className={`items flex flex-row items-center gap-4  select-none hover:bg-black  cursor-pointer rounded-lg duration-150 py-3 px-3 ${props.currentChat === chat.id ? 'bg-black' : ''}`}
@@ -52,7 +52,6 @@ export default function Chats(props) {
                                 </li>
                             ))}
                         </ul>
-
                     )
                 }
             </div>

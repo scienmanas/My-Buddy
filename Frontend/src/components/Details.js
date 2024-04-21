@@ -31,7 +31,7 @@ const Details = () => {
 
 
   const handleSubmit = async (e) => {
-    const url = resized?await getimage(resized):"";
+    const url = resized ? await getimage(resized) : "";
     setInputs({ ...inputs, profilepic: url });
     await updatedetails(inputs);
   };
@@ -59,7 +59,7 @@ const Details = () => {
 
   const handlechoose = (preview) => {
     onclose();
-   
+
     resizeBase64Img(preview, 150, 150)
       .then((resizedBase64) => {
         setresized(resizedBase64);
@@ -88,69 +88,69 @@ const Details = () => {
 
   return (
     <div className=" signup_bg -4 h-screen  flex items-center justify-center">
-      <div className="signup flex flex-col items-center relative justify-center h-[600px] min-w-96 mx-auto">
-        <div className="signup_image absolute top-[60px] left-[110px]"></div>
+      <div className="signup flex flex-col items-center justify-center h-fit w-fit px-3 py-40 rounded-2xl">
+        <div className="signup_image"></div>
         {!photo_page ? (
-          <div className="w-full p-6 rounded-lg absolute top-[150px]">
-            <form>
-              <div>
-                <label className="label p-2 mb-[-6px]">
-                  <span className="text-base label-text text-[15px] font-sans text-[rgb(77 76 99)]">
-                    Gender
-                  </span>
-                </label>
+          <div className="user-information-form w-full h-fit gap-2 flex flex-col">
+            <div className="gender-info flex-col flex gap-[2px]">
+              <div className="text-[16px] font-sans text-[rgb(77 76 99)]">
+                Gender
+              </div>
+              <div className="checkboxes-gender">
                 <GenderCheckbox
                   onCheckboxChange={handlegendercheckboxchange}
                   selectedGender={inputs.gender}
                 />
               </div>
-              <div className="mt-[-10px]">
-                <label className="label p-2  mb-[-6px]">
-                  <span className="text-base label-text text-[15px] font-sans text-[rgb(77 76 99)]">
-                    Profession
-                  </span>
-                </label>
+            </div>
+            <div className="profession-info">
+              <div className="text-[16px] font-sans text-[rgb(77 76 99)]">
+                Profession
+              </div>
+              <div className="profession-info-boxes">
                 <ProfessionCheckbox
                   onCheckboxChange={handleprofessioncheckboxchange}
                   selectedProfession={inputs.profession}
                 />
               </div>
-              <div className="mt-[-10px]">
-                <label className="label p-2  mb-[-6px]">
-                  <span className="text-base label-text text-[15px] font-sans text-[rgb(77 76 99)]">
-                    Salary
-                  </span>
-                </label>
+            </div>
+            <div className="salary-info">
+              <div className="text-base label-text text-[15px] font-sans text-[rgb(77 76 99)]">
+                Salary
+              </div>
+              <div className="salary-info-boxes">
                 <SalaryCheckbox
                   onCheckboxChange={handlesalarycheckboxchange}
                   selectedsalary={inputs.salary}
                 />
               </div>
-            </form>
-            <button className="bg-[#2953FF] h-[30px] w-[60px] absolute left-[150px] " onClick={()=>setpohto_page(true)}>NEXT</button>
+            </div>
+            <button className="bg-blue-600 w-fit h-fit px-3 py-2 rounded-lg text-white hover:bg-blue-800 duration-200" onClick={() => setpohto_page(true)}>
+              Next
+            </button>
           </div>
         ) : (
-          <div>
-            <div className="w-[100px] h-[100px] border-[2px] border-black absolute top-[200px] left-[130px] rounded-[50%]">
+          <div className="h-fit px-4 flex flex-col gap-5">
+            <div className="w-[100px] h-[100px] border-[2px] border-black rounded-full overflow-hidden">
               <img
-                src={preview||dummy}
-                className="w-full h-full rounded-[50%]"
+                src={preview || dummy}
+                className="w-full h-full object-cover"
                 alt=""
               />
             </div>
-            <div className="absolute top-[320px] left-[108px]">
+            <div>
               <button
                 onClick={() => {
                   setuploadsection(true);
                 }}
-                className="bg-[blue] h-[30px] w-[150px] font-sans font-bold rounded-[10px]"
+                className="bg-blue-500 h-10 w-32 text-white font-bold rounded-lg"
               >
                 Upload Image
               </button>
             </div>
-            <div className="fixed top-0 left-0 bg-[#F1F5FE] ">
+            <div className="bg-blue-100 flex flex-col gap-4 rounded-lg">
               {uploadsection && (
-                <div className="flex flex-col justify-center items-center h-screen w-screen border-[2px] z-[10px]">
+                <div className="flex flex-col justify-center items-center h-screen w-screen border-2 z-10">
                   <Avatar
                     width={600}
                     height={600}
@@ -158,31 +158,31 @@ const Details = () => {
                     onCrop={oncrop}
                     onClose={onclose}
                   />
-                  <div>
-                     <button
-                    className="w-[180px] h-[30px] border-[2px] border-[black] mt-[10px] "
-                    onClick={onclose}
+                  <div className="flex gap-4">
+                    <button
+                      className="w-32 h-10 border-2 border-black mt-4 rounded-lg"
+                      onClick={onclose}
                     >
-                    BACK
-                  </button>
-                      <button
-                     className="w-[180px] h-[30px] border-[2px] border-[black] mt-[10px] "
-                    onClick={() => handlechoose(preview)}
-                     >
+                      BACK
+                    </button>
+                    <button
+                      className="w-32 h-10 border-2 border-black mt-4 rounded-lg"
+                      onClick={() => handlechoose(preview)}
+                    >
                       SET
                     </button>
                   </div>
-                
                 </div>
               )}
             </div>
-            <button className={`w-[150px] h-[30px] absolute top-[360px] left-[108px] font-sans font-bold rounded-[10px] bg-[#2953FF] ${uploadsection?"hidden":""}` } onClick={()=>setpohto_page(false)}>PREVIOUS</button>
+            <button className={`text-white font-bold rounded-lg bg-blue-500 ${uploadsection ? "hidden" : ""}`} onClick={() => setpohto_page(false)}>PREVIOUS</button>
             <div>
-              <button onClick={handleSubmit} className={`absolute top-[400px] w-[150px] h-[30px] left-[108px] font-sans font-bold rounded-[10px] bg-[#2953FF] ${uploadsection?"hidden":""}`}>
+              <button onClick={handleSubmit} className={`font-bold rounded-lg text-white bg-blue-500 ${uploadsection ? "hidden" : ""}`}>
                 Submit
               </button>
             </div>
           </div>
+
         )}
       </div>
     </div>
