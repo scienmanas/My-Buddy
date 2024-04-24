@@ -14,6 +14,8 @@ import '../styles/chat.css';
 import { useGlobalContext } from '../Context/global_context';
 import { useFetchChat } from "../hooks/usefetchchat"
 import { set } from 'mongoose';
+
+
 export default function Chat(props) {
 
     // Background color setup and some squares setup
@@ -52,6 +54,7 @@ export default function Chat(props) {
         salary: authUser?.salary,
     }
 
+    console.log(authUser)
     // Ask window display state
     const [askWindow, setAskWindow] = useState(false)
 

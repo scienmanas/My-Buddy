@@ -202,7 +202,6 @@ export default function Ask(props) {
                         disabled={wait}
                         className={`button-post-ask text-gray-800 font-semibold px-3 py-2 hover:bg-[#93d883] w-fit h-fit rounded-md flex flex-row items-center gap-2 duration-200 ${wait ? 'disabled: cursor-not-allowed bg-[#93d883]' : 'bg-[#B6F09C]'}`}
                         onClick={() => {
-                            console.log('fine')
                             setWait(() => true)
                             handleSubmit()
                         }}
