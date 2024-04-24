@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { IoChatbubbleOutline } from "react-icons/io5";
-import artificiumCvg from '../../assets/icons/artificium_icon.png';
-import { MdOutlineFolderOpen } from "react-icons/md";
+import React from 'react'
 import { RiChatNewLine } from "react-icons/ri";
 import currentIndicator from '../../assets/icons/current_indicator.png';
 import { useGlobalContext } from '../../Context/global_context';
+import { TbFriends } from "react-icons/tb";
+import { RiParentLine } from "react-icons/ri";
+import { GrUserExpert } from "react-icons/gr";
 
 export default function InfoTop(props) {
 
@@ -59,8 +58,8 @@ export default function InfoTop(props) {
           onClick={() => handleclick("friend")}
         >
           <div className="text-contents flex flex-row items-center gap-[9px]">
-            <div className="svg">
-              <img src={artificiumCvg} alt="" />
+            <div className={`svg font-bold text-lg ${mode === 'friend' ? 'text-pink-300' : 'text-pink-500'} duration-200`}>
+              <TbFriends />
             </div>
             <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Friend
@@ -79,8 +78,8 @@ export default function InfoTop(props) {
           onClick={() => handleclick("parent")}
         >
           <div className="text-contents flex flex-row items-center gap-[9px]">
-            <div className="svg">
-              <IoChatbubbleOutline />
+            <div className={`svg font-bold text-lg ${mode === 'parent' ? 'text-orange-300' : 'text-orange-400'} duration-200`}>
+              <RiParentLine />
             </div>
             <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Parent
@@ -99,8 +98,8 @@ export default function InfoTop(props) {
           onClick={() => handleclick("councellor")}
         >
           <div className="text-content flex flex-row items-center gap-[9px]">
-            <div className="svg">
-              <MdOutlineFolderOpen />
+            <div className={`svg font-bold text-lg ${mode === 'councellor' ? 'text-blue-300' : 'text-blue-400'} duration-200`}>
+              <GrUserExpert />
             </div>
             <div className="text-sm sm:text-base  w-fit text-[#E8E9E9] select-none">
               Counsellor

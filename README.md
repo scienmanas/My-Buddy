@@ -46,3 +46,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Demo  
 -- needed to be added 
+
+## Contributions 
+
+- This repository is **not open** for contributions.
