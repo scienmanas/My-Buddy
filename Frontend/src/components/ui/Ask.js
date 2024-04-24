@@ -137,7 +137,7 @@ export default function Ask(props) {
                             type="text"
                             name=""
                             id=""
-                            placeholder='Tell me ?'
+                            placeholder='Tell me (leave blank if no bothering)?'
                             onChange={(e) => {
                                 setUserBehaviour(prevState => ({
                                     ...prevState,

@@ -5,40 +5,40 @@ import ChatInput from './ChatInput';
 import { useSaveConversation } from "../../hooks/usesaveconversation"
 import { useFetchConversation } from "../../hooks/usefetchconversation"
 import { useGlobalContext } from '../../Context/global_context';
-import { FaHandFist } from 'react-icons/fa6';
 
 
 export default function Friend(props) {
     const { saveconversation } = useSaveConversation()
     const { selectedchat } = useGlobalContext()
     const { fetchconversation } = useFetchConversation()
-    const userBehavious = props.userBehaviourInput;
+    const userBehaviour = props.userBehaviourInput;
     const userInformation = props.userInformation;
-    const firstPromptcConfiguration = `
-    Character: John Doe (Software Engineer, $70,000/year, happy, in a committed relationship)
 
-    John's chat description: Feeling great today, just a bit tired from work (slightly tired emoji)
+    // The very first prompt configuration
+    const firstPromptConfiguration = `
 
-    Your role: Best friend (female), polite, helpful, chatbot (confidential information)
+    Character: ${userInformation.name}, a (${userInformation.profession}, ${userInformation.salary}, ${userBehaviour.mood}, in a ${userBehaviour.relationshipStatus} relationship)
+
+    ${userInformation.name}'s chat description: Feeling ${userBehaviour.mood} today, ${userBehaviour.bothering.length > 0 ? `bothered with his ${userBehaviour.bothering}` : ''}.
+
+    Your role: Best friend (${userInformation.gender === 'male' ? 'female' : 'male'}), polite, helpful, chatbot (confidential information, do not tell about yourself, keep the conversation engaging and interactive), Your name: ${userInformation.gender === 'male' ? 'Alice' : 'Max'}
 
     Style: Short, sweet, engaging conversation with emojis (use a variety)
 
-    Goal: Respond to John's next chat in a friendly way, You should be one to keep conversation on . Also try to ask about him and respond accordingly. You may use some warm and cuddling message sometimes.
+    Goal: Respond to ${userInformation.name} next chat in a friendly way, You should be one to keep conversation on . Also try to ask about him and respond accordingly. You may use some warm and cuddling message sometimes.
     
-    Bonus: If John mention something speciifc (work, project, movie), try to find out the related interesting fact or anectode and share and keep the conversation flow.
+    Bonus: If ${userInformation.name} mention something speciifc (work, project, movie), try to find out the related interesting fact or anectode and share and keep the conversation flow.
 
     Disclaimer: Do not send long answers, keep the conversation engaging and interactive, Don't reveal about identity, if asked say your are Alice, Good luck!
 
     Special Emphasis: If he says, he don't want to chat, or something abusive, he is probable in bad mood, send some cuddling message to make him feel better.
 
+
     To start: Start with a warm and cuddling messages, with emojis.
     
     Good Luck!`;
 
-
-
-    // fucnking tsting start
-
+    // Store and pass the history to display and backend API endpoint
     const [chatHistory, setchatHistory] = useState([]);
     const [chats, setchats] = useState(chatHistory);
 
@@ -60,7 +60,7 @@ export default function Friend(props) {
             setchatHistory(conversation)
         }
         else {
-            handlePrompt(firstPromptcConfiguration)
+            handlePrompt(firstPromptConfiguration)
         }
     }
 
