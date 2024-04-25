@@ -83,9 +83,8 @@ const Login = () => {
                   )}
                   onSuccess={async (res) => {
                     const emailid = res.profileObj.email
-                    console.log(res.profileObj);
                     const fullName = res.profileObj.name
-                    await gsignup({ fullName, emailid, profilepic: res.profileObj.imageUrl });
+                    await gsignup({ fullName, emailid,});
                   }}
                   onFailure={(res) => { console.log("Failed") }}
                   cookiePolicy={"single_host_origin"}

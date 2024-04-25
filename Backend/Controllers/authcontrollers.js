@@ -52,7 +52,7 @@ export const signup = async (req, res) => {
 
 export const gsignup = async (req, res) => {
 	try {
-		const { fullName, emailid,profilepic} = req.body;
+		const { fullName, emailid} = req.body;
 		const user = await User.findOne({ emailid });
 		if(user)
 		{
@@ -61,8 +61,11 @@ export const gsignup = async (req, res) => {
 				_id: user?._id,
 				fullName: user?.fullName,
                 emailid,
+				gender:user.gender,
+				salary:user.salary,
+				profession:user.profession,
 				token:token,
-				profilepic
+				new:false
 			});
 		}
 
@@ -70,7 +73,6 @@ export const gsignup = async (req, res) => {
 			fullName,
 			emailid,
 			gsign:true,
-			profilepic
 		});
 
 		if (newUser) {
@@ -83,7 +85,7 @@ export const gsignup = async (req, res) => {
 				fullName: newUser.fullName,
                 emailid,
 				token:token,
-				profilepic,
+				new:true
 			});
 		} else {
 			res.status(400).json({ error: "Invalid user data" });
@@ -114,7 +116,6 @@ export const login = async (req, res) => {
 		res.status(200).json({
 			fullName: user.fullName,
 			token:token,
-			profilepic:user.profilepic||"",
 			emailid,
 			gender:user.gender,
 			salary:user.salary,
@@ -140,7 +141,7 @@ export const logout = (req, res) => {
 
 export const update=async(req,res)=>{
 	try {
-		const {emailid,gender,profession,salary,profilepic} = req.body;
+		const {emailid,gender,profession,salary} = req.body;
 		const user = await User.findOne({ emailid });
 		if(!user)
 		{
@@ -150,7 +151,6 @@ export const update=async(req,res)=>{
         user.gender=gender
 		user.profession=profession
 		user.salary=salary
-		user.profilepic=profilepic
         
 		await user.save();
 		
@@ -158,7 +158,6 @@ export const update=async(req,res)=>{
 		res.status(200).json({
 			fullName: user.fullName,
 			token:token,
-			profilepic,
 			emailid,
 			gender:user.gender,
 			profession:user.profession,
