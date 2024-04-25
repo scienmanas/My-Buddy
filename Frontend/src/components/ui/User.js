@@ -1,9 +1,17 @@
 import React from 'react';
 import MarkDownConverter from './MarkDownConverter';
-import userLogo from '../../assets/users/man.png';
 import '../../styles/user.css';
+import { useGlobalContext } from '../../Context/global_context';
+import boyImage from '../../assets/users/boy.png';
+import girlImage from '../../assets/users/girl.png';
 
 export default function User(props) {
+
+    const { authUser } = useGlobalContext();
+    const userPhoto = authUser?.gender === 'male' ? boyImage : girlImage;
+
+
+
     return (
         <div className="user w-full flex justify-end">
             <div className='user-box flex items-start max-w-[75%] gap-[5px]'>
@@ -12,7 +20,7 @@ export default function User(props) {
                 </div>
                 <div className="user-logo flex-shrink-0 h-8 w-8">
                     <img
-                        src={userLogo}
+                        src={userPhoto}
                         alt=""
                         className='h-full w-full rounded-full'
                     />

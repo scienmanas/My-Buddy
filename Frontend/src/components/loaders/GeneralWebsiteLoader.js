@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Lottie from 'react-lottie';
-import robotImage from '../../assets/robots/robot.png'
 import '../../styles/generalwebsiteloader.css';
 
 
