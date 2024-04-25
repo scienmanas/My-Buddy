@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/uselogin";
 import { GoogleLogin } from "react-google-login"
 import useGsign from "../hooks/usegsign";
 import Google from "../assets/icons/google.png"
 import "../App.css"
+import { useGlobalContext } from "../Context/global_context";
+
 const Login = () => {
   const [emailid, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +18,8 @@ const Login = () => {
     e.preventDefault();
     await login(emailid, password);
   };
+  
+  const {authUser}=useGlobalContext();
 
   return (
     <div className="signup_bg p-4 h-screen flex items-center justify-center">

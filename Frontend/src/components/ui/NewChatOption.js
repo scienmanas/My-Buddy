@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from '../../assets/logo/logo.png'
+import logo from '../../assets/logo/logo_transparent.png'
 import { RiChatNewLine } from "react-icons/ri";
 import { useGlobalContext } from '../../Context/global_context';
 

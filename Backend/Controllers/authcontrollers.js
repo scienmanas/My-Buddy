@@ -115,7 +115,10 @@ export const login = async (req, res) => {
 			fullName: user.fullName,
 			token:token,
 			profilepic:user.profilepic||"",
-			emailid
+			emailid,
+			gender:user.gender,
+			salary:user.salary,
+			profession:user.profession
 		});
 	} catch (error) {
 		console.log("Error in login controller", error.message);
@@ -156,7 +159,10 @@ export const update=async(req,res)=>{
 			fullName: user.fullName,
 			token:token,
 			profilepic,
-			emailid
+			emailid,
+			gender:user.gender,
+			profession:user.profession,
+			salary:user.salary
 		});
 	} catch (error) {
 		console.log("Error in login controller", error.message);

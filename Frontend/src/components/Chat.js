@@ -14,15 +14,18 @@ import '../styles/chat.css';
 import { useGlobalContext } from '../Context/global_context';
 import { useFetchChat } from "../hooks/usefetchchat"
 import { set } from 'mongoose';
+
+
 export default function Chat(props) {
 
     // Background color setup and some squares setup
     document.body.style.backgroundColor = "#131619"
     const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
 
-
     // Import full data of the user
-    const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext()
+    const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext();
+
+
     // Configure states
     const { fetchchat } = useFetchChat()
     // Side bar toggle state
@@ -43,21 +46,17 @@ export default function Chat(props) {
         mode: String,
 
     })
-    // const [userInformation, setUserInformation] = useState({
-    //     name: String,
-    //     gender: String,
-    //     profession: String,
-    //     salary: String,
-    // })
-    const [userInformation, setUserInformation] = useState({
-        name: 'Pranav',
-        gender: 'Male',
-        profession: 'student',
-        salary: '1 crore per month',
-    })
+    // Configure user information
+    const userInformation = {
+        name: authUser?.fullName,
+        gender: authUser?.gender,
+        profession: authUser?.profession,
+        salary: authUser?.salary,
+    }
+
+    console.log(authUser)
     // Ask window display state
     const [askWindow, setAskWindow] = useState(false)
-
 
 
     const handleChatTo = (chatWith) => {
@@ -168,7 +167,6 @@ export default function Chat(props) {
             if (contentSide) {
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                     contentSide.classList.add('custom-height');
-                    isOpen(() => false)
                 } else {
                     contentSide.classList.add('min-h-screen');
                     contentSide.classList.add('max-h-screen');
@@ -236,4 +234,5 @@ export default function Chat(props) {
             </div>
         </div>
     );
+
 }

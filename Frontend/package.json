@@ -59,7 +59,7 @@
     "web-vitals": "^3.5.2"
   },
   "scripts": {
-    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -86,7 +86,6 @@
     "assert": "^2.1.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
-    "daisyui": "^4.10.1",
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
     "process": "^0.11.10",

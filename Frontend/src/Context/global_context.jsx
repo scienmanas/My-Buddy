@@ -12,6 +12,7 @@ export const GlobalContextProvider = ({ children }) => {
   );
 
   const [selectedchat,setselectedchat]=useState("");
+  const [tempuser,settempuser]=useState("");
   const [mode,setmode]=useState(null);
   const [chats,setchats]=useState([])
   const [chattitle,setchattitle]=useState("")
@@ -31,7 +32,9 @@ export const GlobalContextProvider = ({ children }) => {
         chattitle,
         setchattitle,
         chatdesc,
-        setchatdesc
+        setchatdesc,
+        tempuser,
+        settempuser
       }}
     >
       {children}
