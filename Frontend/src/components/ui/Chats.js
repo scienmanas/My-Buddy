@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import '../../styles/chats.css';
 import { useGlobalContext } from '../../Context/global_context';
+import FetchChatListLoader from "../loaders/FetchChatListLoader";
 
 export default function Chats(props) {
 
@@ -28,6 +29,7 @@ export default function Chats(props) {
             <div className="heading text-[#686B6E] select-none sm:px-3 font-bold">
                 <h2>Chats</h2>
             </div>
+            {props.isFetching ? <FetchChatListLoader /> : null}
             <div className="chat-list text-[#E8E9E9] overflow-auto scroll-smooth hide-scrollbar" style={{ maxHeight: `${browserHeight - 280}px`, overflowY: 'auto' }}
             >
                 {props.chatList === null ? null :
@@ -48,7 +50,6 @@ export default function Chats(props) {
                                     <div className="chat-name text-sm sm:text-base text-wrap max-w-60">
                                         {chat.name}
                                     </div>
-                                    {/* {console.log({`Id: ${chat.id}, title: ${chat.name}`})} */}
                                 </li>
                             ))}
                         </ul>

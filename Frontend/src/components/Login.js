@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/uselogin";
 import { GoogleLogin } from "react-google-login"
 import useGsign from "../hooks/usegsign";
 import Google from "../assets/icons/google.png"
 import "../App.css"
-import { useGlobalContext } from "../Context/global_context";
+import GeneralSmallLoader from "./loaders/GeneralSmallLoader";
 
 const Login = () => {
+
+  const [wait, setWait] = useState(false)
+
   const [emailid, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,10 +19,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setWait(() => true)
     await login(emailid, password);
+    setWait(() => false)
   };
-  
-  const {authUser}=useGlobalContext();
+
 
   return (
     <div className="signup_bg p-4 h-screen flex items-center justify-center">
@@ -64,14 +68,13 @@ const Login = () => {
             <div className="button-wrap-element flex flex-col w-full h-fit gap-[6px]">
               <div className="login-login-page">
                 <button
-                  className="w-full h-fit px-1 py-1 border rounded-[10px]  border-slate-700 font-sans font-bold bg-blue-600 duration-200 hover:bg-blue-800 text-white"
+                  className="w-full flex flex-row items-center justify-center gap-2 h-fit px-1 py-1 border rounded-[10px]  border-slate-700 font-sans font-bold bg-blue-600 duration-200 hover:bg-blue-800 text-white"
                   disabled={loading}
                 >
-                  {loading ? (
-                    <span className="loading loading-spinner"></span>
-                  ) : (
-                    "Login"
-                  )}
+                  <div className="login-text-buddy">
+                    Log In
+                  </div>
+                  {wait && <GeneralSmallLoader />}
                 </button>
               </div>
               <div className="w-full flex justify-center items-center h-[35px]  border-[#cac8c8] border-[2px] rounded-[10px] hover:bg-slate-100 duration-200">
@@ -79,11 +82,10 @@ const Login = () => {
                   clientId={process.env.REACT_APP_GAUTH}
                   render={renderProps => (
                     <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="flex">
-                      <img src={Google} className="w-[30px] pr-[5px]" alt="" />Signin with Google</button>
+                      <img src={Google} className="w-[30px] pr-[5px]" alt="" />Login with Google</button>
                   )}
                   onSuccess={async (res) => {
                     const emailid = res.profileObj.email
-                    console.log(res.profileObj);
                     const fullName = res.profileObj.name
                     await gsignup({ fullName, emailid, profilepic: res.profileObj.imageUrl });
                   }}

@@ -21,6 +21,10 @@ export default function Chat(props) {
     document.body.style.backgroundColor = "#131619"
     const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
 
+
+    // Loading for fetching chatList
+    const [isFetching, setIsFetching] = useState(null)
+
     // Import full data of the user
     const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext();
 
@@ -28,7 +32,7 @@ export default function Chat(props) {
     // Configure states
     const { fetchchat } = useFetchChat()
     // Side bar toggle state
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     // For chat list to be displayed on side bar
     const [chatList, setChatList] = useState([])
     // Set to current chat by chat id
@@ -53,7 +57,6 @@ export default function Chat(props) {
         salary: authUser?.salary,
     }
 
-    console.log(authUser)
     // Ask window display state
     const [askWindow, setAskWindow] = useState(false)
 
@@ -81,10 +84,7 @@ export default function Chat(props) {
         if (defaultMode === 'friend') {
             setmode(() => defaultMode)
         }
-        // Set some mode for the user so that he can see some rendering when change the chat and no have to ckick again
-        // setmode(() => 'friend')
 
-        // Close when we change to a chat and want to cancle the new chat making
         if (askWindow) {
             setAskWindow(() => false)
         }
@@ -106,6 +106,7 @@ export default function Chat(props) {
             temp_chat_list.push(partialObj);
         });
         setChatList(temp_chat_list);
+        setIsFetching(() => false)
     }
 
     // For configuration of a new chat
@@ -121,11 +122,7 @@ export default function Chat(props) {
             mode: behaviour.mode,
         })
 
-        console.log("*************")
-        console.log(`mode got from form: ${behaviour.mode}`)
         setmode(() => behaviour.mode)
-        console.log(`Mode set for new chat: ${mode}`)
-        console.log("&&&&&&&&&&&&&&&&&&&&")
 
         // Save the data to the databaswe
         const res = await fetch("https://my-buddy.onrender.com/api/message/savechat", {
@@ -139,7 +136,6 @@ export default function Chat(props) {
 
         // Call the the data
         const data = await res.json();
-        console.log(data)
         if (data.error) {
             throw new Error(data.error);
         }
@@ -175,22 +171,27 @@ export default function Chat(props) {
         applyDevicesClasses();
     }, []);
 
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsOpen(!(window.innerWidth < 640));
+        };
+        handleResize(); // initial check
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     // Called once at the start of the component
     useEffect(() => {
+        setIsFetching(() => true)
         fetch_the_chat();
     }, [])
 
 
     // For debugging purposes
     useEffect(() => {
-        console.log(chatList)
     }, [chatList])
 
-
-    //
-    //     useEffect(() => {
-    // if (chatList.length === 0 ) {
-    //     })
 
     return (
         <div className="app flex flex-row">
@@ -198,7 +199,7 @@ export default function Chat(props) {
                 <div
                     className={`sidebar absolute sm:relative sm:min-h-screen z-50`}
                 >
-                    <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} handleChangeChat={handleChangeChat} handleNewChat={handleNewChat} />
+                    <SideBar chatList={chatList} currentChat={currentChat} isOpen={isOpen} handleChangeChat={handleChangeChat} handleNewChat={handleNewChat} isFetching={isFetching} />
                 </div>
                 <div id='content-side' className="content-side-content  w-full flex flex-col justify-between sm:max-h-screen sm:min-h-screen relative">
                     {askWindow &&
@@ -226,7 +227,7 @@ export default function Chat(props) {
                     )}
                     {(!chatList || chatList.length === 0 || !currentChat) && (!askWindow) && (
                         <div className="no-content-screen w-full h-full">
-                            <NoContentsScreen handleNewChat={handleNewChat} configureUserBehaviour={configureUserBehaviour} />
+                            <NoContentsScreen handleNewChat={handleNewChat} configureUserBehaviour={configureUserBehaviour} toggleSidebar={toggleSidebar} isOpen={isOpen} />
                         </div>
                     )}
                 </div>

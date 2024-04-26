@@ -71,7 +71,19 @@ export default function NoContentsScreen(props) {
         }}
         />
       }
-      <div className='w-full h-full flex flex-col items-center justify-center gap-6 p-2'>
+      <div className='w-full h-full flex flex-col items-center justify-center gap-6 p-2 relative'>
+        <div className="side-bar-toogle-button absolute top-5 right-5">
+          <div
+            className={`open-side-pannel-for-sm flex w-fit cursor-pointer hover:bg-gray-800 p-2 rounded-lg border-[1px] border-transparent active:border-blue-400 duration-150 relative`}
+            onClick={props.toggleSidebar}
+          >
+            <div className="lines flex flex-col gap-[3.7px] ">
+              <div className={`line-2 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'rotate-45' : ''} duration-100`}></div>
+              <div className={`line-1 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? 'hidden' : ''}`}></div>
+              <div className={`line-3 h-[3px] w-[23px] bg-[#9B9C9E] rounded-full ${props.isOpen ? '-rotate-45' : ''} duration-100`}></div>
+            </div>
+          </div>
+        </div>
         <div className="animation pointer-events-none w-fit h-fit">
           <Lottie
             className=''

@@ -75,8 +75,6 @@ export default function Navbar() {
                 </button>
               </li>
             </Link>
-            {console.log("first")}
-            {console.log(authUser)}
             { !authUser && 
               <Link to={`${authUser ? "/chat" : "/signup"}`}>
                 <li className="cursor-pointer w-fit h-fit px-3 py-1  home">

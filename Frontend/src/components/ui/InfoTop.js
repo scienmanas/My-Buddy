@@ -18,7 +18,7 @@ export default function InfoTop(props) {
 
 
   return (
-    <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-6 sm:gap-4'>
+    <div className='m-2 sm:m-3 rounded-xl  content-side bg-[#0D0F10] h-fit pt-2 flex flex-col gap-2 sm:gap-4'>
       <div className="chat-info px-2 sm:px-4 sm:py-2 py-1 flex flex-row items-center justify-between">
         <div className="info flex flex-col p-2 gap-2">
           {props.currentChat === null ? null : (

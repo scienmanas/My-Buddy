@@ -20,7 +20,7 @@ export default function NewChatOption(props) {
                     My Buddy
                 </div>
             </div>
-            <div className="actions text-[#686B6E] text-2xl cursor-pointer group relative text-nowrap">
+            <div className="actions text-white text-2xl cursor-pointer group relative text-nowrap">
                 <div
                     className="button hover:bg-black px-3 py-2 rounded-2xl flex items-center"
                     onClick={props.handleNewChat}

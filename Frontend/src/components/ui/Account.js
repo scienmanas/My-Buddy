@@ -7,12 +7,15 @@ import { useGlobalContext } from '../../Context/global_context';
 import useLogout from '../../hooks/uselogout';
 import boyImage from '../../assets/users/boy.png';
 import girlImage from '../../assets/users/girl.png';
+import GeneralSmallLoader from '../loaders/GeneralSmallLoader';
 
 export default function AccountDownSettings() {
 
-    const {logout}=useLogout()
+    const [wait, setWait] = useState(false)
+
+    const { logout } = useLogout()
     const [isOnline, setIsOnline] = useState(true);
-    const {authUser}=useGlobalContext()
+    const { authUser } = useGlobalContext()
     const [accountSettingPopup, setAccountSettingPopup] = useState(false);
     const popupRef = useRef(null); // Reference to the popup element
 
@@ -49,11 +52,11 @@ export default function AccountDownSettings() {
         setAccountSettingPopup(!accountSettingPopup);
     }
 
-    const handleonclick=()=>{
+    const handleOnClickLogout = () => {
         logout();
     }
 
-    const user="User"
+    const user = "User"
     return (
         <div className='account w-full relative'>
             <div
@@ -64,7 +67,6 @@ export default function AccountDownSettings() {
                     <div className="photo relative">
                         <img
                             className='w-[40px] h-[40px] rounded-2xl'
-                            // src={userImage}
                             src={userPhoto}
                             alt=""
                         />
@@ -79,14 +81,14 @@ export default function AccountDownSettings() {
                             {authUser?.fullName}
                         </div>
                         <div className="plan text-[#B6F09C]">
-                            {authUser?.profession||user}
+                            {authUser?.profession || user}
                         </div>
                     </div>
                 </div>
             </div>
             {accountSettingPopup &&
                 <div ref={popupRef} className="account-popup absolute -top-[11.5rem] sm:-top-[12.3rem] bg-[#131619] px-2 py-2 rounded-lg w-full z-50">
-                     <div className="content-account-list flex flex-col text-white gap-[2px]">
+                    <div className="content-account-list flex flex-col text-white gap-[2px]">
                         <div className='customize-again flex items-center gap-[6px] hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer duration-150'>
                             <div className="svg">
                                 <MdOutlineDashboardCustomize />
@@ -114,17 +116,29 @@ export default function AccountDownSettings() {
                         <div className="line m-1 ">
                             <div className="line bg-gray-600 h-[1px] w-full"></div>
                         </div>
-                        <div className='logout flex flex-row items-center gap-[6px] hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer duration-150'>
-                            <div className="svg">
-                                <IoLogOutOutline />
-                            </div>
-                            <div className="text select-none" onClick={handleonclick}>
-                                Log out
+                        <div
+                            className='logout flex flex-row items-center gap-[6px] hover:bg-slate-800 rounded-md px-2 py-2 cursor-pointer duration-150'
+                            onClick={() => {
+                                setWait(() => true)
+                                handleOnClickLogout()
+                            }}
+                        >
+                            {wait ? <GeneralSmallLoader /> : (
+                                <div className="svg">
+                                    <IoLogOutOutline />
+                                </div>
+                            )}
+                            <div
+                                className="text select-none w-full flex flex-row items-center gap-2"
+                            >
+                                <div className="text-logout">
+                                    Log out
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             }
-        </div>
+        </div >
     )
 }

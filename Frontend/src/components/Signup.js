@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useSignup from "../hooks/usesignup.js";
 import useGsign from "../hooks/usegsign.js"
 import { GoogleLogin } from "react-google-login"
 import Google from "../assets/icons/google.png"
 import "../index.css"
-import { useGlobalContext } from "../Context/global_context.jsx";
+import GeneralSmallLoader from './loaders/GeneralSmallLoader.js';
+
+
 const SignUp = () => {
-  const {authUser}=useGlobalContext()
+
+  const [wait, setWait] = useState(false)
+
+
   const [inputs, setInputs] = useState({
     fullName: "",
     emailid: "",
@@ -20,10 +25,11 @@ const SignUp = () => {
   const { gsignup } = useGsign();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setWait(() => true)
     await signup(inputs);
   };
-  
- 
+
+
 
 
 
@@ -35,8 +41,8 @@ const SignUp = () => {
         <div className="sign-up-contents-form w-full p-6 rounded-lg flex flex-col">
           <form
             className="h-fit w-full flex flex-col gap-[6px]"
-            onSubmit={handleSubmit
-            }>
+            onSubmit={handleSubmit}
+          >
             <div className="name-user flex w-full h-fit items-start flex-col gap-[2px]">
               <div className="text-[15px] font-sans text-[rgb(77 76 99)]">
                 Nickname &#128521;
@@ -105,14 +111,13 @@ const SignUp = () => {
             <div className="signin-buttons-multiple-options flex flex-col w-full h-fit gap-2">
               <div className="sign-up-button-signup-page cursor-pointer">
                 <button
-                  className="button-sign-up py-1 w-full border rounded-[10px] border-slate-700 font-sans font-bold bg-[#2953FF] text-white text-[15px] hover:bg-[#1E3DE4] hover:text-white duration-200"
+                  className="button-sign-up py-1 w-full border rounded-[10px] border-slate-700 font-sans font-bold bg-[#2953FF] text-white text-[15px] hover:bg-[#1E3DE4] hover:text-white duration-200 flex justify-center items-center flex-row gap-2"
                   disabled={loading}
                 >
-                  {loading ? (
-                    <span className="loading loading-spinner"></span>
-                  ) : (
-                    "Sign Up"
-                  )}
+                  <div className="text-sign-up w-fit h-fit">
+                    Sign up
+                  </div>
+                  {wait ? <GeneralSmallLoader /> : null}
                 </button>
               </div>
               <div className="google-login-button w-full flex justify-center items-center h-[35px]  border-[#cac8c8] border-[2px] rounded-[10px] hover:bg-slate-200 duration-200 cursor-pointer">

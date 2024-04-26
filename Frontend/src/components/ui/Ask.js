@@ -2,9 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import '../../styles/ask.css';
+import GeneralResultsLoader from '../loaders/GeneralResultsLoader';
 
 export default function Ask(props) {
 
+
+    const [wait, setWait] = useState(false);
     // Need to make more robust so that all input from user is received 
 
     const [userBehaviour, setUserBehaviour] = useState({
@@ -15,7 +18,6 @@ export default function Ask(props) {
         relationshipStatus: 'single',
         mode: 'friend',
     })
-    const [wait, setWait] = useState(false);
 
     const handleSubmit = () => {
         props.configureUserBehaviour(userBehaviour)
@@ -207,13 +209,11 @@ export default function Ask(props) {
                         }}
                     >
                         <div className="text-ask-post">
-                            Ready ?
+                            {
+                                wait ? <GeneralResultsLoader /> : ' Ready ?'
+                            }
                         </div>
-                        {
-                            wait &&
-                            <div className='post-loader loading-roller'>
-                            </div>
-                        }
+
                     </button>
                 </div>
             </div>

@@ -3,7 +3,6 @@ import Landing from './components/Landing';
 import Chat from './components/Chat';
 import GeneralAlert from './components/GeneralAlert';
 import Authors from './components/landing/Authors';
-import GeneralWebsiteLoader from './components/loaders/GeneralWebsiteLoader';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import {
@@ -23,14 +22,10 @@ import { gapi } from "gapi-script"
 
 function App() {
 
-  const [isloading, setisloading] = useState(true);
   const [alert, setAlert] = useState(false);
   const [alertAnimation, setAlertAnimation] = useState(null);
   const { authUser, setAuthUser, tempuser } = useGlobalContext();
 
-  const setLoading = (value) => {
-    setisloading(value);
-  }
 
   const showAlert = (message, type) => {
     setAlert({
@@ -47,12 +42,7 @@ function App() {
 
     }, 3000);
   }
-  useEffect(() => {
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, [])
 
   useEffect(() => {
     function start() {
@@ -67,20 +57,17 @@ function App() {
   return (
 
     <div className="app overflow-hidden">
-      {isloading && <GeneralWebsiteLoader />}
-      {!isloading &&
-        <Router>
-          <GeneralAlert alert={alert} alertAnimation={alertAnimation} />
-          <Routes>
-            <Route path="/" element={<Landing isloading={isloading} setLoading={setLoading} showAlert={showAlert} />} />
-            <Route path="/chat" element={authUser ? <Chat isloading={isloading} setLoading={setLoading} /> : <Navigate to="/login" />} />
-            <Route path="/signup" element={!authUser ? <SignUp isloading={isloading} setLoading={setLoading} /> : <Navigate to="/chat" />} />
-            <Route path="/details" element={!authUser ? (tempuser ? <Details isloading={isloading} setLoading={setLoading} /> : <Navigate to="/login" />) : < Navigate to="/chat" />} />
-            <Route path="/login" element={!authUser ? <Login isloading={isloading} setLoading={setLoading} /> : <Navigate to="/chat" />} />
-            <Route path="/authors" element={<Authors isloading={isloading} setLoading={setLoading} />} />
-          </Routes>
-        </Router>
-      }
+      <Router>
+        <GeneralAlert alert={alert} alertAnimation={alertAnimation} />
+        <Routes>
+          <Route path="/" element={<Landing showAlert={showAlert} />} />
+          <Route path="/chat" element={authUser ? <Chat /> : <Navigate to="/login" />} />
+          <Route path="/signup" element={!authUser ? <SignUp /> : <Navigate to="/chat" />} />
+          <Route path="/details" element={!authUser ? (tempuser ? <Details /> : <Navigate to="/login" />) : < Navigate to="/chat" />} />
+          <Route path="/login" element={!authUser ? <Login /> : <Navigate to="/chat" />} />
+          <Route path="/authors" element={<Authors />} />
+        </Routes>
+      </Router>
       <Toaster />
     </div>
   );

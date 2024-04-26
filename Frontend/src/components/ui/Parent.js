@@ -5,9 +5,13 @@ import ChatInput from './ChatInput';
 import { useSaveConversation } from "../../hooks/usesaveconversation"
 import { useFetchConversation } from "../../hooks/usefetchconversation"
 import { useGlobalContext } from '../../Context/global_context';
+import FetchChatLoader from '../loaders/FetchChatLoader';
 
 export default function Parent(props) {
 
+
+    // State to loading icon
+    const [isFetching, setIsFetching] = useState(null)
 
     const { saveconversation } = useSaveConversation()
     const { selectedchat } = useGlobalContext()
@@ -54,6 +58,7 @@ export default function Parent(props) {
     // Fetch the conversation at start of the chat
     const fetch_the_conversation = async () => {
         const conversation = await fetchconversation();
+        setIsFetching(() => false)
         if (conversation.length > 0) {
             setchats(conversation)
             setchatHistory(conversation)
@@ -65,8 +70,10 @@ export default function Parent(props) {
 
     // Called when the component is mounted
     useEffect(() => {
-        if (selectedchat !== "")
+        if (selectedchat !== "") {
+            setIsFetching(() => true)
             fetch_the_conversation()
+        }
     }, [selectedchat])
 
 
@@ -124,6 +131,7 @@ export default function Parent(props) {
     return (
         <>
             <div className="conversation-area overflow-auto scroll-smooth hide-scrollbar-conversation w-full flex-grow p-4 hide-scrollbar-conversation" ref={conversationRef}>
+                {isFetching ? <FetchChatLoader /> : null}
                 <Conversation chats={chats} responseLoading={responseLoading} />
             </div>
             <div className="chat-area">
