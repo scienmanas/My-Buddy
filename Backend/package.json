@@ -1,10 +1,10 @@
 {
-  "name": "buddy",
+  "name": "my-buddy",
   "version": "1.0.0",
   "description": "",
-  "main": "./Backend/index.js",
+  "main": "index.js",
   "scripts": {
-    "server": "nodemon ./Backend/index.js",
+    "server": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
