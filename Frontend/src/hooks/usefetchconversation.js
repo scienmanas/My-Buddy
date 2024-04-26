@@ -7,7 +7,7 @@ export const useFetchConversation = () => {
     const { authUser, mode, selectedchat } = useGlobalContext();
 
     const fetchconversation = async () => {
-        const res = await fetch(`https://my-buddy.onrender.com/api/getconversation/${selectedchat}`, {
+        const res = await fetch(`https://my-buddy.onrender.com/message/api/getconversation/${selectedchat}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
