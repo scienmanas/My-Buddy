@@ -12,7 +12,7 @@ export const useFetchChat=()=>{
     const icons = [blueOctagon, greenSquare, orangeSquare, redTriangle];
     const fetchchat=async ()=>{
         try{
-        const res = await fetch("http://localhost:5000/api/message/getchat", {
+        const res = await fetch("https://my-buddy.onrender.com/api/message/getchat", {
 				method: "POST",
 				headers: { "Content-Type": "application/json",
 			 },

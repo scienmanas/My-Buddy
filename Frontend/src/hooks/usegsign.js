@@ -7,7 +7,7 @@ const useGsign = () => {
 	const navigate=useNavigate()
 	const gsignup = async ({fullName,emailid}) => {
 		try {
-			const res = await fetch("http://localhost:5000/api/auth/gsignup", {
+			const res = await fetch("https://my-buddy.onrender.com/api/auth/gsignup", {
 				method: "POST",
 				headers: { "Content-Type": "application/json",
 			 },

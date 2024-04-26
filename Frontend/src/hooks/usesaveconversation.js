@@ -7,7 +7,7 @@ export const  useSaveConversation=()=>{
     const {authUser,mode,selectedchat}=useGlobalContext();
     const saveconversation=async (promptByUser,text)=>{
         try {
-            let res = await fetch(`http://localhost:5000/api/message/send`, {
+            let res = await fetch(`https://my-buddy.onrender.com/api/message/send`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const  useSaveConversation=()=>{
 			let data = await res.json();
             if (data.error) throw new Error(data.error);
         
-            res = await fetch(`http://localhost:5000/api/message/send`, {
+            res = await fetch(`https://my-buddy.onrender.com/api/message/send`, {
                method: "POST",
                headers: {
                    "Content-Type": "application/json",

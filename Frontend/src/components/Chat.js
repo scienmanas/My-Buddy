@@ -128,7 +128,7 @@ export default function Chat(props) {
         console.log("&&&&&&&&&&&&&&&&&&&&")
 
         // Save the data to the databaswe
-        const res = await fetch("http://localhost:5000/api/message/savechat", {
+        const res = await fetch("https://my-buddy.onrender.com/api/message/savechat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
