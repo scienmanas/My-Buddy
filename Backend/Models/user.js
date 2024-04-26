@@ -22,9 +22,6 @@ const userSchema = new mongoose.Schema(
 			type:String,
 			enum:["male","female"]
 		}, 
-		profilepic:{
-			type:String,
-		},
 		profession:{
 			type:String,
 		},

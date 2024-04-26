@@ -5,7 +5,7 @@ import { useGlobalContext } from "../Context/global_context.jsx";
 const useUpdateDetails = () => {
 	const [loading, setLoading] = useState(false);
 	const { setAuthUser,authUser } = useGlobalContext();
-	const updatedetails = async ({ gender,profession,salary,profilepic}) => {
+	const updatedetails = async ({ gender,profession,salary}) => {
 		const success = handleInputErrors({gender,profession,salary});
 		if (!success) return;
 
@@ -17,7 +17,7 @@ const useUpdateDetails = () => {
 				method: "PUT",
 				headers: { "Content-Type": "application/json",
 			 },
-				body: JSON.stringify({emailid, gender,profession,salary,profilepic}),
+				body: JSON.stringify({emailid, gender,profession,salary}),
 			});
 
 			const data = await res.json();
