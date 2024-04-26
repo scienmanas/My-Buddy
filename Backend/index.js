@@ -8,7 +8,9 @@ import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from 'cloudinary';
 
 const app = express();
-app.use(cors({ origin: "https://my-buddy-ten.vercel.app" }));
+app.use(cors({
+    origin: ["https://my-buddy-ten.vercel.app", 'http://localhost:3000'],
+}));
 
 dotenv.config()
 app.use(express.json())
