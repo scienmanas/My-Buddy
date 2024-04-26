@@ -4,17 +4,20 @@ import { FiExternalLink } from "react-icons/fi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import '../../styles/account.css';
 import { useGlobalContext } from '../../Context/global_context';
-import dummy from "../../assets/icons/dummy.jpeg"
 import useLogout from '../../hooks/uselogout';
+import boyImage from '../../assets/users/boy.png';
+import girlImage from '../../assets/users/girl.png';
 
 export default function AccountDownSettings() {
-    const [name, setName] = useState("Manas Poddar");
-    const [userType, setUserType] = useState("Student");
+
     const {logout}=useLogout()
     const [isOnline, setIsOnline] = useState(true);
     const {authUser}=useGlobalContext()
     const [accountSettingPopup, setAccountSettingPopup] = useState(false);
     const popupRef = useRef(null); // Reference to the popup element
+
+    // Configure display photo
+    const userPhoto = authUser?.gender === 'male' ? boyImage : girlImage;
 
     useEffect(() => {
         const updateOnlineStatus = () => {
@@ -62,7 +65,7 @@ export default function AccountDownSettings() {
                         <img
                             className='w-[40px] h-[40px] rounded-2xl'
                             // src={userImage}
-                            src={authUser?.profilepic||dummy}
+                            src={userPhoto}
                             alt=""
                         />
                         <div className="onlinestatus absolute top-0 right-0">
