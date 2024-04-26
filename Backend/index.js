@@ -22,10 +22,6 @@ app.use("/api/auth",authroutes)
 app.use("/api/message",messageroutes);
 
 
-const clientid="506470945121-lnvmjbs2lq68itqet12i7n2h9tpouo3u.apps.googleusercontent.com"
-const secretkey="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"
-
-
 app.get("/",(req,res)=>{
     res.send("Hello world")
 })

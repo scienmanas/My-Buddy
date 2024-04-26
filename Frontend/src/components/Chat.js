@@ -13,7 +13,6 @@ import redTriangle from '../assets/icons/red_triangle.png';
 import '../styles/chat.css';
 import { useGlobalContext } from '../Context/global_context';
 import { useFetchChat } from "../hooks/usefetchchat"
-import { set } from 'mongoose';
 
 
 export default function Chat(props) {
