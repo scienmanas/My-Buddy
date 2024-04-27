@@ -88,7 +88,7 @@ const Login = () => {
                         renderProps.onClick()
                       }}
                       disabled={renderProps.disabled}
-                      className="flex"
+                      className="flex items-center justify-center gap-2 w-full h-full"
                     >
                       <img src={Google} className="w-[30px] pr-[5px]" alt="" />
                       <div className="text-google-login">
