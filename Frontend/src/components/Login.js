@@ -9,6 +9,7 @@ import GeneralSmallLoader from "./loaders/GeneralSmallLoader";
 
 const Login = () => {
 
+  const [waitGoogle, setWaitGoogle] = useState(false)
   const [wait, setWait] = useState(false)
 
   const [emailid, setUsername] = useState("");
@@ -81,8 +82,20 @@ const Login = () => {
                 <GoogleLogin
                   clientId={process.env.REACT_APP_GAUTH}
                   render={renderProps => (
-                    <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="flex">
-                      <img src={Google} className="w-[30px] pr-[5px]" alt="" />Login with Google</button>
+                    <button
+                      onClick={() => {
+                        setWaitGoogle(() => true)
+                        renderProps.onClick()
+                      }}
+                      disabled={renderProps.disabled}
+                      className="flex"
+                    >
+                      <img src={Google} className="w-[30px] pr-[5px]" alt="" />
+                      <div className="text-google-login">
+                        Login with Google
+                      </div>
+                      {waitGoogle && <GeneralSmallLoader />}
+                    </button>
                   )}
                   onSuccess={async (res) => {
                     const emailid = res.profileObj.email
