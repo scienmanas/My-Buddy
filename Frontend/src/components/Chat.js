@@ -28,6 +28,7 @@ export default function Chat(props) {
     // Import full data of the user
     const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext();
 
+    console.log(authUser)
 
     // Configure states
     const { fetchchat } = useFetchChat()
@@ -191,6 +192,7 @@ export default function Chat(props) {
     // For debugging purposes
     useEffect(() => {
     }, [chatList])
+
 
 
     return (

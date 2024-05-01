@@ -1,10 +1,13 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useGlobalContext } from "../Context/global_context";
+import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
 	const [loading, setLoading] = useState(false);
 	const { setAuthUser } = useGlobalContext();
+	const { settempuser } = useGlobalContext();
+	const navigate = useNavigate()
 
 	const login = async (emailid, password) => {
 		const success = handleInputErrors(emailid, password);
@@ -21,9 +24,16 @@ const useLogin = () => {
 			if (data.error) {
 				throw new Error(data.error);
 			}
-
-			localStorage.setItem("chat-user", JSON.stringify(data));
-			setAuthUser(data);
+			console.log(data)
+			if (!data.gender || !data.profession || !data.salary) {
+				localStorage.setItem("chat-user", JSON.stringify(data));
+				settempuser(data);
+				navigate("details")
+			}
+			else {
+				localStorage.setItem("chat-user", JSON.stringify(data));
+				setAuthUser(data);
+			}
 		} catch (error) {
 			toast.error(error.message);
 		} finally {
