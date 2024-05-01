@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema(
 		profession:{
 			type:String,
 		},
+		salary: {
+			type: String,
+		}
 	},{timestamps:true}
 );
 
