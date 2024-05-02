@@ -65,7 +65,7 @@ function App() {
           <Route path="/signup" element={!authUser ? <SignUp showAlert={showAlert} /> : <Navigate to="/chat" />} />
           <Route path="/details" element={!authUser ? (tempuser ? <Details /> : <Navigate to="/login" />) : < Navigate to="/chat" />} />
           <Route path="/login" element={!authUser ? <Login  showAlert={showAlert} /> : <Navigate to="/chat" />} />
-          <Route path="/authors" element={<Authors />} />
+          <Route path="/authors" element={<Authors showAlert={showAlert} />} />
         </Routes>
       </Router>
       <Toaster />

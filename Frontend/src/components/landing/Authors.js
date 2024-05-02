@@ -21,7 +21,7 @@ const authorAnimation = {
 
 
 
-export default function Authors() {
+export default function Authors(props) {
 
     const [animationSize, setAnimationSize] = useState({ width: 350, height: 250 });
 
@@ -94,7 +94,7 @@ export default function Authors() {
                 </div>
             </div>
             <div className="footer">
-                <Footer />
+                <Footer showAlert={props.showAlert} />
             </div>
         </div>
     )
