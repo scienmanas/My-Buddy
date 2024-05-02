@@ -36,7 +36,7 @@ export default function Counsellor(props) {
 
     Special Emphasis: If ${userInformation.name} says they don't want to chat or says something abusive, they're probably in a bad mood. Send some supportive and understanding messages to make them feel better.
 
-    Remeber: Don't give sample chats, after this the person will be talking to you.
+    Remeber: Don't give sample chats, after this the person will be talking to you and just reply don't mention your name.
 
     To start: Begin with an empathetic and supportive message, with emojis.
 

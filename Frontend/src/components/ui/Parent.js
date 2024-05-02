@@ -36,7 +36,7 @@ export default function Parent(props) {
 
     Special Emphasis: If ${userInformation.name} says they don't want to chat or says something abusive, they're probably in a bad mood. Send some comforting messages to make them feel better. Also send short and weet answers.
 
-    Remeber: Don't give sample chats, after this the person will be talking to you.
+    Remeber: Don't give sample chats, after this the person will be talking to you and just reply don't mention your name.
 
     To start: Begin with a warm and comforting message, with emojis.
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useSignup from "../hooks/usesignup.js";
 import useGsign from "../hooks/usegsign.js"
 import { GoogleLogin } from "react-google-login"
@@ -8,7 +8,7 @@ import "../index.css"
 import GeneralSmallLoader from './loaders/GeneralSmallLoader.js';
 
 
-const SignUp = () => {
+const SignUp = (props) => {
 
   const [wait, setWait] = useState(false)
   const [waitGoogle, setWaitGoogle] = useState(false)
@@ -30,6 +30,18 @@ const SignUp = () => {
     await signup(inputs);
     setWait(() => false)
   };
+
+  useEffect(() => {
+    if (wait || waitGoogle) {
+      setTimeout(() => {
+        props.showAlert("Servers On free instances", "Please wait")
+      }
+        , 3000)
+    }
+    return () => {
+      clearTimeout()
+    }
+  }, [wait, waitGoogle])
 
 
 

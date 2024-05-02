@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/uselogin";
 import { GoogleLogin } from "react-google-login"
@@ -7,7 +7,7 @@ import Google from "../assets/icons/google.png"
 import "../App.css"
 import GeneralSmallLoader from "./loaders/GeneralSmallLoader";
 
-const Login = () => {
+const Login = (props) => {
 
   const [waitGoogle, setWaitGoogle] = useState(false)
   const [wait, setWait] = useState(false)
@@ -24,6 +24,18 @@ const Login = () => {
     await login(emailid, password);
     setWait(() => false)
   };
+
+  useEffect(() => {
+    if (wait || waitGoogle) {
+      setTimeout(() => {
+        props.showAlert("Servers On free instances", "Please wait")
+      }
+        , 3000)
+    }
+    return () => {
+      clearTimeout()
+    }
+  }, [wait, waitGoogle])
 
 
   return (

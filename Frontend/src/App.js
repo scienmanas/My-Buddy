@@ -40,7 +40,7 @@ function App() {
     setTimeout(() => {
       setAlert(null)
 
-    }, 3000);
+    }, 4000);
   }
 
 
@@ -62,9 +62,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing showAlert={showAlert} />} />
           <Route path="/chat" element={authUser ? <Chat /> : <Navigate to="/login" />} />
-          <Route path="/signup" element={!authUser ? <SignUp /> : <Navigate to="/chat" />} />
+          <Route path="/signup" element={!authUser ? <SignUp showAlert={showAlert} /> : <Navigate to="/chat" />} />
           <Route path="/details" element={!authUser ? (tempuser ? <Details /> : <Navigate to="/login" />) : < Navigate to="/chat" />} />
-          <Route path="/login" element={!authUser ? <Login /> : <Navigate to="/chat" />} />
+          <Route path="/login" element={!authUser ? <Login  showAlert={showAlert} /> : <Navigate to="/chat" />} />
           <Route path="/authors" element={<Authors />} />
         </Routes>
       </Router>

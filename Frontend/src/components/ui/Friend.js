@@ -36,7 +36,7 @@ export default function Friend(props) {
 
     To start: Start with a warm and cuddling messages, with emojis.
 
-    Remeber: Don't give sample chats, after this the person will be talking to you.
+    Remeber: Don't give sample chats, after this the person will be talking to you and just reply don't mention your name.
     
     Good Luck!`;
 
