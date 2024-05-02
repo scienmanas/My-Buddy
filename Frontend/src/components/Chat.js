@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SideBar from './ui/SideBar';
 import Infotop from './ui/InfoTop';
 import Friend from './ui/Friend';
-import Councellor from './ui/Councellor';
+import Counsellor from './ui/Counsellor';
 import Parent from './ui/Parent';
 import Ask from './ui/Ask';
 import NoContentsScreen from './ui/NoContentsScreen';
@@ -27,8 +27,6 @@ export default function Chat(props) {
 
     // Import full data of the user
     const { authUser, mode, setmode, setselectedchat, setchattitle, setchatdesc } = useGlobalContext();
-
-    console.log(authUser)
 
     // Configure states
     const { fetchchat } = useFetchChat()
@@ -114,14 +112,14 @@ export default function Chat(props) {
     const configureUserBehaviour = async (behaviour) => {
 
         // Configuring the user behaviour
-        setUserBehaviourInput({
+        setUserBehaviourInput(() => ({
             title: behaviour.title,
             description: behaviour.description,
             mood: behaviour.mood,
             bothering: behaviour.bothering,
             relationshipStatus: behaviour.relationshipStatus,
             mode: behaviour.mode,
-        })
+        }));
 
         setmode(() => behaviour.mode)
 
@@ -223,7 +221,7 @@ export default function Chat(props) {
                                 <Friend userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
                             ) : null}
                             {mode === 'councellor' ? (
-                                <Councellor userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
+                                <Counsellor userBehaviourInput={userBehaviourInput} userInformation={userInformation} />
                             ) : null}
                         </>
                     )}

@@ -21,8 +21,6 @@ const useGsign = () => {
 				throw new Error(data.error);
 			}
 
-			console.log(data)
-
 			if (data.new) {
 				settempuser(data)
 				navigate("/details")
@@ -30,13 +28,6 @@ const useGsign = () => {
 			}
 			else {
 				if (!data.gender || !data.profession || !data.salary) {
-					console.log(data.gender)
-					console.log(!data.gender)
-					console.log(data.profession)
-					console.log(!data.profession)
-					console.log(data.salary)
-					console.log(!data.salary)
-					console.log("first")
 					localStorage.setItem("chat-user", JSON.stringify(data));
 					settempuser(data);
 					navigate("/details")

@@ -145,9 +145,6 @@ export const update = async (req, res) => {
 			return res.status(400).json({ error: "User doesn't exist" })
 		}
 
-		
-		console.log(salary)
-
 		user.gender = gender
 		user.profession = profession
 		user.salary = salary

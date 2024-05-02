@@ -47,7 +47,6 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-
             <div>
               <div className="text-base label-text text-[rgb(77 76 99)]">
                 Password
@@ -83,7 +82,8 @@ const Login = () => {
                   clientId={process.env.REACT_APP_GAUTH}
                   render={renderProps => (
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
                         setWaitGoogle(() => true)
                         renderProps.onClick()
                       }}
@@ -101,6 +101,7 @@ const Login = () => {
                     const emailid = res.profileObj.email
                     const fullName = res.profileObj.name
                     await gsignup({ fullName, emailid, profilepic: res.profileObj.imageUrl });
+                    setWait(() => false)
                   }}
                   onFailure={(res) => { console.log("Failed") }}
                   cookiePolicy={"single_host_origin"}

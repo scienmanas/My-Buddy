@@ -8,7 +8,7 @@ import { useGlobalContext } from '../../Context/global_context';
 import FetchChatLoader from '../loaders/FetchChatLoader';
 
 
-export default function Councellor(props) {
+export default function Counsellor(props) {
 
 
     // State to loading icon
@@ -34,9 +34,9 @@ export default function Councellor(props) {
 
     Bonus: If ${userInformation.name} mentions something specific (work, project, movie), try to find a related insight or advice and share it to keep the conversation flowing.
 
-    Disclaimer: Do not send long answers, keep the conversation engaging and interactive. Don't reveal about identity, if asked say you are Dr. Smith/Dr. Johnson. Good luck!
-
     Special Emphasis: If ${userInformation.name} says they don't want to chat or says something abusive, they're probably in a bad mood. Send some supportive and understanding messages to make them feel better.
+
+    Remeber: Don't give sample chats, after this the person will be talking to you.
 
     To start: Begin with an empathetic and supportive message, with emojis.
 

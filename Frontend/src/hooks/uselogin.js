@@ -24,7 +24,6 @@ const useLogin = () => {
 			if (data.error) {
 				throw new Error(data.error);
 			}
-			console.log(data)
 			if (!data.gender || !data.profession || !data.salary) {
 				localStorage.setItem("chat-user", JSON.stringify(data));
 				settempuser(data);

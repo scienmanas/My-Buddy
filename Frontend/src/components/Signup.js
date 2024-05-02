@@ -28,9 +28,8 @@ const SignUp = () => {
     e.preventDefault();
     setWait(() => true)
     await signup(inputs);
+    setWait(() => false)
   };
-
-
 
 
 
@@ -126,12 +125,13 @@ const SignUp = () => {
                   clientId={process.env.REACT_APP_GAUTH}
                   render={renderProps => (
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
                         setWaitGoogle(() => true)
                         renderProps.onClick()
                       }}
                       disabled={renderProps.disabled}
-                      className="flex flex-row justify-center items-center gap-2"
+                      className="flex flex-row justify-center items-center gap-2 w-full"
                     >
                       <img src={Google} className="w-[30px] pr-[5px]" alt="" />
                       <div className="text-signup-google">
@@ -139,7 +139,6 @@ const SignUp = () => {
                       </div>
                       {waitGoogle ? <GeneralSmallLoader /> : null}
                     </button>
-
                   )}
                   onSuccess={async (res) => {
                     const emailid = res.profileObj.email

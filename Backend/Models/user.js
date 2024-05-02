@@ -6,29 +6,29 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-	    emailid:{
-            type:String,
-            required:true,
-        },
-		gsign:{
-			type:Boolean,
-			required:true,
+		emailid: {
+			type: String,
+			required: true,
+		},
+		gsign: {
+			type: Boolean,
+			required: true,
 		},
 		password: {
 			type: String,
 			minlength: 6,
 		},
-		gender:{
-			type:String,
-			enum:["male","female"]
-		}, 
-		profession:{
-			type:String,
+		gender: {
+			type: String,
+			enum: ["male", "female"]
+		},
+		profession: {
+			type: String,
 		},
 		salary: {
 			type: String,
 		}
-	},{timestamps:true}
+	}, { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);
