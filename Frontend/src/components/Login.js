@@ -30,7 +30,7 @@ const Login = (props) => {
       setTimeout(() => {
         props.showAlert("Servers On free instances", "Please wait")
       }
-        , 3000)
+        , 10000)
     }
     return () => {
       clearTimeout()

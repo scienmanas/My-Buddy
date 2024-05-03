@@ -40,12 +40,12 @@ export default function Chat(props) {
     const [chatTo, setChatTo] = useState(mode || 'friend')
     // for user behaviour
     const [userBehaviourInput, setUserBehaviourInput] = useState({
-        title: String,
-        description: String,
-        mood: String,
-        bothering: String,
-        relationshipStatus: String,
-        mode: String,
+        title: '',
+        description: '',
+        mood: '',
+        bothering: '',
+        relationshipStatus: '',
+        mode: '',
 
     })
     // Configure user information
