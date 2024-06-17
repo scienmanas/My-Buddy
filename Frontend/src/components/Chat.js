@@ -124,7 +124,7 @@ export default function Chat(props) {
         setmode(() => behaviour.mode)
 
         // Save the data to the databaswe
-        const res = await fetch("https://my-buddy.onrender.com/api/message/savechat", {
+        const res = await fetch("https://my-buddy-pmdc.onrender.com/api/message/savechat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

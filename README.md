@@ -5,7 +5,7 @@ My Buddy is a chatBot which uses Google Gemini API for its core functionality fo
 ## Hosting 
 
 - Frontend hosted on vercel : [My Buddy](https://my-buddy-ten.vercel.app/)
-- Backend hosted on render : [My Buddy Backend](https://my-buddy.onrender.com)
+- Backend hosted on render : [My Buddy Backend](https://my-buddy-pmdc.onrender.com)
 
 ## Demo  
 
